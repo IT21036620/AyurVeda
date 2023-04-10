@@ -17,5 +17,6 @@ router
   .get(getProduct)
   .patch(updateProduct)
   .delete(deleteProduct)
+// router.route('/search').get(getAllProductsSorted)
 
 module.exports = router

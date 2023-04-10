@@ -71,6 +71,15 @@ const ProductSchema = new mongoose.Schema({
     required: [true, 'must provide product description'],
     trim: true,
   },
+  rating: {
+    type: Number,
+    default: 0.0,
+    max: [5, 'rating cannot be higher than 5, {VALUE} is invalid'],
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now(),
+  },
 })
 
 module.exports = mongoose.model('Product', ProductSchema)

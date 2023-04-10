@@ -1,6 +1,7 @@
 const express = require('express')
+require('express-async-errors')
 const app = express()
-const products = require('./routes/products')
+const productRouter = require('./routes/products')
 const connectDB = require('./db/connect')
 require('dotenv').config()
 const notFound = require('./middleware/not-found')
@@ -11,7 +12,7 @@ app.use(express.json())
 
 //routes
 
-app.use('/api/v1/products', products)
+app.use('/api/v1/products', productRouter)
 
 app.use(notFound)
 app.use(errorHandlerMiddleware)
