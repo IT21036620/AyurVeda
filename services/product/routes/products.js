@@ -10,7 +10,9 @@ const {
   updateProduct,
 } = require('../controllers/products')
 
-router.route('/').get(getAllProducts).post(createProduct)
+const authenticateSeller = require('../middleware/authentication')
+
+router.route('/').get(getAllProducts).post(authenticateSeller, createProduct)
 router
   .route('/:id')
   .get(getProductsByCategory)

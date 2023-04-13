@@ -1,4 +1,5 @@
 const Seller = require('../models/Seller')
+const Product = require('../models/products')
 const { StatusCodes } = require('http-status-codes')
 const { BadRequestError, UnauthenticatedError } = require('../errors')
 
@@ -33,19 +34,25 @@ const login = async (req, res) => {
   }
   // compare password
   const token = seller.createJWT()
-  res
-    .status(StatusCodes.OK)
-    .json({
-      seller: {
-        seller_name: seller.name,
-        email: seller.email,
-        company_name: seller.company_name,
-      },
-      token,
-    })
+  res.status(StatusCodes.OK).json({
+    seller: {
+      seller_name: seller.name,
+      email: seller.email,
+      company_name: seller.company_name,
+    },
+    token,
+  })
+}
+
+const getAllProductsBySeller = async (req, res) => {
+  const products = await Product.find({ createdBy: req.user.userId }).sort(
+    'createdAt'
+  )
+  res.status(StatusCodes.OK).json({ products, count: products.length })
 }
 
 module.exports = {
   register,
   login,
+  getAllProductsBySeller,
 }

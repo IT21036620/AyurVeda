@@ -24,6 +24,7 @@ const getProductsByCategory = asyncWrapper(async (req, res, next) => {
 
 //add a new product
 const createProduct = asyncWrapper(async (req, res) => {
+  req.body.createdBy = req.user.userId
   const product = await Product.create(req.body)
   res.status(201).json({ product })
 })
