@@ -21,11 +21,15 @@ router.post(
   '/addBuyer',
   // celebrate({ [Segments.BODY]: addBuyerSchema }),
   buyerAdd
+  //   (req, res) => {
+  //     console.log(req.body)
+  //     res.json({ msg: 'in add' })
+  //   }
 )
 
 //Get Data Of One Buyer
 router.get(
-  '/:id',
+  '/getBuyer/:id',
   //   celebrate({ [Segments.PARAMS]: viewBuyerSchema }),
   // BuyerCheck,
   buyerGet
@@ -36,14 +40,14 @@ router.get('/viewAllBuyers', buyersGet)
 
 //Update Buyer Data
 router.patch(
-  '/:id',
+  '/updateBuyer/:id',
   //   celebrate({ [Segments.PARAMS]: updateBuyerSchema }),
   updateBuyer
 )
 
 //Delete A Buyer
 router.delete(
-  '/:id',
+  '/deleteBuyer/:id',
   //   celebrate({ [Segments.PARAMS]: deleteBuyerSchema }),
   deleteBuyer
 )

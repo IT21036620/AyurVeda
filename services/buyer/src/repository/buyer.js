@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import buyer from '../models/buyer.js'
+import Buyer from '../models/buyer.js'
 
 //Insert A New buyer
 export const insertBuyer = async (details) => {
@@ -12,7 +12,7 @@ export const insertBuyer = async (details) => {
   //   return { msg: 'Suppler Already exist with the same business_name' }
   // }
 
-  const buyer = new buyer({
+  const buyer = new Buyer({
     buyerName: details.buyerName,
     credentialId: details.credentialId,
     address: details.address,
@@ -29,14 +29,17 @@ export const getBuyer = async (id) => {
   // if (!mongoose.Types.ObjectId.isValid(id)) {
   //   return { msg: 'No Buyer is available with this id' }
   // }
+  console.log(id)
   try {
     //Check if Buyer exists
-    if ((await buyer.findById(mongoose.Types.ObjectId(id))) == null) {
+    console.log('check 1')
+    if ((await Buyer.findById(new mongoose.Types.ObjectId(id))) == null) {
       return { msg: 'No Buyer is available with this id' }
     }
-
-    return await buyer.findById(mongoose.Types.ObjectId(id))
+    console.log('check 2')
+    return await Buyer.findById(new mongoose.Types.ObjectId(id))
   } catch (error) {
+    // console.log(error)
     return { msg: 'Search Buyer by id failed' }
   }
 }
@@ -44,7 +47,7 @@ export const getBuyer = async (id) => {
 //Get Data Of All Buyers
 export const getBuyers = async () => {
   try {
-    return await buyer.find({}).sort({ createdAt: -1 })
+    return await Buyer.find({}).sort({ createdAt: -1 })
   } catch (error) {
     return { msg: 'no Buyers found' }
   }
@@ -57,12 +60,12 @@ export const updateBuyerusingId = async (id, ob) => {
     return { msg: 'No Buyer is available with this id' }
   }
   //Check if Buyer exists
-  if ((await buyer.findById(mongoose.Types.ObjectId(id))) == null) {
+  if ((await Buyer.findById(new mongoose.Types.ObjectId(id))) == null) {
     return { msg: 'No Buyer is available with this id' }
   }
 
   try {
-    const res = await buyer.findById(id)
+    const res = await Buyer.findById(id)
     Object.assign(res, ob)
     await res.save()
     return { msg: 'Buyer updated successfully' }
@@ -75,15 +78,15 @@ export const updateBuyerusingId = async (id, ob) => {
 export const deleteBuyerusingId = async (id) => {
   //check for valid objectId
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    return { msg: 'No Buyer is available with this id' }
+    return { msg: 'Not a valid object id' }
   }
   //Check if Buyer exists
-  if ((await buyer.findById(mongoose.Types.ObjectId(id))) == null) {
+  if ((await Buyer.findById(new mongoose.Types.ObjectId(id))) == null) {
     return { msg: 'No Buyer is available with this id' }
   }
 
   try {
-    await buyer.findByIdAndDelete(id)
+    await Buyer.findByIdAndDelete(id)
     return { msg: 'Buyer deleted successfully' }
   } catch (error) {
     return { msg: 'Buyer deletion failed' }
