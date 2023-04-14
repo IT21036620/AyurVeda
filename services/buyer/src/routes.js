@@ -6,6 +6,7 @@ import {
   updateBuyer,
   deleteBuyer,
 } from './controllers/buyer.js'
+import { searchProduct } from './controllers/search.js'
 const router = express.Router()
 
 router.get('/', (req, res) => {
@@ -34,6 +35,8 @@ router.get(
   // BuyerCheck,
   buyerGet
 )
+
+router.get('/searchProduct/:key', searchProduct)
 
 //Get Data Of All Buyers
 router.get('/viewAllBuyers', buyersGet)
