@@ -1,10 +1,18 @@
 const Seller = require('../models/Seller')
 const Product = require('../models/products')
+const asyncWrapper = require('../middleware/async')
+const { createCustomError } = require('../errors/custom-error')
 const { StatusCodes } = require('http-status-codes')
 const { BadRequestError, UnauthenticatedError } = require('../errors')
 
 const register = async (req, res) => {
+  if (req.file) {
+    req.body.profile_image = req.file.path
+  } else {
+    req.body.profile_image = 'uploads\\default.jpg'
+  }
   const seller = await Seller.create({ ...req.body })
+
   const token = seller.createJWT()
   res.status(StatusCodes.CREATED).json({
     seller: {
@@ -15,6 +23,7 @@ const register = async (req, res) => {
     },
     token,
   })
+  // console.log(req.body.profile_image)
 }
 
 const login = async (req, res) => {
@@ -51,8 +60,49 @@ const getAllProductsBySeller = async (req, res) => {
   res.status(StatusCodes.OK).json({ products, count: products.length })
 }
 
+//using errors custom-error.js for createCustomError
+//delete a seller by id
+const deleteSeller = asyncWrapper(async (req, res, next) => {
+  const { id: sellerID } = req.params
+  const seller = await Seller.findOneAndDelete({ _id: sellerID })
+  if (!seller) {
+    return next(createCustomError(`No Seller with id: ${sellerID}`, 404))
+  }
+  res.status(200).json({ seller })
+})
+
+//using errors custom-error.js for createCustomError
+//update a seller by id
+const updateSeller = asyncWrapper(async (req, res, next) => {
+  const { id: sellerID } = req.params
+  const seller = await Seller.findOneAndUpdate(
+    { _id: sellerID },
+    { ...req.body },
+    {
+      new: true,
+      runValidators: true,
+    }
+  )
+  const token = seller.createJWT()
+  res.status(StatusCodes.OK).json({
+    seller: {
+      seller_name: seller.name,
+      email: seller.email,
+      company_name: seller.company_name,
+      contact: seller.phone,
+    },
+    token,
+  })
+  if (!seller) {
+    return next(createCustomError(`No Seller with id: ${sellerID}`, 404))
+  }
+  // res.status(200).json({ seller })
+})
+
 module.exports = {
   register,
   login,
   getAllProductsBySeller,
+  deleteSeller,
+  updateSeller,
 }

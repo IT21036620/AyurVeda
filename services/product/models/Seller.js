@@ -51,6 +51,10 @@ const SellerSchema = new mongoose.Schema({
     minlength: 2,
     maxlength: 50,
   },
+  profile_image: {
+    type: String,
+    // default: `uploads\\default.jpg`,
+  },
 })
 
 SellerSchema.pre('save', async function () {

@@ -11,8 +11,12 @@ const {
 } = require('../controllers/products')
 
 const authenticateSeller = require('../middleware/authentication')
+const upload = require('../middleware/upload')
 
-router.route('/').get(getAllProducts).post(authenticateSeller, createProduct)
+router
+  .route('/')
+  .get(getAllProducts)
+  .post(authenticateSeller, upload.array('image[]'), createProduct)
 router
   .route('/:id')
   .get(getProductsByCategory)

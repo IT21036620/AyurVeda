@@ -2,13 +2,6 @@ const Product = require('../models/products')
 const asyncWrapper = require('../middleware/async')
 const { createCustomError } = require('../errors/custom-error')
 
-//using middleware async.js for asyncWrapper
-//get all products
-// const getAllProducts = asyncWrapper(async (req, res) => {
-//   const products = await Product.find({})
-//   res.status(200).json({ products })
-// })
-
 //using errors custom-error.js for createCustomError
 //get all products of a given category
 const getProductsByCategory = asyncWrapper(async (req, res, next) => {
@@ -23,8 +16,22 @@ const getProductsByCategory = asyncWrapper(async (req, res, next) => {
 })
 
 //add a new product
+// const createProduct = asyncWrapper(async (req, res) => {
+//   req.body.createdBy = req.user.userId
+//   const product = await Product.create(req.body)
+//   res.status(201).json({ product })
+// })
+
 const createProduct = asyncWrapper(async (req, res) => {
   req.body.createdBy = req.user.userId
+  if (req.files) {
+    let path = ''
+    req.files.forEach(function (files, index, arr) {
+      path = path + files.path + ','
+    })
+    path = path.substring(0, path.lastIndexOf(','))
+    req.body.image = path
+  }
   const product = await Product.create(req.body)
   res.status(201).json({ product })
 })
