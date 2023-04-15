@@ -1,5 +1,6 @@
 const Seller = require('../models/Seller')
 const Product = require('../models/products')
+const bcrypt = require('bcryptjs')
 const asyncWrapper = require('../middleware/async')
 const { createCustomError } = require('../errors/custom-error')
 const { StatusCodes } = require('http-status-codes')
@@ -34,12 +35,12 @@ const login = async (req, res) => {
   }
   const seller = await Seller.findOne({ email })
   if (!seller) {
-    throw new UnauthenticatedError('Invalid credentials')
+    throw new UnauthenticatedError('Invalid email')
   }
 
   const isPasswordCorrect = await seller.comparePassword(password)
   if (!isPasswordCorrect) {
-    throw new UnauthenticatedError('Invalid credentials')
+    throw new UnauthenticatedError('Invalid password')
   }
   // compare password
   const token = seller.createJWT()
@@ -83,6 +84,15 @@ const updateSeller = asyncWrapper(async (req, res, next) => {
       runValidators: true,
     }
   )
+
+  // update password with bcrypt
+  var upPassword = async function () {
+    const salt = await bcrypt.genSalt(10)
+    seller.password = await bcrypt.hash(req.body.password, salt)
+  }
+  upPassword()
+  seller.save()
+
   const token = seller.createJWT()
   res.status(StatusCodes.OK).json({
     seller: {
