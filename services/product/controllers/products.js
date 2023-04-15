@@ -152,6 +152,33 @@ const getAllProducts = async (req, res) => {
   res.status(200).json({ products, nbHits: products.length }) //
 }
 
+//update product rating by id
+const changeProductRatingByID = asyncWrapper(async (req, res, next) => {
+  const { id: productID } = req.params
+  const product = await Product.findOneAndUpdate(
+    { _id: productID },
+    req.body.rating,
+    {
+      new: true,
+      runValidators: true,
+    }
+  )
+  var changeRating = async function () {
+    product.rate_count = product.rate_count + 1
+    product.rate_aggregate = product.rate_aggregate + req.body.rating
+    var newRating = product.rate_aggregate / product.rate_count
+
+    product.rating = parseFloat(newRating).toFixed(2) //newRating
+    product.save()
+  }
+  changeRating()
+
+  if (!product) {
+    return next(createCustomError(`No product with id: ${productID}`, 404))
+  }
+  res.status(200).json(`Rating successfully updated`)
+})
+
 module.exports = {
   getAllProducts,
   getProductsByCategory,
@@ -159,4 +186,5 @@ module.exports = {
   getProduct,
   deleteProduct,
   updateProduct,
+  changeProductRatingByID,
 }

@@ -8,6 +8,7 @@ const {
   getProduct,
   deleteProduct,
   updateProduct,
+  changeProductRatingByID,
 } = require('../controllers/products')
 
 const authenticateSeller = require('../middleware/authentication')
@@ -23,6 +24,6 @@ router
   .get(getProduct)
   .patch(updateProduct)
   .delete(deleteProduct)
-// router.route('/search').get(getAllProductsSorted)
+router.route('/productRating/:id').patch(changeProductRatingByID)
 
 module.exports = router

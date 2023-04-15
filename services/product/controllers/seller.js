@@ -109,10 +109,38 @@ const updateSeller = asyncWrapper(async (req, res, next) => {
   // res.status(200).json({ seller })
 })
 
+//update seller rating by id
+const changeSellerRatingByID = asyncWrapper(async (req, res, next) => {
+  const { id: sellerID } = req.params
+  const seller = await Seller.findOneAndUpdate(
+    { _id: sellerID },
+    req.body.rating,
+    {
+      new: true,
+      runValidators: true,
+    }
+  )
+  var changeRating = async function () {
+    seller.rate_count = seller.rate_count + 1
+    seller.rate_aggregate = seller.rate_aggregate + req.body.rating
+    var newRating = seller.rate_aggregate / seller.rate_count
+
+    seller.rating = parseFloat(newRating).toFixed(2) //newRating
+    seller.save()
+  }
+  changeRating()
+
+  if (!seller) {
+    return next(createCustomError(`No seller with id: ${sellerID}`, 404))
+  }
+  res.status(200).json(`Rating successfully updated`)
+})
+
 module.exports = {
   register,
   login,
   getAllProductsBySeller,
   deleteSeller,
   updateSeller,
+  changeSellerRatingByID,
 }

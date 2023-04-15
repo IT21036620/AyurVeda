@@ -90,6 +90,14 @@ const ProductSchema = new mongoose.Schema(
       type: String,
       required: [true, 'Please provide png or jpg product images'],
     },
+    rate_count: {
+      type: Number,
+      default: 0,
+    },
+    rate_aggregate: {
+      type: Number,
+      default: 0.0,
+    },
   },
   { timestamps: true }
 )

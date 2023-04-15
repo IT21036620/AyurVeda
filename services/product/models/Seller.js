@@ -55,6 +55,19 @@ const SellerSchema = new mongoose.Schema({
     type: String,
     // default: `uploads\\default.jpg`,
   },
+  rating: {
+    type: Number,
+    default: 0.0,
+    max: [5, 'rating cannot be higher than 5, {VALUE} is invalid'],
+  },
+  rate_count: {
+    type: Number,
+    default: 0,
+  },
+  rate_aggregate: {
+    type: Number,
+    default: 0.0,
+  },
 })
 
 SellerSchema.pre('save', async function () {
