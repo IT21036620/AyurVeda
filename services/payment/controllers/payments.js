@@ -1,6 +1,6 @@
 const Payment = require('../models/payment')
 const asyncWrapper = require('../middleware/async')
-// const { createCustomError } = require('../errors/custom-error')
+const { createCustomError } = require('../errors/custom-error')
 
 // Get all Payment details
 const getAllPayments = asyncWrapper( async (req,res) => {

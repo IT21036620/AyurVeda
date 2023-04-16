@@ -1,20 +1,16 @@
-const express = require("express");
-// const bodyParser = require("body-parser");
-// const cors = require("cors");
-const dotenv = require("dotenv");
+const express = require('express');
 const app = express();
-require("dotenv").config();
+const deliveries = require('./routes/delivery')
 const connectDB = require('./db/connect')
-const routes = require('./routes/payments')
+require('dotenv').config()
 const notFound = require('./middleware/not-found')
 const errorHandlerMiddleware = require('./middleware/error-handler')
-// const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 //middleware
 app.use(express.json())
 
 //routes
-app.use('/api/v1/payments', routes)
+app.use('/api/v1/deliveries', deliveries)
 
 app.use(notFound)
 app.use(errorHandlerMiddleware)
