@@ -1,6 +1,7 @@
 const Payment = require('../models/payment')
 const asyncWrapper = require('../middleware/async')
 const { createCustomError } = require('../errors/custom-error')
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 // Get all Payment details
 const getAllPayments = asyncWrapper( async (req,res) => {
@@ -25,11 +26,28 @@ const getPayment = asyncWrapper( async (req,res, next) => {
   res.status(200).json({delivery})
 })
 
+// Payment intent creation logic
+const createPaymentIntent = async (req, res) => {
+  const { amount, currency, paymentMethodId } = req.body;
+  
+  // Create a payment intent
+  const paymentIntent = await stripe.paymentIntents.create({
+    amount,
+    currency,
+    payment_method: paymentMethodId,
+    confirm: true
+  });
+
+  // Return the client secret to confirm the payment on the frontend
+  res.status(200).json({ clientSecret: paymentIntent.client_secret });
+};
+
 
 module.exports = {
   
   createPayment,
   getAllPayments,
-  getPayment
+  getPayment,
+  createPaymentIntent
   
 }

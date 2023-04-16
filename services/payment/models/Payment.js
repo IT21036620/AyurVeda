@@ -8,37 +8,32 @@ const PaymentSchema = new mongoose.Schema(
     },
     amount: {
       type: Number,
-      required: false,
+      required: true,
       trim: true,
     },
     status: {
       type: String,
       enum: ['pending', 'successful', 'failed'],
-      required: false
+      required: true
     },
     cardNumber: {
       type: String,
-      required: false,
+      required: true,
       trim: true,
       maxlength: [16, 'Card Number cannot be MORE than 16 characters']
     },
     expiryDate: {
       type: Date,
-      required: false,
+      required: true,
       trim: true,
     },
     cvv: {
       type: String,
-      required: false,
+      required: true,
       trim: true,
       maxlength: [4, 'CVV cannot be MORE than 4 numbers']
     },
-    // product_code: {
-    //   type: String,
-    //   required: [true, 'must provide product code'],
-    //   trim: true,
-    //   maxlength: [20, 'product code can not be more than 20 characters'],
-    // },
+    
     createdAt: {
       type: Date,
       default: Date.now(),

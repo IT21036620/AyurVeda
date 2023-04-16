@@ -1,5 +1,5 @@
 const express = require("express");
-// const bodyParser = require("body-parser");
+const bodyParser = require("body-parser");
 // const cors = require("cors");
 const dotenv = require("dotenv");
 const app = express();
@@ -8,10 +8,12 @@ const connectDB = require('./db/connect')
 const routes = require('./routes/payments')
 const notFound = require('./middleware/not-found')
 const errorHandlerMiddleware = require('./middleware/error-handler')
-// const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 //middleware
 app.use(express.json())
+
+app.use(bodyParser.json());
 
 //routes
 app.use('/api/v1/payments', routes)
