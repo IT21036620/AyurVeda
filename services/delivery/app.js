@@ -2,11 +2,13 @@ const express = require('express');
 const app = express();
 const deliveries = require('./routes/delivery')
 const connectDB = require('./db/connect')
+const cors = require("cors");
 require('dotenv').config()
 const notFound = require('./middleware/not-found')
 const errorHandlerMiddleware = require('./middleware/error-handler')
 
 //middleware
+app.use(cors());
 app.use(express.json())
 
 //routes
