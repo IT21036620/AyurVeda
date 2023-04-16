@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const deliveries = require('./routes/delivery')
+const orders = require('./routes/order')
 const connectDB = require('./db/connect')
 require('dotenv').config()
 const notFound = require('./middleware/not-found')
@@ -10,7 +10,7 @@ const errorHandlerMiddleware = require('./middleware/error-handler')
 app.use(express.json())
 
 //routes
-app.use('/api/v1/deliveries', deliveries)
+app.use('/api/v1/orders', orders)
 
 app.use(notFound)
 app.use(errorHandlerMiddleware)
