@@ -1,12 +1,15 @@
-import React from "react";
+import React from 'react'
+import { BrowserRouter } from 'react-router-dom'
+import IndexRoutes from './routes'
 
-import ViewDelivery from './components/viewDelivery';
-
-
-const App = () => {
-    return (
-        <ViewDelivery />
-    );
+function App() {
+  return (
+    <div className="App">
+      <BrowserRouter>
+        <IndexRoutes />
+      </BrowserRouter>
+    </div>
+  )
 }
 
-export default App;
+export default App
