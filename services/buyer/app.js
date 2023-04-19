@@ -9,7 +9,7 @@ dotenv.config()
 const app = express()
 app.use(express.json({ limit: '1mb' }))
 
-connectDB()
+connectDB(process.env.Mongo_URI)
 
 // app.use(bodyParser.json())
 
