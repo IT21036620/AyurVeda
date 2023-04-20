@@ -1,10 +1,11 @@
 import mongoose from 'mongoose'
 
-const connectDB = async () => {
+const connectDB = async (uri) => {
   mongoose
-    .connect(process.env.MONGO_URI, { keepAlive: true, connectTimeoutMS: 3000 })
+    .connect(uri, { keepAlive: true, connectTimeoutMS: 3000 })
     .catch((error) => {
       console.log(`Error connecting to MongoDB: ${error}`)
+      console.log(`Error connecting to MongoDB: ${process.env.MONGO_URI}`)
     })
   mongoose.connection.on('connected', () => {
     console.log('Connected to database successfully')
