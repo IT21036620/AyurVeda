@@ -8,7 +8,7 @@ const Product = ({ image, product_name, id, price, rating, rate_count }) => {
       <div className="img-container">
         <img
           crossOrigin="anonymous"
-          src={`http:\/\/localhost:3000\/${image}`}
+          src={`http:\/\/localhost:4000\/${image}`}
           alt={product_name}
         />
       </div>

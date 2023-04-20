@@ -5,7 +5,7 @@ import './page.css'
 import { useGlobalContext } from './context'
 import axios from 'axios'
 
-const url = 'http://localhost:3000/api/v1/products/singleProduct/'
+const url = 'http://localhost:4000/api/v1/products/singleProduct/'
 
 const SingleProduct = () => {
   const { id } = useParams()
@@ -97,7 +97,7 @@ const SingleProduct = () => {
       <div className="drink">
         <img
           crossOrigin="anonymous"
-          src={`http:\/\/localhost:3000\/${image}`}
+          src={`http:\/\/localhost:4000\/${image}`}
           alt={product_name}
         ></img>
         <div className="drink-info">
