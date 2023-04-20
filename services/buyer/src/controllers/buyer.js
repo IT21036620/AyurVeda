@@ -22,7 +22,6 @@ export const buyerAdd = asyncHandler(async (req, res) => {
 
 //Get Data Of One buyer
 export const buyerGet = asyncHandler(async (req, res) => {
-  console.log(req.params.id)
   const ans = await getBuyerById(req.params.id)
   return makeResponse({
     res,

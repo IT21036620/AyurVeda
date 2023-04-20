@@ -1,6 +1,8 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import bodyParser from 'body-parser'
+import cors from 'cors'
+
 import connectDB from './src/config/dbconnet.js'
 import buyerRouter from './src/routes.js'
 
@@ -8,6 +10,8 @@ dotenv.config()
 
 const app = express()
 app.use(express.json({ limit: '1mb' }))
+
+app.use(cors())
 
 connectDB(process.env.Mongo_URI)
 
