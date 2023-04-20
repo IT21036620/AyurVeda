@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import Home from '../pages/Home'
+import AccountPage from '../pages/buyer/AccountPage'
 
 const buyerRoutes = () => {
   return (
@@ -7,6 +8,7 @@ const buyerRoutes = () => {
       <Routes>
         <Route path="/buyer" element={<Home />} />
         <Route path="/buyer/home" element={<Home />} />
+        <Route path="/buyer/account" element={<AccountPage />} />
       </Routes>
     </div>
   )

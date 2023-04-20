@@ -32,11 +32,9 @@ export const getBuyer = async (id) => {
   console.log(id)
   try {
     //Check if Buyer exists
-    console.log('check 1')
     if ((await Buyer.findById(new mongoose.Types.ObjectId(id))) == null) {
       return { msg: 'No Buyer is available with this id' }
     }
-    console.log('check 2')
     return await Buyer.findById(new mongoose.Types.ObjectId(id))
   } catch (error) {
     // console.log(error)
