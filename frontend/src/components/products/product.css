@@ -24,13 +24,13 @@
   .btn {
     @apply flex justify-center items-center;
   }
-  .container {
+  /* .container {
     @apply flex flex-col w-full h-full box-border bg-[color:var(--bg)] pt-[30px] pb-5 px-[50px];
-  }
+  } */
   .main_content {
     @apply relative w-[70%] h-full box-border justify-between flex-wrap mx-auto my-[50px] pt-[50px] pb-0 px-0;
   }
-  .main_content h3 {
+  .main_content .h3 {
     @apply absolute text-[color:var(--text)] text-[10.5vw] left-0 top-0;
   }
   .main_content .card {
@@ -39,22 +39,22 @@
   .main_content .card .card_img {
     @apply mt-[-5vw];
   }
-  .main_content .card .card_img img {
+  .main_content .card .card_img .img {
     @apply w-[200px];
   }
   .main_content .card .card_header {
     @apply flex-col text-[color:var(--white)] mx-0 my-[25px];
   }
-  .main_content .card .card_header h2 {
+  .main_content .card .card_header .h2 {
     @apply text-lg text-center;
   }
-  .main_content .card .card_header p {
+  .main_content .card .card_header .p {
     @apply text-[15px] text-center text-[rgba(var(--white),0.3)] mx-0 my-2;
   }
   .main_content .card .card_header .price {
     @apply text-[25px] text-[color:var(--cta)];
   }
-  .main_content .card .card_header .price span {
+  .main_content .card .card_header .price .span {
     @apply text-[15px] inline-block align-top;
   }
   .main_content .card:hover .btn {

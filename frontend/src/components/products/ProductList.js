@@ -52,8 +52,7 @@ const ProductList = () => {
     // </section>
 
     <div className="main_content">
-      {/* <h3>Products</h3> */}
-      <div></div>
+      {/* <h3 className="h3">Products</h3> */}
       {listItems}
     </div>
     // <div className="main_content">
