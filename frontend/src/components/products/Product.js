@@ -25,13 +25,26 @@ const Product = ({ image, product_name, id, price, rating, rate_count }) => {
   //   </article>
   // )
 
+  // console.log(window.location.href.substring(0, 21))
+  // console.log(window.location.port) //3000
+  // console.log(window.location.protocol) // http:
+  // console.log(window.location.hostname) //localhost
+
+  const http = window.location.protocol
+  const domain = window.location.hostname
+  const port = window.location.port
+
+  const url = `${http}\/\/${domain}:${port}\/`
+  console.log(url)
+
   return (
     <div className="card">
       <div className="card_img">
         <img
           className="img"
           crossOrigin="anonymous"
-          src={`http:\/\/localhost:4000\/${image}`}
+          src={`${http}\/\/${domain}:4000\/${image}`}
+          // src={`http:\/\/localhost:4000\/${image}`}
         />
       </div>
       <div className="card_header">
