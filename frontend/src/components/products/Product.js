@@ -43,9 +43,11 @@ const Product = ({ image, product_name, id, price, rating, rate_count }) => {
           {price}.00
           <span className="span">LKR</span>
         </p>
-        <div class="font-sans bg-[rgb(33,190,33)] hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
-          Add To Cart <FaShoppingCart class="m-auto" />
-        </div>
+        <Link to={`/product/${id}`}>
+          <div class="font-sans bg-[rgb(33,190,33)] hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
+            View Details
+          </div>
+        </Link>
       </div>
     </div>
   )

@@ -89,7 +89,10 @@ const SingleProduct = () => {
   return (
     <section className="section product-section">
       <div>
-        <Link to="/products" className="btn btn-primary">
+        <Link
+          to="/products"
+          class="font-sans bg-[rgb(33,190,33)] hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full"
+        >
           back to products
         </Link>
       </div>
