@@ -24,13 +24,16 @@ const getProductsByCategory = asyncWrapper(async (req, res, next) => {
 
 const createProduct = asyncWrapper(async (req, res) => {
   req.body.createdBy = req.user.userId
-  if (req.files) {
-    let path = ''
-    req.files.forEach(function (files, index, arr) {
-      path = path + files.path + ','
-    })
-    path = path.substring(0, path.lastIndexOf(','))
-    req.body.image = path
+  // if (req.files) {
+  //   let path = ''
+  //   req.files.forEach(function (files, index, arr) {
+  //     path = path + files.path + ','
+  //   })
+  //   path = path.substring(0, path.lastIndexOf(','))
+  //   req.body.image = path
+  // }
+  if (req.file) {
+    req.body.image = req.file.path
   }
   const product = await Product.create(req.body)
   res.status(201).json({ product })
