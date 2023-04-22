@@ -2,12 +2,12 @@ import mongoose from 'mongoose'
 
 const ProductSchema = new mongoose.Schema(
   {
-    product_code: {
-      type: String,
-      required: [true, 'must provide product code'],
-      trim: true,
-      maxlength: [20, 'product code can not be more than 20 characters'],
-    },
+    // product_code: {
+    //   type: String,
+    //   required: [true, 'must provide product code'],
+    //   trim: true,
+    //   maxlength: [20, 'product code can not be more than 20 characters'],
+    // },
     product_name: {
       type: String,
       required: [true, 'must provide product name'],
@@ -85,6 +85,18 @@ const ProductSchema = new mongoose.Schema(
       type: mongoose.Types.ObjectId,
       ref: 'Seller',
       required: [true, 'Please provide seller'],
+    },
+    image: {
+      type: String,
+      required: [true, 'Please provide png or jpg product images'],
+    },
+    rate_count: {
+      type: Number,
+      default: 0,
+    },
+    rate_aggregate: {
+      type: Number,
+      default: 0.0,
     },
   },
   { timestamps: true }

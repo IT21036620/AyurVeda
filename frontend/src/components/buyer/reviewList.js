@@ -4,6 +4,7 @@ import { FaStar } from 'react-icons/fa'
 
 const ReviewList = ({ buyerId }) => {
   const [reviews, setReviews] = useState([])
+  const [products, setProducts] = useState([])
   const [editing, setEditing] = useState(null)
   const [editedReview, setEditedReview] = useState({ rating: '', review: '' })
 
@@ -18,9 +19,72 @@ const ReviewList = ({ buyerId }) => {
         console.log(error)
       }
     }
-
     fetchReviews()
   }, [buyerId])
+
+  useEffect(() => {
+    const fetchProductDetails = async () => {
+      for (const review of reviews) {
+        const { productId } = review
+        if (!products[productId]) {
+          try {
+            console.log(productId)
+            const response = await axios.get(
+              `http://localhost:4000/api/buyer/searchProduct/${productId}`
+            )
+            setProducts((prevState) => ({
+              ...prevState,
+              [productId]: response.data.data,
+            }))
+            console.log(response.data.data.product_name)
+          } catch (error) {
+            console.log(error)
+          }
+        }
+      }
+    }
+
+    if (reviews.length > 0) {
+      fetchProductDetails()
+    }
+  }, [reviews])
+  //   useEffect(() => {
+  //     const fetchProductDetails = async () => {
+  //       const productDetailsPromises = []
+
+  //       for (const review of reviews) {
+  //         const { productId } = review
+  //         if (!products[productId]) {
+  //           const fetchProduct = axios.get(
+  //             `http://localhost:4000/api/buyer/searchProduct/${productId}`
+  //           )
+  //           productDetailsPromises.push(fetchProduct)
+  //         }
+  //       }
+
+  //       try {
+  //         const productDetailsResponses = await Promise.all(
+  //           productDetailsPromises
+  //         )
+  //         const newProducts = productDetailsResponses.reduce(
+  //           (accumulator, currentResponse) => {
+  //             const product = currentResponse.data.data
+  //             accumulator[product._id] = product
+  //             return accumulator
+  //           },
+  //           {}
+  //         )
+
+  //         setProducts((prevState) => ({ ...prevState, ...newProducts }))
+  //       } catch (error) {
+  //         console.log(error)
+  //       }
+  //     }
+
+  //     if (reviews.length > 0) {
+  //       fetchProductDetails()
+  //     }
+  //   }, [reviews])
 
   const handleEdit = (review) => {
     setEditing(review._id)
@@ -110,6 +174,18 @@ const ReviewList = ({ buyerId }) => {
                   </button>
                 </div>
               </>
+            )}
+            {products[review.productId] && (
+              <div className="mt-2">
+                <h3 className="text-lg font-bold">
+                  {products[review.productId].product_name}
+                </h3>
+                <img
+                  src={products[review.productId].productImage}
+                  alt={products[review.productId].product_name}
+                  className="w-24 h-24 object-cover mt-2"
+                />
+              </div>
             )}
           </div>
         ))

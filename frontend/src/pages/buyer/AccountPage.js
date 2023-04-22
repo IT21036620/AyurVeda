@@ -23,7 +23,7 @@ const AccountPage = () => {
       case 'orders':
         return <Orders />
       case 'reviews':
-        return <Reviews buyerId={'123456789012345678901639'} />
+        return <Reviews buyerId={'123456789012345678901630'} />
       case 'account-info':
         return <AccountInfo />
       default:
