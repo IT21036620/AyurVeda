@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import Loading from '../../components/products/Loading'
 import { useParams, Link } from 'react-router-dom'
-import { Grid, Button, Container, Typography } from '@mui/material'
+import { Grid, Button, Container, Typography, Input } from '@mui/material'
 import { FaShoppingCart } from 'react-icons/fa'
 // import './page.css'
 import './sinProduct.css'
@@ -9,6 +9,8 @@ import { useGlobalContext } from './context'
 import axios from 'axios'
 
 const url = 'http://localhost:4000/api/v1/products/singleProduct/'
+const productRating = 'http://localhost:4000/api/v1/products/productRating/'
+
 const createMarkup = (text) => {
   return { __html: text }
 }
@@ -18,6 +20,8 @@ const SingleProduct = () => {
   const [loading, setLoading] = React.useState(false)
   const [product, setProduct] = React.useState(null)
   const [quantity, setQuantity] = React.useState(1)
+  // const [productRate, setProductRate] = React.useState(rating)
+  // const [rating, setRating] = React.useState(0)
 
   React.useEffect(() => {
     setLoading(true)
@@ -42,6 +46,7 @@ const SingleProduct = () => {
             description: description,
             image: image,
             rate_count: rate_count,
+            createdBy: createdBy,
           } = data.product
 
           const newProduct = {
@@ -58,6 +63,7 @@ const SingleProduct = () => {
             description,
             image,
             rate_count,
+            createdBy,
           }
           setProduct(newProduct)
         } else {
@@ -91,7 +97,30 @@ const SingleProduct = () => {
     mfd,
     exp,
     shipping_weight,
+    createdBy,
   } = product
+
+  console.log(createdBy)
+
+  const inputProps = {
+    min: 1,
+    max: 5,
+  }
+
+  // const onChangeProduct = (event) => {
+  //   setProductRate(event.target.value)
+  // }
+
+  const rateProduct = (event) => {
+    event.preventDefault()
+    axios.patch(`${productRating}${id}`, product).then(({ data }) => {
+      console.log(data)
+    })
+  }
+
+  // React.useEffect(()=>{
+
+  // },rating)
 
   // console.log(window.location.href.substring(0, 21))
   // console.log(window.location.port) //3000
@@ -250,11 +279,24 @@ const SingleProduct = () => {
                 color="primary"
                 variant="contained"
                 className="rate-product"
+                onClick={rateProduct}
               >
                 Rate Product
               </Button>
             </Grid>
           </Grid>
+          <Input
+            type="number"
+            placeholder="Rate Product"
+            id="rate_product"
+            name="rate_product"
+            defaultValue={5}
+            disableUnderline={false}
+            inputProps={inputProps}
+            // onChange={(e) => {
+            //   setRating(e.target.value)
+            // }}
+          ></Input>
           <Grid container spacing={4}>
             <Grid item xs={12}>
               <Button
@@ -267,6 +309,15 @@ const SingleProduct = () => {
               </Button>
             </Grid>
           </Grid>
+          <Input
+            type="number"
+            placeholder="Rate Seller"
+            id="rate_seller"
+            name="rate_seller"
+            defaultValue={5}
+            disableUnderline={false}
+            inputProps={inputProps}
+          ></Input>
           <Typography variant="h3">Price: LKR.{price}.00</Typography>
           <Grid container spacing={4}>
             <Grid item xs={12}>

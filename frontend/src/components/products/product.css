@@ -34,7 +34,7 @@
     @apply absolute text-[color:var(--text)] text-[10.5vw] left-0 top-0;
   }
   .main_content .card {
-    @apply w-[30%] flex-col relative transition-all duration-[0.3s] ease-[ease-in-out] mb-[50px] rounded-[15px] scale-[0.8] bg-[color:var(--bgg)] hover:bg-[color:var(--light\_bg)] hover:cursor-pointer hover:scale-110 hover:shadow-[0px_0px_10px_5px_rgb(33,190,33)];
+    @apply w-[30%] flex-col relative transition-all duration-[0.3s] ease-[ease-in-out] mb-[50px] rounded-[15px] scale-[0.8] bg-[color:var(--bgg)] hover:bg-[color:var(--light\_bg)] hover:cursor-pointer hover:scale-110 hover:shadow-[0px_0px_10px_5px_#03dac5];
   }
   .main_content .card .card_img {
     @apply mt-[-5vw];
