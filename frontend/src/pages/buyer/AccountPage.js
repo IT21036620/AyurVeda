@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import SideBar from '../../components/buyer/sideBar'
 import Home from '../Home'
+import Dashboard from './Dashboard'
+import AccountInfo from '../../components/buyer/accountInfo.js'
+import Reviews from '../../components/buyer/reviewList'
 
-const Dashboard = () => <div>Dashboard Content</div>
+// const Dashboard = () => <div>Dashboard Content</div>
 const Orders = () => <div>Orders Content</div>
-const Reviews = () => <div>Reviews Content</div>
-const AccountInfo = () => <div>Account Information Content</div>
+// const Reviews = () => <div>Reviews Content</div>
 
 const AccountPage = () => {
   const [activeComponent, setActiveComponent] = useState('dashboard')
@@ -17,11 +19,11 @@ const AccountPage = () => {
   const renderComponent = () => {
     switch (activeComponent) {
       case 'dashboard':
-        return <Home />
+        return <Dashboard />
       case 'orders':
         return <Orders />
       case 'reviews':
-        return <Reviews />
+        return <Reviews buyerId={'123456789012345678901639'} />
       case 'account-info':
         return <AccountInfo />
       default:
