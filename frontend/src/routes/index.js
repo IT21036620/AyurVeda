@@ -5,18 +5,14 @@ import CartRoutes from './cartRoutes'
 import ErrorRoute from './errorRoute'
 import ProductRoutes from './productRoutes'
 
-
 const IndexRoutes = () => {
   return (
     <div>
-
-     
       <CartRoutes />
 
       <BuyerRoutes />
       <ProductRoutes />
       {/* <ErrorRoute /> */}
-
     </div>
   )
 }

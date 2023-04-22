@@ -21,12 +21,12 @@
 
 .background-404
 {
-    background: url('./404-error.gif') no-repeat;
+    background: url('./404-error.gif');
     height: 400px;
     background-position: center;
     margin: auto;
 }
-.h1 {
+.h1h {
     font-size: 80px;
     color: red;
     -webkit-text-fill-color: red; /* Will override color (regardless of order) */
@@ -34,7 +34,7 @@
   -webkit-text-stroke-color: black;
 }
 
-.h3 {
+.h3h {
     font-size: 40px;
 }
 
@@ -47,7 +47,7 @@
     margin-top: -50px;
 }
 
-.button {
+.buttonx {
     color: #fff;
     text-decoration: none;
     padding: 10px 20px;
@@ -62,22 +62,22 @@
     
 }
 
-.button:hover {background-color: #3e8e41}
+.buttonx:hover {background-color: #3e8e41}
 
-.button:active {
+.buttonx:active {
   background-color: #3e8e41;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
 
-.button span {
+.buttonx span {
     cursor: pointer;
     display: inline-block;
     position: relative;
     transition: 0.5s;
   }
   
-  .button span:after {
+  .buttonx span:after {
     content: '\00bb';
     position: absolute;
     opacity: 0;
@@ -86,11 +86,11 @@
     transition: 0.5s;
   }
   
-  .button:hover span {
+  .buttonx:hover span {
     padding-right: 25px;
   }
   
-  .button:hover span:after {
+  .buttonx:hover span:after {
     opacity: 1;
     right: 0;
   }

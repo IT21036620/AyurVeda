@@ -102,8 +102,8 @@ const SingleProduct = () => {
   const domain = window.location.hostname
   const port = window.location.port
 
-  // const urlll = `${http}\/\/${domain}:${port}\/`
-  // console.log(urlll)
+  const urlll = `${http}\/\/${domain}:${port}\/`
+  console.log(urlll)
 
   const handleQuantity = (param) => {
     if (param === 'decrease' && quantity > 1) {
@@ -197,7 +197,9 @@ const SingleProduct = () => {
           <Typography variant="h2">{product_name}</Typography>
           <Grid container spacing={4}>
             <Grid item xs={12}>
-              <Typography variant="h4">{description}</Typography>
+              <Typography class="font-bold" variant="h4">
+                {description}
+              </Typography>
             </Grid>
           </Grid>
           <Grid container spacing={4}>
