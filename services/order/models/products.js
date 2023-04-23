@@ -102,36 +102,4 @@ const ProductSchema = new mongoose.Schema(
   { timestamps: true }
 )
 
-const Product = mongoose.model('Product', ProductSchema)
-
-const CartSchema = new mongoose.Schema(
-  {
-    user: {
-      type: String,
-      // ref: 'User',
-      required: false,
-    },
-
-    cartItems: [
-      {
-        product: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: 'Product',
-          required: false,
-        },
-        quantity: {
-          type: Number,
-          default: 1,
-        },
-        price: {
-          type: Number,
-          required: false,
-        },
-      },
-    ],
-  },
-  { timestamps: true }
-)
-
-// Cart Model
-module.exports = mongoose.model('Cart', CartSchema)
+module.exports = mongoose.model('Product', ProductSchema)
