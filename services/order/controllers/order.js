@@ -15,7 +15,10 @@ const createOrder = asyncWrapper(async (req, res) => {
 
 const getOrderbyid = asyncWrapper(async (req, res, next) => {
   const { id: orderID } = req.params
-  const order = await Order.findOne({ _id: orderID })
+  const order = await Order.findOne({ _id: orderID }).populate(
+    'deliveryid',
+    'order_id'
+  )
 
   if (!order) {
     return next(createCustomError(`No Order with this id: ${orderID}`, 404))
@@ -24,6 +27,20 @@ const getOrderbyid = asyncWrapper(async (req, res, next) => {
   res.status(200).json({ order })
 
   // res.send('get delivery')
+})
+
+const getOrdersforCustomer = asyncWrapper(async (req, res, next) => {
+  const { id: custID } = req.params
+  const orders = await Order.find({ customerid: custID }).populate(
+    'customerid',
+    'buyerName'
+  )
+
+  if (!orders) {
+    return next(createCustomError(`No Order with this id: ${orderID}`, 404))
+  }
+
+  res.status(200).json({ orders })
 })
 
 const updateOrder = asyncWrapper(async (req, res) => {
@@ -60,4 +77,5 @@ module.exports = {
   getOrderbyid,
   updateOrder,
   deleteOrder,
+  getOrdersforCustomer,
 }
