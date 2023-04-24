@@ -2,9 +2,7 @@ import React, { useState, useContext, useEffect } from 'react'
 import { useCallback } from 'react'
 import axios from 'axios'
 
-// const url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s='
-
-const url = 'http://localhost:4000/api/v1/seller'
+const url = 'http://localhost:3006/api/v1/seller'
 
 const AppContext = React.createContext()
 

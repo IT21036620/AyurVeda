@@ -20,7 +20,7 @@ const ProductSchema = new mongoose.Schema(
     },
     availability: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     package_quantity: {
       type: Number,

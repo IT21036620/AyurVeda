@@ -23,12 +23,15 @@ const SellerProduct = ({
         <img
           className="img"
           crossOrigin="anonymous"
-          // src={`${http}\/\/${domain}:4000\/${image}`}
-          src={`http:\/\/localhost:4000\/${image}`}
+          // src={`${http}\/\/${domain}:3006\/${image}`}
+          src={`http:\/\/localhost:3006\/${image}`}
         />
       </div>
       <div className="card_header">
-        <h2 className="h2" class="font-poppins font-bold text-xl text-center">
+        <h2
+          className="h2"
+          class="font-poppins font-bold text-xl text-center h-12"
+        >
           {product_name}
         </h2>
         <p className="p">{rating}/5</p>
