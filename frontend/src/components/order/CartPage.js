@@ -1,8 +1,11 @@
 import React from 'react'
-import OrderSummary from './orderSummary'
+import OrderSummary from './OrderSummary'
 import ShoppingCart from './shoppingCart'
+import CartContext from './CartContext'
 
 export default function CartPage() {
+  const [cartTotal, setCartTotal] = React.useState(0)
+
   return (
     //         <div className="cart-container" class="pt-10 px-20">
     //         <h1 class="text-center pb-5">Shopping Cart</h1>
@@ -28,36 +31,37 @@ export default function CartPage() {
     //     </thead>
     // </table>
     //         </div>
-
-    <div class="bg-gray-100 px-6 py-5">
-      <div class="flex">
-        <div class=" w-3/4 max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
-          <ShoppingCart />
-        </div>
-
-        <div class=" w-1/4 ">
-          <div class="max-w-ml mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
-            <div class=" p-4">
-              <h2 class="font-bold text-xl mb-4 pb-2 pt-2">Promo code</h2>
-              <div class="flex justify-between mb-2 pb-2">
-                <input
-                  type="text"
-                  class="border-2 border-gray-400 bg-white rounded-lg px-4 py-2 text-xl"
-                ></input>
-                <button class="bg-transparent hover:bg-green-200 text-black-800  py-2 px-4 border border-gray-400 rounded shadow">
-                  Apply
-                </button>
-              </div>
-            </div>
+    <CartContext.Provider value={{ cartTotal, setCartTotal }}>
+      <div class="bg-gray-100 px-6 py-5">
+        <div class="flex">
+          <div class=" w-3/4 max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+            <ShoppingCart />
           </div>
 
-          <div class="pt-5">
+          <div class=" w-1/4 ">
             <div class="max-w-ml mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
-              <OrderSummary />
+              <div class=" p-4">
+                <h2 class="font-bold text-xl mb-4 pb-2 pt-2">Promo code</h2>
+                <div class="flex justify-between mb-2 pb-2">
+                  <input
+                    type="text"
+                    class="border-2 border-gray-400 bg-white rounded-lg px-4 py-2 text-xl"
+                  ></input>
+                  <button class="bg-transparent hover:bg-green-200 text-black-800  py-2 px-4 border border-gray-400 rounded shadow">
+                    Apply
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-5">
+              <div class="max-w-ml mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+                <OrderSummary />
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </CartContext.Provider>
   )
 }
