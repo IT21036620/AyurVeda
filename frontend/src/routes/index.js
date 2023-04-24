@@ -4,6 +4,7 @@ import BuyerRoutes from './buyerRoutes'
 import CartRoutes from './cartRoutes'
 import ErrorRoute from './errorRoute'
 import ProductRoutes from './productRoutes'
+import SellerRoutes from './sellerRoutes'
 
 const IndexRoutes = () => {
   return (
@@ -12,6 +13,7 @@ const IndexRoutes = () => {
 
       <BuyerRoutes />
       <ProductRoutes />
+      <SellerRoutes />
       {/* <ErrorRoute /> */}
     </div>
   )

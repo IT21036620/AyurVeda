@@ -3,7 +3,6 @@ import Loading from '../../components/products/Loading'
 import { useParams, Link } from 'react-router-dom'
 import { Grid, Button, Container, Typography, Input } from '@mui/material'
 import { FaShoppingCart } from 'react-icons/fa'
-// import './page.css'
 import './sinProduct.css'
 import { useGlobalContext } from './context'
 import axios from 'axios'
@@ -20,8 +19,8 @@ const SingleProduct = () => {
   const [loading, setLoading] = React.useState(false)
   const [product, setProduct] = React.useState(null)
   const [quantity, setQuantity] = React.useState(1)
-  // const [productRate, setProductRate] = React.useState(rating)
-  // const [rating, setRating] = React.useState(0)
+  // const [productRate, setProductRate] = React.useState('')
+  // const [editProduct, setEditProduct] = React.useState({ rating: '' })
 
   React.useEffect(() => {
     setLoading(true)
@@ -108,11 +107,13 @@ const SingleProduct = () => {
   }
 
   // const onChangeProduct = (event) => {
-  //   setProductRate(event.target.value)
+  //   setProductRating(event.target.value)
   // }
 
-  const rateProduct = (event) => {
-    event.preventDefault()
+  const rateProduct = () => {
+    // setEditProduct(product)
+    // setEditProduct({ rating: productRate })
+    // setProduct({ rating: productRate })
     axios.patch(`${productRating}${id}`, product).then(({ data }) => {
       console.log(data)
     })
@@ -146,6 +147,7 @@ const SingleProduct = () => {
   //   const response = await cart.add(id,quantity, product_name, price)
   //   setCart(response.cart)
   // }
+  // console.log(productRating)
 
   return (
     // <section className="section product-section">
@@ -217,8 +219,8 @@ const SingleProduct = () => {
               setLoading(false)
             }}
             crossOrigin="anonymous"
-            src={`${http}\/\/${domain}:4000\/${image}`}
-            // src={`http:\/\/localhost:4000\/${image}`}
+            // src={`${http}\/\/${domain}:4000\/${image}`}
+            src={`http:\/\/localhost:4000\/${image}`}
             alt={product_name}
           />
         </Grid>
@@ -279,7 +281,13 @@ const SingleProduct = () => {
                 color="primary"
                 variant="contained"
                 className="rate-product"
-                onClick={rateProduct}
+                onClick={() => {
+                  // rateProduct()
+                  setLoading(true)
+                  window.location.reload(true)
+                  setLoading(false)
+                }}
+                // onClick={rateProduct()}
               >
                 Rate Product
               </Button>
@@ -293,9 +301,7 @@ const SingleProduct = () => {
             defaultValue={5}
             disableUnderline={false}
             inputProps={inputProps}
-            // onChange={(e) => {
-            //   setRating(e.target.value)
-            // }}
+            // onChange={(e) => setProductRate(e.target.value)}
           ></Input>
           <Grid container spacing={4}>
             <Grid item xs={12}>
@@ -304,6 +310,12 @@ const SingleProduct = () => {
                 color="primary"
                 variant="contained"
                 className="rate-seller"
+                onClick={() => {
+                  // rateSeller()
+                  setLoading(true)
+                  window.location.reload(true)
+                  setLoading(false)
+                }}
               >
                 Rate Seller
               </Button>

@@ -50,6 +50,7 @@ const AppProvider = ({ children }) => {
             description,
             image,
             rate_count,
+            createdBy,
           } = item
           return {
             id: _id,
@@ -66,6 +67,7 @@ const AppProvider = ({ children }) => {
             description,
             image,
             rate_count,
+            createdBy,
           }
         })
         setProducts(newProducts)
