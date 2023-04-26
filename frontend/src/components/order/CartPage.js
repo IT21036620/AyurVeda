@@ -2,6 +2,7 @@ import React from 'react'
 import OrderSummary from './OrderSummary'
 import ShoppingCart from './shoppingCart'
 import CartContext from './CartContext'
+import ShippingDetails from './ShippingDetails'
 
 export default function CartPage() {
   const [cartTotal, setCartTotal] = React.useState(0)
@@ -36,6 +37,16 @@ export default function CartPage() {
         <div class="flex">
           <div class=" w-3/4 max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
             <ShoppingCart />
+
+            <details className="bg-slate-100 shadow rounded group p-1">
+              <summary className="text-sm font-medium leading-6 text-gray-900  list-none flex flex-wrap items-center cursor-pointer">
+                <span className="flex-1">Shipping Details</span>
+                <div className="border-8 border-transparent ml-2 border-l-gray-600 group-open:rotate-90 transition-transform origin-left"></div>
+              </summary>
+              <div className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-3 sm:mt-0 w-full">
+                <ShippingDetails />
+              </div>
+            </details>
           </div>
 
           <div class=" w-1/4 ">
