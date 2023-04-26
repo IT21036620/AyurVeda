@@ -6,7 +6,9 @@ const { createCustomError } = require('../errors/custom-error')
 const { StatusCodes } = require('http-status-codes')
 const { BadRequestError, UnauthenticatedError } = require('../errors')
 
+// seller register with jwt token
 const register = async (req, res) => {
+  // checking for the seller profile image
   if (req.file) {
     req.body.profile_image = req.file.path
   } else {
@@ -24,9 +26,9 @@ const register = async (req, res) => {
     },
     token,
   })
-  // console.log(req.body.profile_image)
 }
 
+// seller login with validating credentials and generating jwt token
 const login = async (req, res) => {
   const { email, password } = req.body
 
@@ -38,11 +40,12 @@ const login = async (req, res) => {
     throw new UnauthenticatedError('Invalid email')
   }
 
+  // compare password
   const isPasswordCorrect = await seller.comparePassword(password)
   if (!isPasswordCorrect) {
     throw new UnauthenticatedError('Invalid password')
   }
-  // compare password
+
   const token = seller.createJWT()
   res.status(StatusCodes.OK).json({
     seller: {
@@ -54,6 +57,7 @@ const login = async (req, res) => {
   })
 }
 
+// get all products created by the seller
 const getAllProductsBySeller = async (req, res) => {
   const products = await Product.find({ createdBy: req.user.userId }).sort(
     'createdAt'
@@ -106,7 +110,6 @@ const updateSeller = asyncWrapper(async (req, res, next) => {
   if (!seller) {
     return next(createCustomError(`No Seller with id: ${sellerID}`, 404))
   }
-  // res.status(200).json({ seller })
 })
 
 //update seller rating by id

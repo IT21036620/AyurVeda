@@ -16,13 +16,7 @@ const getProductsByCategory = asyncWrapper(async (req, res, next) => {
   res.status(200).json({ products })
 })
 
-//add a new product
-// const createProduct = asyncWrapper(async (req, res) => {
-//   req.body.createdBy = req.user.userId
-//   const product = await Product.create(req.body)
-//   res.status(201).json({ product })
-// })
-
+// create a new product with checking image file
 const createProduct = asyncWrapper(async (req, res) => {
   req.body.createdBy = req.user.userId
   // if (req.files) {
@@ -79,6 +73,7 @@ const updateProduct = asyncWrapper(async (req, res, next) => {
   res.status(200).json({ product })
 })
 
+// get all products with search and sort options passed as a query in the req
 const getAllProducts = async (req, res) => {
   const {
     availability,
@@ -144,14 +139,6 @@ const getAllProducts = async (req, res) => {
     const fieldList = fields.split(',').join(' ')
     result = result.select(fieldList)
   }
-
-  // const page = Number(req.query.page) || 1
-  // const limit = Number(req.query.limit) || 10
-  // const skip = (page - 1) * limit
-
-  // result = result.skip(skip).limit(limit)
-  // // 23
-  // // 4 pages 7,7,7,2
 
   const products = await result
 
