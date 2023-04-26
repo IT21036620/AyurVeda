@@ -6,7 +6,7 @@ const buyerRoutes = () => {
   return (
     <div>
       <Routes>
-        <Route path="/buyer" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/buyer/home" element={<Home />} />
         <Route path="/buyer/account" element={<AccountPage />} />
       </Routes>
