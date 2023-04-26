@@ -4,6 +4,7 @@ import Home from '../Home'
 import Dashboard from './Dashboard'
 import AccountInfo from '../../components/buyer/accountInfo.js'
 import Reviews from '../../components/buyer/reviewList'
+import OrderList from '../../components/buyer/orderList'
 
 // const Dashboard = () => <div>Dashboard Content</div>
 const Orders = () => <div>Orders Content</div>
@@ -21,7 +22,7 @@ const AccountPage = () => {
       case 'dashboard':
         return <Dashboard />
       case 'orders':
-        return <Orders />
+        return <OrderList />
       case 'reviews':
         return <Reviews buyerId={'123456789012345678901630'} />
       case 'account-info':
