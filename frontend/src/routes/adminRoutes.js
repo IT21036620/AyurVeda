@@ -7,7 +7,7 @@ import ViewOrder from '../components/Dashboard/ViewOrder'
 export default function adminRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
+      <Route path="/admin" element={<Layout />}>
         <Route index element={<Dashboard />} />
         <Route path="sellers" element={<Sellers />} />
         <Route path="order" element={<ViewOrder />} />
