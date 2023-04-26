@@ -18,7 +18,7 @@ app.use('/api/v1/cart', cart)
 app.use(notFound)
 app.use(errorHandlerMiddleware)
 
-const port = process.env.PORT || 3002
+const port = process.env.PORT || 3008
 
 const start = async () => {
   try {

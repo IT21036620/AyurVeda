@@ -106,7 +106,7 @@ const Product = mongoose.model('Product', ProductSchema)
 
 const CartSchema = new mongoose.Schema(
   {
-    user: {
+    userID: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
       required: false,
@@ -132,37 +132,47 @@ const CartSchema = new mongoose.Schema(
 
 module.exports = mongoose.model('Cart', CartSchema)
 
-// Cart Complete Model
-// const CartCompleteSchema = new mongoose.Schema(
-//   {
-//     userID: {
-//       type: mongoose.Schema.Types.ObjectId,
-//       ref: 'User',
-//       required: false,
-//     },
+const RevenueSchema = new mongoose.Schema({
+  date: {
+    type: Date,
+    required: true,
+  },
+  revenue: {
+    type: Number,
+    required: true,
+  },
+  sellerID: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Seller',
+    required: true,
+  },
 
-//     products: [
-//       {
-//         product: {
-//           type: mongoose.Schema.Types.ObjectId,
-//           ref: 'Product',
-//           required: true,
-//         },
-//         quantity: {
-//           type: Number,
-//           required: true,
-//           default: 1,
-//         },
-//       },
-//     ],
+  productSales: [
+    {
+      productId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product',
+        required: true,
+      },
+      quantity: {
+        type: Number,
+        required: true,
+      },
+      price: {
+        type: Number,
+        required: true,
+      },
+    },
+  ],
+  orderIds: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Order',
+      required: true,
+    },
+  ],
+})
 
-//     totalprice: {
-//       type: Number,
-//       required: false,
-//     },
-//   },
+const Revenue = mongoose.model('Revenue', RevenueSchema)
 
-//   { timestamps: true }
-// )
-
-// module.exports = mongoose.model('CartComplete', CartCompleteSchema)
+module.exports = Revenue

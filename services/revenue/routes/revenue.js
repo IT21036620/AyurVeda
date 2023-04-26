@@ -9,17 +9,14 @@ const {
   deleteAllCartItems,
   getCartItemsbycusid,
   insertcartcompletedetails,
-  generateCommission,
 } = require('../controllers/cart')
 
 router
   .route('/')
   .get(getAllCartItems)
-  .get(getCartItemsbycusid)
   .post(createCartItem)
   .delete(deleteAllCartItems)
   .post(insertcartcompletedetails)
-  .post(generateCommission)
 router
   .route('/:id')
   .patch(updateCartItems)

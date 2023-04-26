@@ -87,11 +87,6 @@ export default function ShoppingCart() {
     }
   }, [itemRemoved, isDataFetched])
 
-  // const totalPriceOfItems = carts.reduce(
-  //   (totalPrice, cart) => totalPrice + cart.product.price,
-  //   0
-  // )
-
   const calculateTotal = () => {
     return carts.reduce((total, cart) => total + cart.totalPrice, 0)
   }
