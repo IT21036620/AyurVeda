@@ -1,6 +1,8 @@
 import React from 'react'
+import { format } from 'date-fns'
 
 export default function CartPage() {
+  const current = new Date()
   return (
     //         <div className="cart-container" class="pt-10 px-20">
     //         <h1 class="text-center pb-5">Shopping Cart</h1>
@@ -34,11 +36,11 @@ export default function CartPage() {
             <h1>Hwllo</h1>
           </div>
 
-          <div class=" w-3/4 max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden p-3">
-            <h3 className="font-medium font-mono text-lg">
+          <div class=" w-3/4 max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden p-3 font-medium font-sans">
+            <h3 className="font-medium font-sans text-lg">
               Shipping Estimates
             </h3>
-            <div className="grid grid-cols-1 grid-rows-2 border border-gray-600 rounded-lg p-3">
+            <div className="grid grid-cols-1 grid-rows-2 border-2 border-gray-400 rounded-lg p-3 shadow-lg">
               <div className="col-span-1 inline-block row-span-1">
                 <h4 className="inline-flex  inline-baseline mr-4">
                   Destination&nbsp;&nbsp;:
@@ -52,10 +54,18 @@ export default function CartPage() {
                 <p className="inline-flex  inline-baseline">2.57KG</p>
               </div>
             </div>
-            <div>
-              <h2>DHL Express</h2>
+            <div className="grid grid-cols-1 grid-rows-2 border-gray-400 rounded-lg p-3 mt-4 border-2 shadow-lg">
+              <h2 className="inline-flex  inline-baseline">DHL Express</h2>
               <p>$31.10</p>
-              <p>Estimated Delivery: MAy 06 - May 24</p>
+              <p className="inline-flex  inline-baseline">
+                Estimated Delivery:{' '}
+                <span className="inline-flex  inline-baseline">
+                  {format(
+                    current.setDate(current.getDate() + 14),
+                    'MMM dd yyyy'
+                  )}
+                </span>
+              </p>
             </div>
           </div>
         </div>
