@@ -17,13 +17,13 @@ const upload = require('../middleware/upload')
 router
   .route('/')
   .get(getAllProducts)
-  .post(authenticateSeller, upload.array('image[]'), createProduct)
+  .post(authenticateSeller, upload.single('image'), createProduct)
 router
   .route('/:id')
   .get(getProductsByCategory)
-  .get(getProduct)
   .patch(updateProduct)
   .delete(deleteProduct)
 router.route('/productRating/:id').patch(changeProductRatingByID)
+router.route('/singleProduct/:id').get(getProduct)
 
 module.exports = router
