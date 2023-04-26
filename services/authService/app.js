@@ -1,26 +1,23 @@
 const express = require('express')
 const app = express()
-const orders = require('./routes/order')
+const users = require('./routes/user')
 const connectDB = require('./db/connect')
 const cors = require('cors')
 require('dotenv').config()
 const notFound = require('./middleware/not-found')
 const errorHandlerMiddleware = require('./middleware/error-handler')
-const cors = require('cors')
 
 //middleware
 app.use(cors())
 app.use(express.json())
 
-app.use(cors())
-
 //routes
-app.use('/api/v1/orders', orders)
+app.use('/api/v1/auth', users)
 
 app.use(notFound)
-// app.use(errorHandlerMiddleware)
+app.use(errorHandlerMiddleware)
 
-const port = process.env.PORT || 3005
+const port = process.env.PORT || 3000
 
 const start = async () => {
   try {
