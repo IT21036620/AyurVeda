@@ -1,6 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './component.css'
+import axios from 'axios'
+
+const deleteProductUrl = 'http://localhost:3006/api/v1/products'
 
 const SellerProduct = ({
   image,
@@ -16,6 +19,17 @@ const SellerProduct = ({
 
   const url = `${http}\/\/${domain}:${port}\/`
   console.log(url)
+
+  const deleteProduct = async () => {
+    try {
+      const resp = await axios.delete(`${deleteProductUrl}/${id}`)
+      alert('Product Deleted Successfully')
+      console.log(resp.data)
+    } catch (error) {
+      alert('Sorry! Product Deletion Failed...')
+      console.log(error.response)
+    }
+  }
 
   return (
     <div className="card">
@@ -52,7 +66,7 @@ const SellerProduct = ({
         <div
           class="font-sans bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full mt-[10px]"
           onClick={() => {
-            // deleteProduct()
+            deleteProduct()
             window.location.reload(true)
           }}
         >

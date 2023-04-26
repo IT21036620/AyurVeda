@@ -1,5 +1,6 @@
 const Product = require('../models/products')
 const asyncWrapper = require('../middleware/async')
+const cloudinary = require('../middleware/cloudinary')
 const { createCustomError } = require('../errors/custom-error')
 
 //using errors custom-error.js for createCustomError
@@ -32,9 +33,11 @@ const createProduct = asyncWrapper(async (req, res) => {
   //   path = path.substring(0, path.lastIndexOf(','))
   //   req.body.image = path
   // }
+
   if (req.file) {
     req.body.image = req.file.path
   }
+
   const product = await Product.create(req.body)
   res.status(201).json({ product })
 })

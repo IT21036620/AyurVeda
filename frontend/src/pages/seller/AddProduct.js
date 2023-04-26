@@ -1,7 +1,54 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './form.css'
+import axios from 'axios'
+
+const productUrl = 'http://localhost:3006/api/v1/products'
 
 const AddProduct = () => {
+  const [product_name, setProduct_name] = useState('')
+  const [manufacturer, setManufacturer] = useState('')
+  const [price, setPrice] = useState('')
+  const [package_quantity, setPackage_quantity] = useState('')
+  const [shipping_weight, setShipping_weight] = useState('')
+  const [category, setCategory] = useState('')
+  const [mfd, setMfd] = useState('')
+  const [exp, setExp] = useState('')
+  const [image, setImage] = useState('')
+  const [description, setDescription] = useState('')
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    try {
+      const resp = await axios.post(
+        productUrl,
+        {
+          product_name: product_name,
+          manufacturer: manufacturer,
+          price: price,
+          package_quantity: package_quantity,
+          shipping_weight: shipping_weight,
+          category: category,
+          mfd: mfd,
+          exp: exp,
+          image: image,
+          description: description,
+        },
+        {
+          headers: {
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDM5OWRmNDBmMDhjYjYyNjg5MmQ3ZGQiLCJuYW1lIjoiSXZlcnNvbiIsImlhdCI6MTY4MjAwNDc4OCwiZXhwIjoxNjg0NTk2Nzg4fQ.1yFUxCHwoDBlobtxfPll8GI5IEOEXwWYluqFFlkvjQg`,
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      )
+      alert('Product Added Successfully')
+      console.log(resp.data)
+    } catch (error) {
+      alert('Sorry! Product Deletion Failed...')
+      console.log(error.response)
+    }
+  }
+
   return (
     <div className="main-form">
       <div className="form-title">
@@ -16,97 +63,160 @@ const AddProduct = () => {
 
       <div className="form-body">
         <div className="form-container">
-          <form action="#">
+          <form onSubmit={handleSubmit}>
             <div className="form first">
               <div className="details-personal">
                 <div className="fields">
                   <div className="input-field">
-                    <label>Product Name</label>
+                    <label htmlFor="product_name">Product Name</label>
                     <input
                       type="text"
+                      name="product_name"
+                      id="product_name"
+                      value={product_name}
+                      onChange={(e) => setProduct_name(e.target.value)}
                       placeholder="Enter Product Name"
                       required
                     ></input>
                   </div>
 
                   <div className="input-field">
-                    <label>Manufacturer</label>
+                    <label htmlFor="manufacturer">Manufacturer</label>
                     <input
                       type="text"
+                      name="manufacturer"
+                      id="manufacturer"
+                      value={manufacturer}
+                      onChange={(e) => setManufacturer(e.target.value)}
                       placeholder="Enter Manufacturer Name"
                       required
                     ></input>
                   </div>
 
                   <div className="input-field">
-                    <label>Price</label>
+                    <label htmlFor="price">Price</label>
                     <input
                       type="number"
+                      name="price"
+                      id="price"
+                      value={price}
+                      onChange={(e) => setPrice(e.target.value)}
                       placeholder="Enter Price in LKR"
+                      min={1}
                       required
                     ></input>
                   </div>
 
                   <div className="input-field">
-                    <label>Package Quantity</label>
+                    <label htmlFor="package_quantity">Package Quantity</label>
                     <input
                       type="number"
+                      name="package_quantity"
+                      id="package_quantity"
+                      value={package_quantity}
+                      onChange={(e) => setPackage_quantity(e.target.value)}
                       placeholder="Enter Package Quantity"
+                      min={1}
                       required
                     ></input>
                   </div>
 
                   <div className="input-field">
-                    <label>Shipping Weight</label>
+                    <label htmlFor="shipping_weight">Shipping Weight</label>
                     <input
                       type="text"
-                      placeholder="Enter Shipping Weight in Grams"
+                      name="shipping_weight"
+                      id="shipping_weight"
+                      value={shipping_weight}
+                      onChange={(e) => setShipping_weight(e.target.value)}
+                      placeholder="Enter Shipping Weight in g/kg"
                       required
                     ></input>
                   </div>
 
                   <div className="input-field">
-                    {' '}
-                    {/*  dropdown */}
-                    <label>Category</label>
+                    <label htmlFor="category">Category</label>
+                    <select
+                      name="category"
+                      id="category"
+                      value={category}
+                      onChange={(e) => setCategory(e.target.value)}
+                      required
+                    >
+                      <option value="Supplements & Herbs">
+                        Supplements & Herbs
+                      </option>
+                      <option value="Sports Nutrition">Sports Nutrition</option>
+                      <option value="Beauty">Beauty</option>
+                      <option value="Bath & Personal Care">
+                        Bath & Personal Care
+                      </option>
+                      <option value="Grocery">Grocery</option>
+                      <option value="Home">Home</option>
+                      <option value="Pets">Pets</option>
+                      <option value="Babies & Kids">Babies & Kids</option>
+                    </select>
+                  </div>
+
+                  <div className="input-field">
+                    <label htmlFor="mfd">Manufacture Date</label>
                     <input
-                      type="number"
-                      placeholder="Choose Product Category"
+                      type="date"
+                      name="mfd"
+                      id="mfd"
+                      value={mfd}
+                      onChange={(e) => setMfd(e.target.value)}
+                      placeholder="Enter Mfd"
                       required
                     ></input>
                   </div>
 
                   <div className="input-field">
-                    <label>Manufacture Date</label>
-                    <input type="date" placeholder="Enter Mfd" required></input>
+                    <label htmlFor="exp">Expiry Date</label>
+                    <input
+                      type="date"
+                      name="exp"
+                      id="exp"
+                      value={exp}
+                      onChange={(e) => setExp(e.target.value)}
+                      placeholder="Enter Exp"
+                      required
+                    ></input>
                   </div>
 
                   <div className="input-field">
-                    <label>Expiry Date</label>
-                    <input type="date" placeholder="Enter Exp" required></input>
-                  </div>
-
-                  <div className="input-field">
-                    <label>Product Image</label>
+                    <label htmlFor="image">Product Image</label>
                     <input
                       type="file"
                       accept="image/png, image/jpg, image/jpeg"
+                      name="image"
+                      id="image"
+                      value={image}
+                      onChange={(e) => setImage(e.target.value)}
                       placeholder="Upload Product Image"
                       required
                     ></input>
                   </div>
 
                   <div className="input-field-desc">
-                    <label>Product Description</label>
+                    <label htmlFor="description">Product Description</label>
                     <div></div>
                     <textarea
                       type="text"
+                      name="description"
+                      id="description"
+                      value={description}
+                      onChange={(e) => setDescription(e.target.value)}
                       placeholder="Enter a Product Description"
                       required
                     ></textarea>
                   </div>
 
-                  <button class="m-auto bg-green-500 mt-[20px] hover:bg-green-700 text-white font-bold py-2 px-4 border border-green-700 rounded">
+                  <button
+                    class="m-auto bg-green-500 mt-[20px] hover:bg-green-700 text-white font-bold py-2 px-4 border border-green-700 rounded"
+                    type="submit"
+                    name="submit"
+                  >
                     Submit
                   </button>
                 </div>

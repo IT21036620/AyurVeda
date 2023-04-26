@@ -76,6 +76,14 @@
     @apply text-[#707070] valid:text-[#333];
   }
   
+  .input-field select {
+    @apply text-sm font-normal text-[#333] border h-[42px] mx-0 my-2 px-[15px] py-0 rounded-[5px] border-solid border-[#aaa];
+    outline: none;
+  }
+  
+  .input-field select:is(:focus, :valid) {
+    @apply shadow-[0_3px_6px_rgba(0,0,0,0.13)];
+  }
   
 
 
