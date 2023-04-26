@@ -63,6 +63,9 @@ const deleteProduct = asyncWrapper(async (req, res, next) => {
 //update a product by id
 const updateProduct = asyncWrapper(async (req, res, next) => {
   const { id: productID } = req.params
+  if (req.file) {
+    req.body.image = req.file.path
+  }
   const product = await Product.findOneAndUpdate({ _id: productID }, req.body, {
     new: true,
     runValidators: true,
@@ -157,8 +160,9 @@ const changeProductRatingByID = asyncWrapper(async (req, res, next) => {
     }
   )
   var changeRating = async function () {
+    product.rating = req.body.rating
     product.rate_count = product.rate_count + 1
-    product.rate_aggregate = product.rate_aggregate + req.body.rating
+    product.rate_aggregate = product.rate_aggregate + product.rating
     var newRating = product.rate_aggregate / product.rate_count
 
     product.rating = parseFloat(newRating).toFixed(2) //newRating

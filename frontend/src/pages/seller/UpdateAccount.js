@@ -36,7 +36,6 @@ const UpdateAccount = () => {
           },
         }
       )
-
       alert('Seller Account Updated Successfully')
       console.log(resp.data)
     } catch (error) {

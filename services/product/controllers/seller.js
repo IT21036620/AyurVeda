@@ -57,6 +57,18 @@ const login = async (req, res) => {
   })
 }
 
+//using errors custom-error.js for createCustomError
+//get a seller by id
+const getSellerByID = asyncWrapper(async (req, res, next) => {
+  const { id: sellerID } = req.params
+  const seller = await Seller.findOne({ _id: sellerID })
+
+  if (!seller) {
+    return next(createCustomError(`No seller with id: ${sellerID}`, 404))
+  }
+  res.status(200).json({ seller })
+})
+
 // get all products created by the seller
 const getAllProductsBySeller = async (req, res) => {
   const products = await Product.find({ createdBy: req.user.userId }).sort(
@@ -80,6 +92,9 @@ const deleteSeller = asyncWrapper(async (req, res, next) => {
 //update a seller by id
 const updateSeller = asyncWrapper(async (req, res, next) => {
   const { id: sellerID } = req.params
+  if (req.file) {
+    req.body.image = req.file.path
+  }
   const seller = await Seller.findOneAndUpdate(
     { _id: sellerID },
     { ...req.body },
@@ -124,8 +139,9 @@ const changeSellerRatingByID = asyncWrapper(async (req, res, next) => {
     }
   )
   var changeRating = async function () {
+    seller.rating = req.body.rating
     seller.rate_count = seller.rate_count + 1
-    seller.rate_aggregate = seller.rate_aggregate + req.body.rating
+    seller.rate_aggregate = seller.rate_aggregate + seller.rating
     var newRating = seller.rate_aggregate / seller.rate_count
 
     seller.rating = parseFloat(newRating).toFixed(2) //newRating
@@ -142,6 +158,7 @@ const changeSellerRatingByID = asyncWrapper(async (req, res, next) => {
 module.exports = {
   register,
   login,
+  getSellerByID,
   getAllProductsBySeller,
   deleteSeller,
   updateSeller,

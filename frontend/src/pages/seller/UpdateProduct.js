@@ -7,6 +7,17 @@ const updateProductUrl = 'http://localhost:3006/api/v1/products'
 
 const UpdateProduct = () => {
   const { id } = useParams()
+  const [product, setProduct] = useState({
+    product_name: '',
+    manufacturer: '',
+    price: '',
+    package_quantity: '',
+    shipping_weight: '',
+    availability: '',
+    category: '',
+    image: '',
+    description: '',
+  })
   const [product_name, setProduct_name] = useState('')
   const [manufacturer, setManufacturer] = useState('')
   const [price, setPrice] = useState('')
@@ -19,6 +30,27 @@ const UpdateProduct = () => {
 
   const handleUpdateSubmit = async (e) => {
     e.preventDefault()
+
+    // axios
+    //   .patch(`${updateProductUrl}/${id}`, {
+    //     product_name: product_name,
+    //     manufacturer: manufacturer,
+    //     price: price,
+    //     package_quantity: package_quantity,
+    //     shipping_weight: shipping_weight,
+    //     availability: availability,
+    //     category: category,
+    //     image: image,
+    //     description: description,
+    //   })
+    //   .then(({ data }) => {
+    //     console.log(data)
+    //     alert('Product Updated Successfully')
+    //   })
+    //   .catch((error) => {
+    //     alert('Sorry! Product Updation Failed...')
+    //     console.log(error)
+    //   })
 
     try {
       const resp = await axios.patch(
@@ -33,12 +65,12 @@ const UpdateProduct = () => {
           category: category,
           image: image,
           description: description,
-        },
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
         }
+        // {
+        //   headers: {
+        //     'Content-Type': 'multipart/form-data',
+        //   },
+        // }
       )
 
       alert('Product Updated Successfully')
