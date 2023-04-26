@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const orders = require('./routes/order')
+const cart = require('./routes/cart')
 const connectDB = require('./db/connect')
 require('dotenv').config()
 const notFound = require('./middleware/not-found')
@@ -13,7 +13,7 @@ app.use(express.json())
 app.use(cors())
 
 //routes
-app.use('/api/v1/orders', orders)
+app.use('/api/v1/cart', cart)
 
 app.use(notFound)
 app.use(errorHandlerMiddleware)
