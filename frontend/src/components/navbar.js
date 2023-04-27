@@ -12,7 +12,7 @@ const Navbar = ({ name }) => {
           AyurVeda
         </a>
 
-        <form className="w-1/2 mr-2">
+        <form className="w-1/3 mr-2">
           <input
             type="text"
             placeholder="Search"
