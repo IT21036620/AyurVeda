@@ -6,15 +6,12 @@ const cors = require('cors')
 require('dotenv').config()
 const notFound = require('./middleware/not-found')
 const errorHandlerMiddleware = require('./middleware/error-handler')
-<<<<<<< HEAD
 const credentials = require('./middleware/credentials')
 
 var corsOptions = {
-  origin: 'http://localhost:3006',
+  origin: 'http://localhost:3000',
   optionsSuccessStatus: 200,
 }
-=======
->>>>>>> origin/dev
 
 //middleware
 app.use(credentials)
@@ -29,7 +26,7 @@ app.use('/api/v1/orders', orders)
 app.use(notFound)
 app.use(errorHandlerMiddleware)
 
-const port = process.env.PORT || 3005
+const port = process.env.PORT || 3006
 
 const start = async () => {
   try {

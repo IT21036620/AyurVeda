@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: delivery
+  name: order
   labels:
-    app: delivery
+    app: order
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: delivery
+      app: order
   template:
     metadata:
       labels:
-        app: delivery
+        app: order
     spec:
       containers:
-        - name: delivery
-          image: dinukakariyawasam/ayurveda:delivery
+        - name: order
+          image: dinukakariyawasam/ayurveda:order
           ports:
-            - containerPort: 4000
+            - containerPort: 3006

@@ -7,7 +7,7 @@ spec:
     app: order
   ports:
     - name: http
-      port: 4000
-      targetPort: 4000
+      port: 3006
+      targetPort: 3006
       nodePort: 31000
   type: NodePort

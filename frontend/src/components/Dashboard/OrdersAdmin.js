@@ -135,7 +135,7 @@ export default function OrdersAdmin() {
   useEffect(() => {
     function getOrders() {
       axios
-        .get('http://localhost:3005/api/v1/orders', {
+        .get('http://localhost:3006/api/v1/orders', {
           headers: {
             Authorization: `Bearer ${auth?.accessToken}`,
           },

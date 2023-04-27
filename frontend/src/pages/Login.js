@@ -20,7 +20,7 @@ export default function Login() {
 
     try {
       const response = await axios.post(
-        'http://localhost:3000/api/v1/auth/login',
+        'http://localhost:3001/api/v1/auth/login',
         JSON.stringify({ user, pwd }),
         {
           headers: { 'Content-Type': 'application/json' },

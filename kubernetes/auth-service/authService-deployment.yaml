@@ -18,4 +18,4 @@ spec:
         - name: authService
           image: dinukakariyawasam/ayurveda:authService
           ports:
-            - containerPort: 4000
+            - containerPort: 3001

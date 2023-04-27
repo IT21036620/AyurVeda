@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: delivery
+  name: authService
 spec:
   selector:
-    app: delivery
+    app: authService
   ports:
     - name: http
-      port: 4000
-      targetPort: 4000
+      port: 3001
+      targetPort: 3001
       nodePort: 31000
   type: NodePort

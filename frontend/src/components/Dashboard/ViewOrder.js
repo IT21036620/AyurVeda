@@ -25,7 +25,7 @@ export default function ViewOrder() {
   useEffect(() => {
     function getOrder() {
       axios
-        .get(`http://localhost:3005/api/v1/orders/${id}`)
+        .get(`http://localhost:3006/api/v1/orders/${id}`)
         .then((res) => {
           console.log(res.data.order)
           setOrder(res.data.order)
@@ -81,7 +81,7 @@ export default function ViewOrder() {
           Orders
         </h3>
         <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-500">
-          Dashboard/ Orders / Update Order
+          <span>Dashboard/ Orders / Update Order</span>
         </p>
       </div>
       <div className="mt-6 border-2 border-gray-600 px-2 rounded-md">
@@ -96,19 +96,19 @@ export default function ViewOrder() {
           </div>
           <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <dt className="text-sm font-medium leading-6 text-gray-900">
-              Customer ID
+              Customer Name
             </dt>
             <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
               {/* {statusIndex.value} */}
-              {statusVal}
+              {order?.customerid?.buyerName}
             </dd>
           </div>
           <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <dt className="text-sm font-medium leading-6 text-gray-900">
-              Email address
+              Address
             </dt>
             <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-              {order.status}
+              {order?.deliveryid?.destination_address}
             </dd>
           </div>
           <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">

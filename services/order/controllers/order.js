@@ -16,7 +16,7 @@ const createOrder = asyncWrapper(async (req, res) => {
 const getOrderbyid = asyncWrapper(async (req, res, next) => {
   const { id: orderID } = req.params
   const order = await Order.findOne({ _id: orderID })
-    .populate('deliveryid', 'order_id')
+    .populate('deliveryid', 'destination_address')
     .populate('customerid', 'buyerName')
 
   if (!order) {
