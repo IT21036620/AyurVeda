@@ -21,6 +21,12 @@ client.messages
   })
   .then((message) => console.log(message.sid))
 
+const port = process.env.PORT || 3011
+
+app.listen(port, () => {
+  console.log(`Server runing on port ${port}`)
+})
+
 //----Code for the Vonage SMS API-----
 
 // import Vonage from '@vonage/server-sdk'

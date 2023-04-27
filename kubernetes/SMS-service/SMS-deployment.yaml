@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: SMS
+  labels:
+    app: SMS
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: SMS
+  template:
+    metadata:
+      labels:
+        app: SMS
+    spec:
+      containers:
+        - name: SMS
+          image: dinukakariyawasam/ayurveda:SMS
+          ports:
+            - containerPort: 3011

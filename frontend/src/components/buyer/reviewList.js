@@ -34,9 +34,9 @@ const ReviewList = ({ buyerId }) => {
             )
             setProducts((prevState) => ({
               ...prevState,
-              [productId]: response.data.data,
+              [productId]: response.data,
             }))
-            console.log(response.data.data.product_name)
+            console.log(response.data.data)
           } catch (error) {
             console.log(error)
           }
@@ -178,10 +178,11 @@ const ReviewList = ({ buyerId }) => {
             {products[review.productId] && (
               <div className="mt-2">
                 <h3 className="text-lg font-bold">
+                  Product Name
                   {products[review.productId].product_name}
                 </h3>
                 <img
-                  src={products[review.productId].productImage}
+                  src={products[review.productId].image}
                   alt={products[review.productId].product_name}
                   className="w-24 h-24 object-cover mt-2"
                 />

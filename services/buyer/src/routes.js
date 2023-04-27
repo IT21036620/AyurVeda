@@ -22,17 +22,12 @@ router.post(
   '/addBuyer',
   celebrate({ [Segments.BODY]: addBuyerSchema }),
   buyerAdd
-  //   (req, res) => {
-  //     console.log(req.body)
-  //     res.json({ msg: 'in add' })
-  //   }
 )
 
 //Get Data Of One Buyer
 router.get(
   '/getBuyer/:id',
   celebrate({ [Segments.PARAMS]: viewBuyerSchema }),
-  // BuyerCheck,
   buyerGet
 )
 

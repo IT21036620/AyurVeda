@@ -19,7 +19,7 @@ app.use('/api/v1/orders', orders)
 app.use(notFound)
 // app.use(errorHandlerMiddleware)
 
-const port = process.env.PORT || 3005
+const port = process.env.PORT || 3006
 
 const start = async () => {
   try {
