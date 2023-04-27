@@ -35,7 +35,7 @@ const AccountPage = () => {
 
   return (
     <div>
-      <Navbar />
+      <Navbar name={'Sunil Perera'} />
       <div className="flex">
         <div className="w-3/4 p-4">{renderComponent()}</div>
         <div className="w-1/4">

@@ -2,7 +2,7 @@ import React from 'react'
 import { MdShoppingCart, MdAccountCircle } from 'react-icons/md'
 import { FaLeaf } from 'react-icons/fa'
 
-const Navbar = () => {
+const Navbar = ({ name }) => {
   return (
     <nav className="bg-green-600 text-white py-7 px-4 ">
       <div className="container mx-auto flex justify-between items-center">
@@ -25,13 +25,22 @@ const Navbar = () => {
             <button className="text-white text-xl">Categories</button>
             <div className="absolute left-0 mt-2 w-48 bg-white text-green-700 rounded-lg shadow-md hidden group-hover:block">
               <a href="#" className="block px-4 py-2">
-                Category 1
+                Supplements & Herbs
               </a>
               <a href="#" className="block px-4 py-2">
-                Category 2
+                Sports Nutrition
               </a>
               <a href="#" className="block px-4 py-2">
-                Category 3
+                Beauty
+              </a>
+              <a href="#" className="block px-4 py-2">
+                Bath & Personal Care
+              </a>
+              <a href="#" className="block px-4 py-2">
+                Grocery
+              </a>
+              <a href="#" className="block px-4 py-2">
+                Babies & Kids
               </a>
             </div>
           </div>
@@ -52,10 +61,11 @@ const Navbar = () => {
           {/* <FontAwesomeIcon icon="shopping-cart" /> */}
         </a>
         <a
-          href="/signin"
+          // href="/signin"
+          href="/buyer/account"
           className="text-white flex items-center border-2 border-white rounded-lg px-2 py-1 ml-10 text-xl"
         >
-          <span>Sign In</span>
+          <span>{name}</span>
           <MdAccountCircle size="30px" className="mr-1 ml-1" />
 
           {/* <FontAwesomeIcon icon="sign-in-alt" /> */}

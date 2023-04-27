@@ -16,7 +16,7 @@ connectDB(process.env.Mongo_URI)
 
 app.use('/api/v1/reviews/', reviewRoutes)
 
-const port = process.env.PORT || 3020
+const port = process.env.PORT || 3009
 
 app.listen(port, () => {
   console.log(`Server runing on port ${port}`)
