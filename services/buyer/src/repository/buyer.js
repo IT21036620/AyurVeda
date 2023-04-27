@@ -29,7 +29,6 @@ export const getBuyer = async (id) => {
   // if (!mongoose.Types.ObjectId.isValid(id)) {
   //   return { msg: 'No Buyer is available with this id' }
   // }
-  console.log(id)
   try {
     //Check if Buyer exists
     if ((await Buyer.findById(new mongoose.Types.ObjectId(id))) == null) {
