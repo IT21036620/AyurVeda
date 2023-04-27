@@ -1,3 +1,4 @@
+// middleware to handle image files
 const path = require('path')
 const multer = require('multer')
 

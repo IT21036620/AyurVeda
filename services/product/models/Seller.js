@@ -53,7 +53,6 @@ const SellerSchema = new mongoose.Schema({
   },
   profile_image: {
     type: String,
-    // default: `uploads\\default.jpg`,
   },
   rating: {
     type: Number,
