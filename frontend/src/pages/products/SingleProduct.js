@@ -1,14 +1,17 @@
 import React, { useEffect } from 'react'
 import Loading from '../../components/products/Loading'
 import { useParams, Link } from 'react-router-dom'
-import { Grid, Button, Container, Typography } from '@mui/material'
+import { Grid, Button, Container, Typography, Input } from '@mui/material'
 import { FaShoppingCart } from 'react-icons/fa'
-// import './page.css'
 import './sinProduct.css'
 import { useGlobalContext } from './context'
 import axios from 'axios'
 
-const url = 'http://localhost:4000/api/v1/products/singleProduct/'
+const url = 'http://localhost:3008/api/v1/products/singleProduct/'
+const productRating = 'http://localhost:3008/api/v1/products/productRating/'
+const sellerRating = 'http://localhost:3008/api/v1/seller/sellerRating/'
+const sellerUrl = 'http://localhost:3008/api/v1/seller/'
+
 const createMarkup = (text) => {
   return { __html: text }
 }
@@ -18,6 +21,10 @@ const SingleProduct = () => {
   const [loading, setLoading] = React.useState(false)
   const [product, setProduct] = React.useState(null)
   const [quantity, setQuantity] = React.useState(1)
+  const [newRating, setNewRating] = React.useState('')
+  const [rate_seller, setRate_seller] = React.useState('')
+  const [newSellerRating, setNewSellerRating] = React.useState('')
+  const [sRateCount, setSRateCount] = React.useState('')
 
   React.useEffect(() => {
     setLoading(true)
@@ -42,6 +49,8 @@ const SingleProduct = () => {
             description: description,
             image: image,
             rate_count: rate_count,
+            createdBy: createdBy,
+            rate_aggregate: rate_aggregate,
           } = data.product
 
           const newProduct = {
@@ -58,6 +67,8 @@ const SingleProduct = () => {
             description,
             image,
             rate_count,
+            createdBy,
+            rate_aggregate,
           }
           setProduct(newProduct)
         } else {
@@ -91,7 +102,47 @@ const SingleProduct = () => {
     mfd,
     exp,
     shipping_weight,
+    createdBy,
+    rate_aggregate,
   } = product
+
+  console.log(createdBy)
+
+  const inputProps = {
+    min: 1,
+    max: 5,
+  }
+
+  const rateProduct = () => {
+    axios
+      .patch(`${productRating}${id}`, {
+        rating: newRating,
+      })
+      .then(({ data }) => {
+        console.log(data)
+      })
+  }
+
+  const rateSeller = () => {
+    axios
+      .patch(`${sellerRating}${createdBy}`, {
+        rating: rate_seller,
+      })
+      .then(({ data }) => {
+        console.log(data)
+      })
+  }
+
+  const fetchSeller = async () => {
+    try {
+      const response = await axios(`${sellerUrl}${createdBy}`)
+      console.log(response)
+      setNewSellerRating(response.data.seller.rating)
+      setSRateCount(response.data.seller.rate_count)
+    } catch (error) {
+      console.log(error.response)
+    }
+  }
 
   // console.log(window.location.href.substring(0, 21))
   // console.log(window.location.port) //3000
@@ -102,8 +153,8 @@ const SingleProduct = () => {
   const domain = window.location.hostname
   const port = window.location.port
 
-  // const urlll = `${http}\/\/${domain}:${port}\/`
-  // console.log(urlll)
+  const urlll = `${http}\/\/${domain}:${port}\/`
+  console.log(urlll)
 
   const handleQuantity = (param) => {
     if (param === 'decrease' && quantity > 1) {
@@ -117,79 +168,20 @@ const SingleProduct = () => {
   //   const response = await cart.add(id,quantity, product_name, price)
   //   setCart(response.cart)
   // }
+  // console.log(productRating)
 
   return (
-    // <section className="section product-section">
-    //   <div>
-    //     <Link
-    //       to="/products"
-    //       class="font-sans bg-[rgb(33,190,33)] hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full"
-    //     >
-    //       back to products
-    //     </Link>
-    //   </div>
-    //   <h2 className="section-title">{product_name}</h2>
-    //   <div className="drink">
-    //     <img
-    //       crossOrigin="anonymous"
-    //       src={`http:\/\/localhost:4000\/${image}`}
-    //       alt={product_name}
-    //     ></img>
-    //     <div className="drink-info">
-    //       <p>
-    //         <span className="drink-data">Product Name :</span>
-    //         {product_name}
-    //       </p>
-    //       <p>
-    //         <span className="drink-data">description :</span>
-    //         {description}
-    //       </p>
-    //       <p>
-    //         <span className="drink-data">category :</span>
-    //         {category}
-    //       </p>
-    //       <p>
-    //         <span className="drink-data">package_quantity :</span>
-    //         {package_quantity}
-    //       </p>
-    //       <p>
-    //         <span className="drink-data">price :</span>
-    //         Rs.{price}.00
-    //       </p>
-    //       <p>
-    //         <span className="drink-data">manufacturer :</span>
-    //         {manufacturer}
-    //       </p>
-    //       <p>
-    //         <span className="drink-data">rating :</span>
-    //         {rating}/5 ({rate_count} ratings)
-    //       </p>
-    //       <p>
-    //         <span className="drink-data">shipping_weight :</span>
-    //         {shipping_weight}
-    //       </p>
-    //       <p>
-    //         <span className="drink-data">mfd :</span>
-    //         {mfd.substring(0, 10)}
-    //       </p>
-    //       <p>
-    //         <span className="drink-data">exp :</span>
-    //         {exp.substring(0, 10)}
-    //       </p>
-    //     </div>
-    //   </div>
-    // </section>
-
     <Container className="product-view">
       <Grid container spacing={4}>
+        <div onLoad={fetchSeller()}></div>
         <Grid item xs={12} md={8} className="image-wrapper">
           <img
             onLoad={() => {
               setLoading(false)
             }}
             crossOrigin="anonymous"
-            src={`${http}\/\/${domain}:4000\/${image}`}
-            // src={`http:\/\/localhost:4000\/${image}`}
+            // src={`${http}\/\/${domain}:3006\/${image}`}
+            src={`http:\/\/localhost:3008\/${image}`}
             alt={product_name}
           />
         </Grid>
@@ -197,7 +189,9 @@ const SingleProduct = () => {
           <Typography variant="h2">{product_name}</Typography>
           <Grid container spacing={4}>
             <Grid item xs={12}>
-              <Typography variant="h4">{description}</Typography>
+              <Typography class="font-bold" variant="h4">
+                {description}
+              </Typography>
             </Grid>
           </Grid>
           <Grid container spacing={4}>
@@ -243,14 +237,9 @@ const SingleProduct = () => {
           </Grid>
           <Grid container spacing={4}>
             <Grid item xs={12}>
-              <Button
-                size="small"
-                color="primary"
-                variant="contained"
-                className="rate-product"
-              >
-                Rate Product
-              </Button>
+              <Typography variant="h4">
+                Seller rating: {newSellerRating}/5 ({sRateCount})
+              </Typography>
             </Grid>
           </Grid>
           <Grid container spacing={4}>
@@ -259,12 +248,61 @@ const SingleProduct = () => {
                 size="small"
                 color="primary"
                 variant="contained"
+                className="rate-product"
+                type="submit"
+                onClick={() => {
+                  rateProduct()
+                  setLoading(true)
+                  window.location.reload(true)
+                  setLoading(false)
+                }}
+              >
+                Rate Product
+              </Button>
+            </Grid>
+          </Grid>
+          <Input
+            type="number"
+            placeholder="Rate Product"
+            id="newRating"
+            name="newRating"
+            defaultValue={5}
+            disableUnderline={false}
+            inputProps={inputProps}
+            value={newRating}
+            onChange={(e) => setNewRating(e.target.value)}
+            className="w-[127px]"
+          ></Input>
+          <Grid container spacing={4}>
+            <Grid item xs={12}>
+              <Button
+                size="small"
+                color="primary"
+                variant="contained"
                 className="rate-seller"
+                onClick={() => {
+                  rateSeller()
+                  setLoading(true)
+                  window.location.reload(true)
+                  setLoading(false)
+                }}
               >
                 Rate Seller
               </Button>
             </Grid>
           </Grid>
+          <Input
+            type="number"
+            placeholder="Rate Seller"
+            id="rate_seller"
+            name="rate_seller"
+            defaultValue={5}
+            disableUnderline={false}
+            inputProps={inputProps}
+            value={rate_seller}
+            onChange={(e) => setRate_seller(e.target.value)}
+            className="w-[127px]"
+          ></Input>
           <Typography variant="h3">Price: LKR.{price}.00</Typography>
           <Grid container spacing={4}>
             <Grid item xs={12}>

@@ -1,5 +1,6 @@
 const Product = require('../models/products')
 const asyncWrapper = require('../middleware/async')
+const cloudinary = require('../middleware/cloudinary')
 const { createCustomError } = require('../errors/custom-error')
 
 //using errors custom-error.js for createCustomError
@@ -15,26 +16,16 @@ const getProductsByCategory = asyncWrapper(async (req, res, next) => {
   res.status(200).json({ products })
 })
 
-//add a new product
-// const createProduct = asyncWrapper(async (req, res) => {
-//   req.body.createdBy = req.user.userId
-//   const product = await Product.create(req.body)
-//   res.status(201).json({ product })
-// })
-
+// create a new product with checking image file
 const createProduct = asyncWrapper(async (req, res) => {
   req.body.createdBy = req.user.userId
-  // if (req.files) {
-  //   let path = ''
-  //   req.files.forEach(function (files, index, arr) {
-  //     path = path + files.path + ','
-  //   })
-  //   path = path.substring(0, path.lastIndexOf(','))
-  //   req.body.image = path
-  // }
+
   if (req.file) {
-    req.body.image = req.file.path
+    req.body.profile_image = req.file.path
+  } else {
+    req.body.profile_image = 'uploads\\default-product.jpg'
   }
+
   const product = await Product.create(req.body)
   res.status(201).json({ product })
 })
@@ -66,6 +57,11 @@ const deleteProduct = asyncWrapper(async (req, res, next) => {
 //update a product by id
 const updateProduct = asyncWrapper(async (req, res, next) => {
   const { id: productID } = req.params
+  if (req.file) {
+    req.body.profile_image = req.file.path
+  } else {
+    req.body.profile_image = 'uploads\\default-product.jpg'
+  }
   const product = await Product.findOneAndUpdate({ _id: productID }, req.body, {
     new: true,
     runValidators: true,
@@ -76,6 +72,7 @@ const updateProduct = asyncWrapper(async (req, res, next) => {
   res.status(200).json({ product })
 })
 
+// get all products with search and sort options passed as a query in the req
 const getAllProducts = async (req, res) => {
   const {
     availability,
@@ -142,14 +139,6 @@ const getAllProducts = async (req, res) => {
     result = result.select(fieldList)
   }
 
-  // const page = Number(req.query.page) || 1
-  // const limit = Number(req.query.limit) || 10
-  // const skip = (page - 1) * limit
-
-  // result = result.skip(skip).limit(limit)
-  // // 23
-  // // 4 pages 7,7,7,2
-
   const products = await result
 
   res.status(200).json({ products, nbHits: products.length }) //
@@ -167,8 +156,9 @@ const changeProductRatingByID = asyncWrapper(async (req, res, next) => {
     }
   )
   var changeRating = async function () {
+    product.rating = req.body.rating
     product.rate_count = product.rate_count + 1
-    product.rate_aggregate = product.rate_aggregate + req.body.rating
+    product.rate_aggregate = product.rate_aggregate + product.rating
     var newRating = product.rate_aggregate / product.rate_count
 
     product.rating = parseFloat(newRating).toFixed(2) //newRating
