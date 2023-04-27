@@ -139,7 +139,7 @@ export default function ShoppingCart() {
                             <img
                               class="h-20 w-20 "
                               crossOrigin="anonymous"
-                              src={`http:\/\/localhost:4000\/${cart.product.image}`}
+                              src={`http:\/\/localhost:3008\/${cart.product.image}`}
                               alt=""
                             ></img>
                           </div>

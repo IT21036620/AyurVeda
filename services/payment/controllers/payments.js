@@ -10,7 +10,8 @@ const stripeInstance = stripe(process.env.STRIPE_KEY)
 // This is used to make payment requests,this will send request to stipe and output the response---------------------
 const makePayment = async (req, res) => {
   const { amount, token } = req.body
-
+  console.log(amount)
+  console.log(typeof amount)
   try {
     const charge = await stripeInstance.charges.create({
       amount,

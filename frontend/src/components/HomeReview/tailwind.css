@@ -109,7 +109,7 @@ Variables
   
   /* section */
   .section {
-    @apply w-[90vw] max-w-[var(--max-width)] mx-auto my-20;
+    @apply w-[90vw] max-w-[var(--max-width)] mx-auto;
   }
   @media screen and (min-width: 992px) {
     .section {
