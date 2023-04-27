@@ -15,10 +15,9 @@ const createOrder = asyncWrapper(async (req, res) => {
 
 const getOrderbyid = asyncWrapper(async (req, res, next) => {
   const { id: orderID } = req.params
-  const order = await Order.findOne({ _id: orderID }).populate(
-    'deliveryid',
-    'order_id'
-  )
+  const order = await Order.findOne({ _id: orderID })
+    .populate('deliveryid', 'destination_address')
+    .populate('customerid', 'buyerName')
 
   if (!order) {
     return next(createCustomError(`No Order with this id: ${orderID}`, 404))

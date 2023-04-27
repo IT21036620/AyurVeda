@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: authService
+spec:
+  selector:
+    app: authService
+  ports:
+    - name: http
+      port: 3001
+      targetPort: 3001
+      nodePort: 31000
+  type: NodePort

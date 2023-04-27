@@ -10,7 +10,7 @@ const OrderList = ({ buyerId }) => {
       setLoading(true)
       try {
         const response = await axios.get(
-          `http://localhost:3005/api/v1/orders/customers/${buyerId}`
+          `http://localhost:3006/api/v1/orders/customers/${buyerId}`
         )
         setOrders(response.data.orders)
       } catch (error) {
