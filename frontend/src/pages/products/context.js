@@ -2,8 +2,8 @@ import React, { useState, useContext, useEffect } from 'react'
 import { useCallback } from 'react'
 import axios from 'axios'
 
-const url = 'http://localhost:3006/api/v1/products'
-const search = 'http://localhost:3006/api/v1/products?product_name='
+const url = 'http://localhost:3008/api/v1/products'
+const search = 'http://localhost:3008/api/v1/products?product_name='
 
 const AppContext = React.createContext()
 

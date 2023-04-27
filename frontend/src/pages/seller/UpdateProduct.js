@@ -3,7 +3,7 @@ import './form.css'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 
-const updateProductUrl = 'http://localhost:3006/api/v1/products'
+const updateProductUrl = 'http://localhost:3008/api/v1/products'
 
 const UpdateProduct = () => {
   const { id } = useParams()

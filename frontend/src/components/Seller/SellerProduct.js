@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import './component.css'
 import axios from 'axios'
 
-const deleteProductUrl = 'http://localhost:3006/api/v1/products'
+const deleteProductUrl = 'http://localhost:3008/api/v1/products'
 
 const SellerProduct = ({
   image,
@@ -37,8 +37,8 @@ const SellerProduct = ({
         <img
           className="img"
           crossOrigin="anonymous"
-          // src={`${http}\/\/${domain}:3006\/${image}`}
-          src={`http:\/\/localhost:3006\/${image}`}
+          // src={`${http}\/\/${domain}:3008\/${image}`}
+          src={`http:\/\/localhost:3008\/${image}`}
         />
       </div>
       <div className="card_header">

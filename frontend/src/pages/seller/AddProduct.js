@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './form.css'
 import axios from 'axios'
 
-const productUrl = 'http://localhost:3006/api/v1/products'
+const productUrl = 'http://localhost:3008/api/v1/products'
 
 const AddProduct = () => {
   const [product_name, setProduct_name] = useState('')

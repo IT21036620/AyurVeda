@@ -7,7 +7,7 @@ import './sinProduct.css'
 import { useGlobalContext } from './context'
 import axios from 'axios'
 
-const url = 'http://localhost:3006/api/v1/products/singleProduct/'
+const url = 'http://localhost:3008/api/v1/products/singleProduct/'
 
 const SingleProduct = () => {
   const { id } = useParams()
@@ -114,8 +114,8 @@ const SingleProduct = () => {
               setLoading(false)
             }}
             crossOrigin="anonymous"
-            // src={`${http}\/\/${domain}:3006\/${image}`}
-            src={`http:\/\/localhost:3006\/${image}`}
+            // src={`${http}\/\/${domain}:3008\/${image}`}
+            src={`http:\/\/localhost:3008\/${image}`}
             alt={product_name}
           />
         </Grid>

@@ -7,10 +7,10 @@ import './sinProduct.css'
 import { useGlobalContext } from './context'
 import axios from 'axios'
 
-const url = 'http://localhost:3006/api/v1/products/singleProduct/'
-const productRating = 'http://localhost:3006/api/v1/products/productRating/'
-const sellerRating = 'http://localhost:3006/api/v1/seller/sellerRating/'
-const sellerUrl = 'http://localhost:3006/api/v1/seller/'
+const url = 'http://localhost:3008/api/v1/products/singleProduct/'
+const productRating = 'http://localhost:3008/api/v1/products/productRating/'
+const sellerRating = 'http://localhost:3008/api/v1/seller/sellerRating/'
+const sellerUrl = 'http://localhost:3008/api/v1/seller/'
 
 const createMarkup = (text) => {
   return { __html: text }
@@ -181,7 +181,7 @@ const SingleProduct = () => {
             }}
             crossOrigin="anonymous"
             // src={`${http}\/\/${domain}:3006\/${image}`}
-            src={`http:\/\/localhost:3006\/${image}`}
+            src={`http:\/\/localhost:3008\/${image}`}
             alt={product_name}
           />
         </Grid>

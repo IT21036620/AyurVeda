@@ -43,8 +43,8 @@ const Product = ({ image, product_name, id, price, rating, rate_count }) => {
         <img
           className="img"
           crossOrigin="anonymous"
-          // src={`${http}\/\/${domain}:3006\/${image}`}
-          src={`http:\/\/localhost:3006\/${image}`}
+          // src={`${http}\/\/${domain}:3008\/${image}`}
+          src={`http:\/\/localhost:3008\/${image}`}
         />
       </div>
       <div className="card_header">
