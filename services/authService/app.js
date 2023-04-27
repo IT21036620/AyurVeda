@@ -6,18 +6,27 @@ const cors = require('cors')
 require('dotenv').config()
 const notFound = require('./middleware/not-found')
 const errorHandlerMiddleware = require('./middleware/error-handler')
+const cookieParser = require('cookie-parser')
+const credentials = require('./middleware/credentials')
+
+var corsOptions = {
+  origin: 'http://localhost:3000',
+  optionsSuccessStatus: 200,
+}
 
 //middleware
-app.use(cors())
+app.use(credentials)
+app.use(cors(corsOptions))
 app.use(express.json())
+app.use(cookieParser())
 
 //routes
 app.use('/api/v1/auth', users)
 
-app.use(notFound)
-app.use(errorHandlerMiddleware)
+// app.use(notFound)
+// app.use(errorHandlerMiddleware)
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3001
 
 const start = async () => {
   try {

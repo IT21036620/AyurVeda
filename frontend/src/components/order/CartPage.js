@@ -15,7 +15,7 @@ export default function CartPage() {
           <div class=" w-3/4 max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
             <ShoppingCart />
 
-            <details className="bg-gray-100 shadow rounded group p-1">
+            <details className="bg-gray-100 shadow rounded group p-1 mt-5 ">
               <summary className="text-sm font-medium leading-6 text-gray-900 list-none flex flex-wrap items-center cursor-pointer">
                 <span className="flex-1">Shipping Details</span>
                 <div className="border-8 border-transparent ml-2 border-l-gray-600 group-open:rotate-90 transition-transform origin-left"></div>
@@ -25,7 +25,7 @@ export default function CartPage() {
               </div>
             </details>
 
-            <details className="bg-slate-100 shadow rounded group p-1">
+            <details className="bg-slate-100 shadow rounded group p-1 mt-5">
               <summary className="text-sm font-medium leading-6 text-gray-900  list-none flex flex-wrap items-center cursor-pointer">
                 <span className="flex-1">Payment Details</span>
                 <div className="border-8 border-transparent ml-2 border-l-gray-600 group-open:rotate-90 transition-transform origin-left"></div>

@@ -4,7 +4,7 @@ import Cart from '../components/order/CartPage'
 const cartRoutes = () => {
   return (
     <Routes>
-      <Navbar />
+      {/* <Navbar /> */}
       <Route path="cart" element={<Cart />} />
     </Routes>
   )

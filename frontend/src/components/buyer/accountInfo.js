@@ -15,7 +15,7 @@ const AccountInfo = () => {
     const fetchUserInfo = async () => {
       try {
         const response = await axios.get(
-          'http://localhost:4000/api/buyer/getBuyer/6442335c26c1890f7a771907'
+          'http://localhost:3001/api/buyer/getBuyer/6442335c26c1890f7a771907'
         )
         setUserInfo(response.data.data)
         setBuyerInfo({
@@ -41,7 +41,7 @@ const AccountInfo = () => {
     console.log(buyerInfo)
     try {
       const response = await axios.patch(
-        `http://localhost:4000/api/buyer/updateBuyer/6442335c26c1890f7a771907`,
+        `http://localhost:3001/api/buyer/updateBuyer/6442335c26c1890f7a771907`,
         buyerInfo
       )
       setUserInfo(response.data.data)

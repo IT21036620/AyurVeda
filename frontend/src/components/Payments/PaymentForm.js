@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
 import axios from 'axios'
+import CartContext from '../order/CartContext'
 
 const CARD_ELEMENT_OPTIONS = {
   style: {

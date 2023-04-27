@@ -5,6 +5,7 @@ import axios from 'axios'
 export default function OrderSummary() {
   const { cartTotal } = useContext(CartContext)
   const [commission, setCommission] = useState(0)
+  const { TotalFinal, setTotalFinal } = useContext(CartContext)
 
   const fetchCommission = async (totalPrice) => {
     try {
@@ -20,8 +21,13 @@ export default function OrderSummary() {
     }
   }
 
+  // useEffect(() => {
+  //   fetchCommission(cartTotal) // pass your desired total price value here
+  // }, [cartTotal])
+
   useEffect(() => {
     fetchCommission(cartTotal) // pass your desired total price value here
+      ?.setTotalFinal(cartTotal + 540 + commission)
   }, [cartTotal])
 
   return (
@@ -56,11 +62,11 @@ export default function OrderSummary() {
 
       <div class="flex justify-between font-bold pt-2">
         <span>Total:</span>
-        <span>Rs.{(cartTotal + 540 + cartTotal * 0.05).toFixed(2)}</span>
+        <span>Rs.{TotalFinal}</span>
       </div>
-      <button class="bg-green-600 text-white px-4 py-2 mt-4 rounded hover:bg-green-700 h-11 w-80">
+      {/* <button class="bg-green-600 text-white px-4 py-2 mt-4 rounded hover:bg-green-700 h-11 w-80">
         Checkout
-      </button>
+      </button> */}
     </div>
   )
 }

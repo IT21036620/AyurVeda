@@ -3,6 +3,7 @@ import { format } from 'date-fns'
 import { Link } from 'react-router-dom'
 import { getOrderStatus } from './libs/helpers/statusSelector'
 import axios from 'axios'
+import useAuth from '../../hooks/useAuth'
 
 const recentOrderData = [
   {
@@ -129,11 +130,16 @@ const recentOrderData = [
 
 export default function OrdersAdmin() {
   const [orders, SetOrders] = useState([])
+  const { auth } = useAuth()
 
   useEffect(() => {
     function getOrders() {
       axios
-        .get('http://localhost:3000/api/v1/orders')
+        .get('http://localhost:3006/api/v1/orders', {
+          headers: {
+            Authorization: `Bearer ${auth?.accessToken}`,
+          },
+        })
         .then((res) => {
           console.log(res.data.orders)
           SetOrders(res.data.orders)
@@ -167,7 +173,7 @@ export default function OrdersAdmin() {
             {orders.map((order) => (
               <tr key={order._id}>
                 <td>
-                  <Link to={`/order/${order.id}`}>#{order.order_id}</Link>
+                  <Link to={`/order/${order.id}`}>{order.order_id}</Link>
                 </td>
                 <td>
                   <Link to={`/product/${order.product_id}`}>#</Link>
@@ -180,7 +186,7 @@ export default function OrdersAdmin() {
                 <td>#</td>
                 <td>{getOrderStatus(order.status)}</td>
                 <td>
-                  <Link to="/order" state={order._id}>
+                  <Link to="order" state={order._id}>
                     Click
                   </Link>
                 </td>
