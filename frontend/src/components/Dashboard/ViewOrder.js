@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, Link } from 'react-router-dom'
 import axios from 'axios'
 import Select from 'react-select'
+import useAuth from '../../hooks/useAuth'
 
 const options = [
   { value: 'pending', label: 'pending' },
@@ -19,11 +20,12 @@ export default function ViewOrder() {
   const [order, setOrder] = useState({})
   const [statusIndex, setStatusIndex] = useState({})
   const [statusVal, setStatusVal] = useState()
+  const { auth } = useAuth()
 
   useEffect(() => {
     function getOrder() {
       axios
-        .get(`http://localhost:3000/api/v1/orders/${id}`)
+        .get(`http://localhost:3006/api/v1/orders/${id}`)
         .then((res) => {
           console.log(res.data.order)
           setOrder(res.data.order)
@@ -53,9 +55,9 @@ export default function ViewOrder() {
     //input any authentications are needed
     //(path,function needed to execute)
     axios
-      .patch(`http://localhost:3000/api/v1/orders/${id}`, updateOrder)
+      .patch(`http://localhost:3006/api/v1/orders/${id}`, updateOrder)
       .then(() => {
-        alert('Event Edited')
+        alert('order updated')
       })
       .catch((err) => {
         alert(err)
@@ -74,52 +76,58 @@ export default function ViewOrder() {
     // </div>
 
     <div>
-      <div className="px-4 sm:px-0">
+      <div className="px-4 sm:px-0 ">
         <h3 className="text-base font-semibold leading-7 text-gray-900">
           Orders
         </h3>
         <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-500">
-          Dashboard/ Orders / Update Order
+          <span>
+            Dashboard /{' '}
+            <Link to="admin" className="hover:underline active:text-black">
+              Orders
+            </Link>
+            / Update Order
+          </span>
         </p>
       </div>
       <div className="mt-6 border-2 border-gray-600 px-2 rounded-md">
         <dl className="divide-y divide-gray-100">
           <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-            <dt className="text-sm font-medium leading-6 text-gray-900">
-              Full name
+            <dt className="text-lg font-medium leading-6 text-gray-900">
+              Order ID
             </dt>
-            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-              <input value={id} readOnly={true} disabled />
+            <dd className="mt-1 text-2xl leading-6 text-gray-700 sm:col-span-2 sm:mt-0 ">
+              {order._id}
             </dd>
           </div>
           <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-            <dt className="text-sm font-medium leading-6 text-gray-900">
-              Application for
+            <dt className="text-lg font-medium leading-6 text-gray-900">
+              Customer Name
             </dt>
-            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+            <dd className="mt-1 text-2xl leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
               {/* {statusIndex.value} */}
-              {statusVal}
+              {order?.customerid?.buyerName}
             </dd>
           </div>
           <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-            <dt className="text-sm font-medium leading-6 text-gray-900">
-              Email address
+            <dt className="text-lg font-medium leading-6 text-gray-900">
+              Address
             </dt>
-            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-              {order.status}
+            <dd className="mt-1 text-2xl leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+              {order?.deliveryid?.destination_address}
             </dd>
           </div>
           <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-            <dt className="text-sm font-medium leading-6 text-gray-900">
-              Salary expectation
+            <dt className="text-lg font-medium leading-6 text-gray-900">
+              Total value
             </dt>
-            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+            <dd className="mt-1 text-2xl leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
               {order.totalPrice}
             </dd>
           </div>
           <div className="px-4 py-6 sm:grid  sm:gap-4 sm:px-0 flex-1 col-span-full">
             <details className="bg-slate-100 shadow rounded group p-1">
-              <summary className="text-sm font-medium leading-6 text-gray-900  list-none flex flex-wrap items-center cursor-pointer">
+              <summary className="text-lg font-medium leading-6 text-gray-900  list-none flex flex-wrap items-center cursor-pointer">
                 <span className="flex-1">Items</span>
                 <div className="border-8 border-transparent ml-2 border-l-gray-600 group-open:rotate-90 transition-transform origin-left"></div>
               </summary>
@@ -140,7 +148,7 @@ export default function ViewOrder() {
             </details>
           </div>
           <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-            <dt className="text-sm font-medium leading-6 text-gray-900">
+            <dt className="text-lg font-medium leading-6 text-gray-900">
               Status
             </dt>
             <dd className="mt-2 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
