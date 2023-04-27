@@ -12,7 +12,7 @@ const ReviewList = ({ buyerId }) => {
     const fetchReviews = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3020/api/v1/reviews/buyer/${buyerId}`
+          `http://localhost:3009/api/v1/reviews/buyer/${buyerId}`
         )
         setReviews(response.data)
       } catch (error) {
@@ -94,7 +94,7 @@ const ReviewList = ({ buyerId }) => {
   const handleUpdateReview = async (reviewId) => {
     try {
       await axios.put(
-        `http://localhost:3020/api/v1/reviews/${reviewId}`,
+        `http://localhost:3009/api/v1/reviews/${reviewId}`,
         editedReview
       )
       setEditing(null)

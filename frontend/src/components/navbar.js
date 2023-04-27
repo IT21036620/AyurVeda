@@ -2,7 +2,7 @@ import React from 'react'
 import { MdShoppingCart, MdAccountCircle } from 'react-icons/md'
 import { FaLeaf } from 'react-icons/fa'
 
-const Navbar = () => {
+const Navbar = ({ name }) => {
   return (
     <nav className="bg-green-600 text-white py-7 px-4 ">
       <div className="container mx-auto flex justify-between items-center">
@@ -65,7 +65,7 @@ const Navbar = () => {
           href="/buyer/account"
           className="text-white flex items-center border-2 border-white rounded-lg px-2 py-1 ml-10 text-xl"
         >
-          <span>Sunil perera</span>
+          <span>{name}</span>
           <MdAccountCircle size="30px" className="mr-1 ml-1" />
 
           {/* <FontAwesomeIcon icon="sign-in-alt" /> */}
