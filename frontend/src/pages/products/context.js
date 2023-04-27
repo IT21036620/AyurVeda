@@ -2,10 +2,8 @@ import React, { useState, useContext, useEffect } from 'react'
 import { useCallback } from 'react'
 import axios from 'axios'
 
-// const url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s='
-
-const url = 'http://localhost:4000/api/v1/products'
-const search = 'http://localhost:4000/api/v1/products?product_name='
+const url = 'http://localhost:3008/api/v1/products'
+const search = 'http://localhost:3008/api/v1/products?product_name='
 
 const AppContext = React.createContext()
 
@@ -50,6 +48,7 @@ const AppProvider = ({ children }) => {
             description,
             image,
             rate_count,
+            createdBy,
           } = item
           return {
             id: _id,
@@ -66,6 +65,7 @@ const AppProvider = ({ children }) => {
             description,
             image,
             rate_count,
+            createdBy,
           }
         })
         setProducts(newProducts)

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import './component.css'
+import './product.css'
 import { FaShoppingCart } from 'react-icons/fa'
 
 const Product = ({ image, product_name, id, price, rating, rate_count }) => {
@@ -43,12 +43,15 @@ const Product = ({ image, product_name, id, price, rating, rate_count }) => {
         <img
           className="img"
           crossOrigin="anonymous"
-          src={`${http}\/\/${domain}:4000\/${image}`}
-          // src={`http:\/\/localhost:4000\/${image}`}
+          // src={`${http}\/\/${domain}:3008\/${image}`}
+          src={`http:\/\/localhost:3008\/${image}`}
         />
       </div>
       <div className="card_header">
-        <h2 className="h2" class="font-poppins font-bold text-xl text-center">
+        <h2
+          className="h2"
+          class="font-poppins font-bold text-xl text-center h-12"
+        >
           {product_name}
         </h2>
         <p className="p">{rating}/5</p>

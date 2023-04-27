@@ -7,10 +7,6 @@ const errorHandlerMiddleware = (err, req, res, next) => {
     msg: err.message || 'Something went wrong try again later',
   }
 
-  // if (err instanceof CustomAPIForError) {
-  //   return res.status(err.statusCode).json({ msg: err.message });
-  // }
-
   if (err.name === 'ValidationError') {
     customError.msg = Object.values(err.errors)
       .map((item) => item.message)
@@ -26,7 +22,7 @@ const errorHandlerMiddleware = (err, req, res, next) => {
   }
 
   if (err.name === 'CastError') {
-    customError.msg = `Noitem found with id : ${err.value}`
+    customError.msg = `No item found with id : ${err.value}`
     customError.statusCode = 404
   }
 

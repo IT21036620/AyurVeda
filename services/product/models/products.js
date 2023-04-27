@@ -2,12 +2,6 @@ const mongoose = require('mongoose')
 
 const ProductSchema = new mongoose.Schema(
   {
-    // product_code: {
-    //   type: String,
-    //   required: [true, 'must provide product code'],
-    //   trim: true,
-    //   maxlength: [20, 'product code can not be more than 20 characters'],
-    // },
     product_name: {
       type: String,
       required: [true, 'must provide product name'],
@@ -20,7 +14,7 @@ const ProductSchema = new mongoose.Schema(
     },
     availability: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     package_quantity: {
       type: Number,

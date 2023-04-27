@@ -11,6 +11,7 @@ const {
   changeProductRatingByID,
 } = require('../controllers/products')
 
+// middleware for routes
 const authenticateSeller = require('../middleware/authentication')
 const upload = require('../middleware/upload')
 
@@ -21,7 +22,7 @@ router
 router
   .route('/:id')
   .get(getProductsByCategory)
-  .patch(updateProduct)
+  .patch(upload.single('image'), updateProduct)
   .delete(deleteProduct)
 router.route('/productRating/:id').patch(changeProductRatingByID)
 router.route('/singleProduct/:id').get(getProduct)

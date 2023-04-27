@@ -4,15 +4,6 @@ import axios from 'axios'
 import CartContext from './CartContext'
 
 export default function ShoppingCart() {
-  // const [quantity, setQuantity] = useState(1)
-  // const [totalPrice, setTotalPrice] = useState()
-
-  // const handleQuantityChange = (event) => {
-  //   const newQuantity = parseInt(event.target.value)
-  //   setQuantity(newQuantity)
-  //   setTotalPrice(newQuantity * 9.99)
-  // }
-
   const [carts, SetCarts] = useState([])
   const [itemRemoved, setItemRemoved] = useState(false)
   const [isDataFetched, setIsDataFetched] = useState(false)
@@ -38,7 +29,7 @@ export default function ShoppingCart() {
 
   const handleRemoveItem = (itemId) => {
     axios
-      .delete(`http://localhost:3002/api/v1/cart/${itemId}`)
+      .delete(`http://localhost:3003/api/v1/cart/${itemId}`)
       .then((res) => {
         console.log(res.data.message)
         SetCarts((prevCarts) => prevCarts.filter((cart) => cart._id !== itemId))
@@ -52,7 +43,7 @@ export default function ShoppingCart() {
 
   const handleDeleteAll = () => {
     axios
-      .delete('http://localhost:3002/api/v1/cart')
+      .delete('http://localhost:3003/api/v1/cart')
       .then((res) => {
         console.log(res.data.message)
         setIsDataFetched(false)
@@ -65,7 +56,7 @@ export default function ShoppingCart() {
   useEffect(() => {
     function getCarts() {
       axios
-        .get('http://localhost:3002/api/v1/cart')
+        .get('http://localhost:3003/api/v1/cart')
         .then((res) => {
           console.log(res.data.carts)
           SetCarts(
@@ -86,11 +77,6 @@ export default function ShoppingCart() {
       getCarts()
     }
   }, [itemRemoved, isDataFetched])
-
-  // const totalPriceOfItems = carts.reduce(
-  //   (totalPrice, cart) => totalPrice + cart.product.price,
-  //   0
-  // )
 
   const calculateTotal = () => {
     return carts.reduce((total, cart) => total + cart.totalPrice, 0)
