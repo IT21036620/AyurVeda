@@ -106,12 +106,11 @@ const Product = mongoose.model('Product', ProductSchema)
 
 const CartSchema = new mongoose.Schema(
   {
-    userID: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
+    user: {
+      type: String,
+      // ref: 'User',
       required: false,
     },
-
     product: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Product',
