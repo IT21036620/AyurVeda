@@ -3,8 +3,8 @@ const mongoose = require('mongoose')
 const CartCompleteSchema = new mongoose.Schema(
   {
     userID: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
+      type: String,
+      // ref: 'User',
       required: true,
     },
 

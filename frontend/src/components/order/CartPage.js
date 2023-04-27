@@ -7,9 +7,20 @@ import PaymentHome from '../Payments/PaymentHome'
 
 export default function CartPage() {
   const [cartTotal, setCartTotal] = React.useState(0)
+  const [TotalFinal, setTotalFinal] = React.useState(0)
+  const [paymentsucces, setpaymentsucces] = React.useState(0)
 
   return (
-    <CartContext.Provider value={{ cartTotal, setCartTotal }}>
+    <CartContext.Provider
+      value={{
+        cartTotal,
+        setCartTotal,
+        TotalFinal,
+        setTotalFinal,
+        paymentsucces,
+        setpaymentsucces,
+      }}
+    >
       <div class="bg-gray-100 px-6 py-5">
         <div class="flex">
           <div class=" w-3/4 max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
