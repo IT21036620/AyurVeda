@@ -1,35 +1,118 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
-const orderSchema = new mongoose.Schema({
-    
-  customerid: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Customer', // Reference to the Customer model
-    required: true
+const DeliverySchema = new mongoose.Schema({
+  order_id: {
+    type: String,
+    required: [true, 'must provide a order id'],
+    trim: true,
+    maxlength: [20, 'id must be maximum 20 characters'],
   },
-  products: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Product' // Reference to the Product model
-  }],
   status: {
     type: String,
-    enum: ['pending', 'processing', 'completed'],
-    default: 'pending'
+    default: 'pending',
+  },
+  shipping_address: {
+    address_line1: String,
+    address_line2: String,
+    city: String,
+    postal_code: String,
+    country: String,
+  },
+  destination_address: {
+    address_line1: String,
+    address_line2: String,
+    city: String,
+    postal_code: String,
+    country: String,
+  },
+  package_weight: {
+    type: Number,
+  },
+  delivery_date: {
+    type: Date,
+    default: Date.now(),
+  },
+  delivery_cost: {
+    type: Number,
+    default: 0,
+  },
+})
+
+const Delivery = mongoose.model('Delivery', DeliverySchema)
+
+const buyerSchema = mongoose.Schema(
+  {
+    buyerName: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    credentialId: {
+      type: String,
+      unique: true,
+    },
+    address: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      require: true,
+      unique: true,
+    },
+    phone: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+  },
+  {
+    versionKey: false,
+    timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },
+  }
+)
+
+const buyer = mongoose.model('buyer', buyerSchema)
+
+const OrderSchema = new mongoose.Schema({
+  order_id: {
+    type: String,
+    required: [true, 'must provide a order id'],
+    trim: true,
+    maxlength: [25, 'id must be maximum 20 characters'],
+  },
+  deliveryid: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Delivery', // Reference to the Customer model
+    // required: true,
+  },
+  customerid: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'buyer', // Reference to the Customer model
+    // required: true,
+  },
+  cartID: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Cart', // Reference to the Product model
+    // required: true,
+  },
+  status: {
+    type: String,
+    enum: ['pending', 'confirmed', 'dispatched', 'delivered'],
+    default: 'pending',
   },
   totalPrice: {
     type: Number,
-    required: true
+    required: true,
   },
   createdAt: {
     type: Date,
-    default: Date.now
+    default: Date.now,
   },
   updatedAt: {
     type: Date,
-    default: Date.now
-  }
-});
+    default: Date.now,
+  },
+})
 
-const Order = mongoose.model('Order', orderSchema);
-
-module.exports = Order;
+module.exports = mongoose.model('Order', OrderSchema)

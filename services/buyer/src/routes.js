@@ -1,4 +1,6 @@
 import express from 'express'
+import { celebrate, Segments } from 'celebrate'
+
 import {
   buyerAdd,
   buyerGet,
@@ -7,20 +9,18 @@ import {
   deleteBuyer,
 } from './controllers/buyer.js'
 import { searchProduct } from './controllers/search.js'
+import {
+  addBuyerSchema,
+  updateBuyerSchema,
+  deleteBuyerSchema,
+  viewBuyerSchema,
+} from './validations/buyerValidations.js'
 const router = express.Router()
-
-router.get('/', (req, res) => {
-  res.json({ msg: 'Welcome' })
-})
-
-router.get('/test', (req, res) => {
-  res.json({ msg: 'Test' })
-})
 
 //Insert A New Buyer
 router.post(
   '/addBuyer',
-  // celebrate({ [Segments.BODY]: addBuyerSchema }),
+  celebrate({ [Segments.BODY]: addBuyerSchema }),
   buyerAdd
   //   (req, res) => {
   //     console.log(req.body)
@@ -31,7 +31,7 @@ router.post(
 //Get Data Of One Buyer
 router.get(
   '/getBuyer/:id',
-  //   celebrate({ [Segments.PARAMS]: viewBuyerSchema }),
+  celebrate({ [Segments.PARAMS]: viewBuyerSchema }),
   // BuyerCheck,
   buyerGet
 )
@@ -44,14 +44,14 @@ router.get('/viewAllBuyers', buyersGet)
 //Update Buyer Data
 router.patch(
   '/updateBuyer/:id',
-  //   celebrate({ [Segments.PARAMS]: updateBuyerSchema }),
+  celebrate({ [Segments.PARAMS]: updateBuyerSchema }),
   updateBuyer
 )
 
 //Delete A Buyer
 router.delete(
   '/deleteBuyer/:id',
-  //   celebrate({ [Segments.PARAMS]: deleteBuyerSchema }),
+  celebrate({ [Segments.PARAMS]: deleteBuyerSchema }),
   deleteBuyer
 )
 
