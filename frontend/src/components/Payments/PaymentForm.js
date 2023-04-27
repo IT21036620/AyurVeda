@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
 import axios from 'axios'
+import CartContext from '../order/CartContext'
 
 const CARD_ELEMENT_OPTIONS = {
   style: {
@@ -35,8 +36,8 @@ const PaymentForm = () => {
     if (error) {
       setError(error.message)
     } else {
-      const response = await axios.post('http://localhost:3006/api/payment', {
-        amount: 1000, // Set the amount you want to charge in cents
+      const response = await axios.post('http://localhost:3007/api/payment', {
+        amount: 2430, // Set the amount you want to charge in cents
         token: token,
       })
 
@@ -63,7 +64,7 @@ const PaymentForm = () => {
         type="submit"
         disabled={!stripe}
       >
-        Pay
+        Checkout
       </button>
       {error && <div className="text-red-500 mt-4 text-center">{error}</div>}
       {success && (

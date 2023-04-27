@@ -10,7 +10,7 @@ function App() {
     <div className="App">
       {/* <HomeReview /> */}
       <BrowserRouter>
-        {/* <Navbar /> */}
+        <Navbar />
         <IndexRoutes />
       </BrowserRouter>
     </div>
