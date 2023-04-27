@@ -12,15 +12,13 @@ import PaymentRoutes from './paymentRoutes'
 const IndexRoutes = () => {
   return (
     <div>
-      {/* <BuyerRoutes /> */}
       <AdminRoutes />
       {/* <DeliveryRoutes /> */}
       <LoginRoutes />
       {/* <CartRoutes />
-
       <BuyerRoutes />
       <ProductRoutes />
-      <PaymentRoutes /> */}
+      <PaymentRoutes />  */}
       {/* <ErrorRoute /> */}
     </div>
   )

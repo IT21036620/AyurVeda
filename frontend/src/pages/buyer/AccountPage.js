@@ -4,6 +4,8 @@ import Home from '../Home'
 import Dashboard from './Dashboard'
 import AccountInfo from '../../components/buyer/accountInfo.js'
 import Reviews from '../../components/buyer/reviewList'
+import OrderList from '../../components/buyer/orderList'
+import Navbar from '../../components/navbar'
 
 // const Dashboard = () => <div>Dashboard Content</div>
 const Orders = () => <div>Orders Content</div>
@@ -21,9 +23,9 @@ const AccountPage = () => {
       case 'dashboard':
         return <Dashboard />
       case 'orders':
-        return <Orders />
+        return <OrderList buyerId={'6442335c26c1890f7a771907'} />
       case 'reviews':
-        return <Reviews buyerId={'123456789012345678901630'} />
+        return <Reviews buyerId={'6442335c26c1890f7a771907'} />
       case 'account-info':
         return <AccountInfo />
       default:
@@ -32,10 +34,13 @@ const AccountPage = () => {
   }
 
   return (
-    <div className="flex">
-      <div className="w-3/4 p-4">{renderComponent()}</div>
-      <div className="w-1/4">
-        <SideBar onNavigate={handleNavigation} />
+    <div>
+      <Navbar />
+      <div className="flex">
+        <div className="w-3/4 p-4">{renderComponent()}</div>
+        <div className="w-1/4">
+          <SideBar onNavigate={handleNavigation} />
+        </div>
       </div>
     </div>
   )

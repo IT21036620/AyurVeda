@@ -6,12 +6,15 @@ const cors = require('cors')
 require('dotenv').config()
 const notFound = require('./middleware/not-found')
 const errorHandlerMiddleware = require('./middleware/error-handler')
+<<<<<<< HEAD
 const credentials = require('./middleware/credentials')
 
 var corsOptions = {
   origin: 'http://localhost:3006',
   optionsSuccessStatus: 200,
 }
+=======
+>>>>>>> origin/dev
 
 //middleware
 app.use(credentials)
