@@ -16,9 +16,9 @@ app.use(cors())
 app.use('/api/v1/cart', cart)
 
 app.use(notFound)
-// app.use(errorHandlerMiddleware)
+app.use(errorHandlerMiddleware)
 
-const port = process.env.PORT || 3002
+const port = process.env.PORT || 3003
 
 const start = async () => {
   try {

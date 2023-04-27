@@ -53,7 +53,7 @@ export default function CartPage() {
             </div>
 
             <div class="pt-5">
-              <div class="max-w-ml mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+              <div class="max-w-ml mx-auto bg-white shadow-lg rounded-lg overflow-hidden p-4">
                 <OrderSummary />
               </div>
             </div>

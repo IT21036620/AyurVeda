@@ -4,12 +4,12 @@ import axios from 'axios'
 
 export default function OrderSummary() {
   const { cartTotal } = useContext(CartContext)
-  const [commission, setCommission] = useState(null)
+  const [commission, setCommission] = useState(0)
 
   const fetchCommission = async (totalPrice) => {
     try {
       const response = await axios.post(
-        'http://localhost:3002/api/v1/cart/commission',
+        'http://localhost:3003/api/v1/cart/commission',
         {
           totalPrice,
         }
@@ -22,7 +22,7 @@ export default function OrderSummary() {
 
   useEffect(() => {
     fetchCommission(cartTotal) // pass your desired total price value here
-  }, [])
+  }, [cartTotal])
 
   return (
     <div class=" p-4">
@@ -33,7 +33,7 @@ export default function OrderSummary() {
       </div>
       <div class="flex justify-between mb-2 pb-2">
         <span class="font-medium">Site Commission</span>
-        <span class="text-green-500">Rs.{commission}.00</span>
+        <span class="text-green-500">Rs.{commission.toFixed(2)}</span>
       </div>
 
       <hr class="border border-b border-gray-200 "></hr>

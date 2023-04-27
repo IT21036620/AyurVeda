@@ -29,7 +29,7 @@ export default function ShoppingCart() {
 
   const handleRemoveItem = (itemId) => {
     axios
-      .delete(`http://localhost:3002/api/v1/cart/${itemId}`)
+      .delete(`http://localhost:3003/api/v1/cart/${itemId}`)
       .then((res) => {
         console.log(res.data.message)
         SetCarts((prevCarts) => prevCarts.filter((cart) => cart._id !== itemId))
@@ -43,7 +43,7 @@ export default function ShoppingCart() {
 
   const handleDeleteAll = () => {
     axios
-      .delete('http://localhost:3002/api/v1/cart')
+      .delete('http://localhost:3003/api/v1/cart')
       .then((res) => {
         console.log(res.data.message)
         setIsDataFetched(false)
@@ -56,7 +56,7 @@ export default function ShoppingCart() {
   useEffect(() => {
     function getCarts() {
       axios
-        .get('http://localhost:3002/api/v1/cart')
+        .get('http://localhost:3003/api/v1/cart')
         .then((res) => {
           console.log(res.data.carts)
           SetCarts(

@@ -3,9 +3,9 @@ const mongoose = require('mongoose')
 const CartCompleteSchema = new mongoose.Schema(
   {
     userID: {
-      type: String,
-      // ref: 'User',
-      required: false,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
     },
 
     products: [
@@ -13,11 +13,11 @@ const CartCompleteSchema = new mongoose.Schema(
         product: {
           type: mongoose.Schema.Types.ObjectId,
           ref: 'Product',
-          required: false,
+          required: true,
         },
         quantity: {
           type: Number,
-          required: false,
+          required: true,
           default: 1,
         },
       },
@@ -25,7 +25,7 @@ const CartCompleteSchema = new mongoose.Schema(
 
     totalprice: {
       type: Number,
-      required: false,
+      required: true,
     },
   },
 

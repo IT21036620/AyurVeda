@@ -5,12 +5,16 @@ const asyncWrapper = require('../middleware/async')
 const { createCustomError } = require('../errors/custom-error')
 
 const calculateRevenue = asyncWrapper(async (req, res) => {
-  const orders = await Cart.find().populate('items.product', 'price seller')
+  const orders = await Cart.find().populate('product')
+  if (!orders) {
+    throw createCustomError('No orders found', 404)
+  }
+
   const sellerMap = new Map()
 
   orders.forEach((order) => {
     order.items.forEach((item) => {
-      const sellerId = item.product.seller
+      const sellerId = item.product.createdBy
       const totalPrice = item.quantity * item.product.price
       const currentRevenue = sellerMap.get(sellerId) || 0
       sellerMap.set(sellerId, currentRevenue + totalPrice)
@@ -18,7 +22,7 @@ const calculateRevenue = asyncWrapper(async (req, res) => {
   })
 
   for (let [sellerId, revenue] of sellerMap.entries()) {
-    const seller = await Seller.findById(sellerId)
+    const seller = await Revenue.findById(sellerID)
     const newRevenue = new Revenue({
       seller: seller,
       totalRevenue: revenue,
@@ -26,7 +30,7 @@ const calculateRevenue = asyncWrapper(async (req, res) => {
     await newRevenue.save()
   }
 
-  res.status(200).json({ message: 'Revenue calculated successfully' })
+  res.status(200).json({ orders })
 })
 
 module.exports = {

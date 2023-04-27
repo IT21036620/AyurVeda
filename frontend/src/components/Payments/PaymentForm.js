@@ -35,7 +35,7 @@ const PaymentForm = () => {
     if (error) {
       setError(error.message)
     } else {
-      const response = await axios.post('http://localhost:3006/api/payment', {
+      const response = await axios.post('http://localhost:3007/api/payment', {
         amount: 2430, // Set the amount you want to charge in cents
         token: token,
       })
@@ -63,7 +63,7 @@ const PaymentForm = () => {
         type="submit"
         disabled={!stripe}
       >
-        Pay
+        Checkout
       </button>
       {error && <div className="text-red-500 mt-4 text-center">{error}</div>}
       {success && (

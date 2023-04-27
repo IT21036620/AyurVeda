@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use('/api/payment', paymentRoutes)
 
-const port = process.env.PORT || 3006
+const port = process.env.PORT || 3007
 
 const start = async () => {
   try {
