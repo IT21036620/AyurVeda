@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: authService
+  labels:
+    app: authService
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: authService
+  template:
+    metadata:
+      labels:
+        app: authService
+    spec:
+      containers:
+        - name: authService
+          image: dinukakariyawasam/ayurveda:authService
+          ports:
+            - containerPort: 4000

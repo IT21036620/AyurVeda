@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import axios from 'axios'
 import Select from 'react-select'
+import useAuth from '../../hooks/useAuth'
 
 const options = [
   { value: 'pending', label: 'pending' },
@@ -19,11 +20,12 @@ export default function ViewOrder() {
   const [order, setOrder] = useState({})
   const [statusIndex, setStatusIndex] = useState({})
   const [statusVal, setStatusVal] = useState()
+  const { auth } = useAuth()
 
   useEffect(() => {
     function getOrder() {
       axios
-        .get(`http://localhost:3000/api/v1/orders/${id}`)
+        .get(`http://localhost:3005/api/v1/orders/${id}`)
         .then((res) => {
           console.log(res.data.order)
           setOrder(res.data.order)
@@ -53,9 +55,9 @@ export default function ViewOrder() {
     //input any authentications are needed
     //(path,function needed to execute)
     axios
-      .patch(`http://localhost:3000/api/v1/orders/${id}`, updateOrder)
+      .patch(`http://localhost:3005/api/v1/orders/${id}`, updateOrder)
       .then(() => {
-        alert('Event Edited')
+        alert('order updated')
       })
       .catch((err) => {
         alert(err)
@@ -86,7 +88,7 @@ export default function ViewOrder() {
         <dl className="divide-y divide-gray-100">
           <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <dt className="text-sm font-medium leading-6 text-gray-900">
-              Full name
+              Order ID
             </dt>
             <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
               <input value={id} readOnly={true} disabled />
@@ -94,7 +96,7 @@ export default function ViewOrder() {
           </div>
           <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <dt className="text-sm font-medium leading-6 text-gray-900">
-              Application for
+              Customer ID
             </dt>
             <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
               {/* {statusIndex.value} */}
