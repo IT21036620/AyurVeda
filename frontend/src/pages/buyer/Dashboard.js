@@ -7,7 +7,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchUserInfo = async () => {
       const response = await axios.get(
-        'http://localhost:3001/api/buyer/getBuyer/6442335c26c1890f7a771907'
+        'http://localhost:3002/api/buyer/getBuyer/6442335c26c1890f7a771907'
       )
       setUserInfo(response.data.data)
     }

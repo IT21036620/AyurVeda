@@ -30,7 +30,7 @@ const ReviewList = ({ buyerId }) => {
           try {
             console.log(productId)
             const response = await axios.get(
-              `http://localhost:4000/api/buyer/searchProduct/${productId}`
+              `http://localhost:3002/api/buyer/searchProduct/${productId}`
             )
             setProducts((prevState) => ({
               ...prevState,
