@@ -22,9 +22,9 @@ export const mailSupplier = async ({
   }
   //Layout of the displayed massage to the supplier
   const output = `
-    <p>You have been accepted as a Supplier for perera distribuors</p>
+    <p>Your AyurVeda Order Is Approved</p>
     <p>${details.description}</p>
-    <h3>Supplier Details</h3>
+    <h3>Order Details</h3>
     <ul>  
       <li>Business name: ${details.business_name}</li>
       <li>Address: ${details.address}</li>
@@ -32,9 +32,7 @@ export const mailSupplier = async ({
       <li>Phone: ${details.phone}</li>
       <li>Registered products: ${details.registered_products}</li>
     </ul>
-    <h3>Login Credentials</h3>
-    <p><b>Your Username :</b> ${details.username}</p>
-    <p><b>Your Password :</b> ${details.password}</p>
+
   `
 
   let transporter = nodemailer.createTransport({

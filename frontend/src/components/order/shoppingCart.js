@@ -4,15 +4,6 @@ import axios from 'axios'
 import CartContext from './CartContext'
 
 export default function ShoppingCart() {
-  // const [quantity, setQuantity] = useState(1)
-  // const [totalPrice, setTotalPrice] = useState()
-
-  // const handleQuantityChange = (event) => {
-  //   const newQuantity = parseInt(event.target.value)
-  //   setQuantity(newQuantity)
-  //   setTotalPrice(newQuantity * 9.99)
-  // }
-
   const [carts, SetCarts] = useState([])
   const [itemRemoved, setItemRemoved] = useState(false)
   const [isDataFetched, setIsDataFetched] = useState(false)

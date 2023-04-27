@@ -1,20 +1,11 @@
 const Cart = require('../models/Cart')
 const CartComplete = require('../models/CartComplete')
+const Revenue = require('../models/Revenue')
 const asyncWrapper = require('../middleware/async')
 const { createCustomError } = require('../errors/custom-error')
 
-const getAllCartItems = asyncWrapper(async (req, res) => {
-  const items = await Cart.find({}).populate('product')
-  res.status(200).json({ items })
-})
-
-const createCartItem = asyncWrapper(async (req, res) => {
-  const item = await Cart.create(req.body)
-  res.status(201).json({ item })
-})
-
 const calculateRevenue = asyncWrapper(async (req, res) => {
-  const orders = await Order.find().populate('items.product', 'price seller')
+  const orders = await Cart.find().populate('items.product', 'price seller')
   const sellerMap = new Map()
 
   orders.forEach((order) => {
@@ -39,8 +30,5 @@ const calculateRevenue = asyncWrapper(async (req, res) => {
 })
 
 module.exports = {
-  getAllCartItems,
-  createCartItem,
-
   calculateRevenue,
 }

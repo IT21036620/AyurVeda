@@ -36,7 +36,7 @@ const PaymentForm = () => {
       setError(error.message)
     } else {
       const response = await axios.post('http://localhost:3006/api/payment', {
-        amount: 1000, // Set the amount you want to charge in cents
+        amount: 2430, // Set the amount you want to charge in cents
         token: token,
       })
 

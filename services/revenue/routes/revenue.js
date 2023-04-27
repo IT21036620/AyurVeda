@@ -1,26 +1,13 @@
 const express = require('express')
 const router = express.Router()
 
-const {
-  getAllCartItems,
-  createCartItem,
-  updateCartItems,
-  deleteCartItem,
-  deleteAllCartItems,
-  getCartItemsbycusid,
-  insertcartcompletedetails,
-} = require('../controllers/cart')
+const { calculateRevenue } = require('../controllers/revenue')
 
 router
   .route('/')
-  .get(getAllCartItems)
-  .post(createCartItem)
-  .delete(deleteAllCartItems)
-  .post(insertcartcompletedetails)
-router
-  .route('/:id')
-  .patch(updateCartItems)
-  .delete(deleteCartItem)
-  .get(getCartItemsbycusid)
+
+  .post(calculateRevenue)
+
+router.route('/:id')
 
 module.exports = router

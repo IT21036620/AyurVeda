@@ -133,10 +133,6 @@ const CartSchema = new mongoose.Schema(
 module.exports = mongoose.model('Cart', CartSchema)
 
 const RevenueSchema = new mongoose.Schema({
-  date: {
-    type: Date,
-    required: true,
-  },
   revenue: {
     type: Number,
     required: true,
@@ -174,5 +170,3 @@ const RevenueSchema = new mongoose.Schema({
 })
 
 const Revenue = mongoose.model('Revenue', RevenueSchema)
-
-module.exports = Revenue

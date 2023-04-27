@@ -2,6 +2,8 @@ const Cart = require('../models/Cart')
 const CartComplete = require('../models/CartComplete')
 const asyncWrapper = require('../middleware/async')
 const { createCustomError } = require('../errors/custom-error')
+const dotenv = require('dotenv')
+dotenv.config()
 
 // This is used to retriew all cart items-----------------------------------------------------
 const getAllCartItems = asyncWrapper(async (req, res) => {
@@ -19,7 +21,7 @@ const createCartItem = asyncWrapper(async (req, res) => {
 
 // Calculating the commision for order--------------------------------------------------------
 const calculateCommission = (totalPrice) => {
-  const commissionPercentage = 0.05
+  const commissionPercentage = process.env.COMMISSION
   const commission = totalPrice * commissionPercentage
   return commission
 }
@@ -34,7 +36,7 @@ const generateCommission = asyncWrapper(async (req, res) => {
 // This is uesed for create cart record when tempory cart is delated after payment-------------
 const insertcartcompletedetails = asyncWrapper(async (req, res) => {
   const userID = req.body.userID
-
+  // console.log(userID)
   // First, find all the items in the Cart that match the given userID
   const itemsInCart = await Cart.find({ user: userID })
 
@@ -58,13 +60,13 @@ const insertcartcompletedetails = asyncWrapper(async (req, res) => {
   await cartCompleteItem.save()
 
   // Delete all items in the Cart that match the given userID
-  await Cart.deleteMany({ user: userID })
+  await Cart.deleteMany({ userID: userID })
 
-  // Create the new item in the Cart schema
+  // // Create the new item in the Cart schema
   // const newItem = await Cart.create(req.body)
 
   // Send the response
-  res.status(201).json({ item: newItem })
+  res.status(201).json({ cartCompleteItem })
 })
 // -------------------------------------------------------------------------------------------
 
