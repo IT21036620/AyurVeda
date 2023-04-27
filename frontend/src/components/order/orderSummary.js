@@ -5,7 +5,7 @@ import axios from 'axios'
 export default function OrderSummary() {
   const { cartTotal } = useContext(CartContext)
   const [commission, setCommission] = useState(0)
-  const { TotalFinal, setTotalFinal } = useContext(CartContext)
+  const { TotalFinal, setTotalFinal, paymentsucces } = useContext(CartContext)
 
   const fetchCommission = async (totalPrice) => {
     try {
@@ -27,8 +27,36 @@ export default function OrderSummary() {
 
   useEffect(() => {
     fetchCommission(cartTotal) // pass your desired total price value here
-      ?.setTotalFinal(cartTotal + 540 + commission)
+    setTotalFinal(cartTotal + 540 + commission)
   }, [cartTotal])
+
+  const handleCheckout = () => {
+    paymentsucces ? alertok() : alert('Please Pay')
+  }
+
+  const alertok = async () => {
+    const data = { userID: '1' }
+
+    const response = await axios.post(
+      'http://localhost:3003/api/v1/cart/cartcomplete',
+      data
+    )
+
+    const custid = response
+    const data2 = {
+      order_id: 'testing with cust id 2',
+      deliveryid: '643ab55dc99c5c2c4c78f55e',
+      cartID: 'custid',
+      customerid: '6442335c26c1890f7a771907',
+      status: 'pending',
+      totalPrice: 100,
+    }
+
+    const response2 = await axios.post(
+      'http://localhost:3006/api/v1/orders',
+      data2
+    )
+  }
 
   return (
     <div class=" p-4">
@@ -64,9 +92,12 @@ export default function OrderSummary() {
         <span>Total:</span>
         <span>Rs.{TotalFinal}</span>
       </div>
-      {/* <button class="bg-green-600 text-white px-4 py-2 mt-4 rounded hover:bg-green-700 h-11 w-80">
+      <button
+        onClick={handleCheckout}
+        class="bg-green-600 text-white px-4 py-2 mt-4 rounded hover:bg-green-700 h-11 w-80"
+      >
         Checkout
-      </button> */}
+      </button>
     </div>
   )
 }
