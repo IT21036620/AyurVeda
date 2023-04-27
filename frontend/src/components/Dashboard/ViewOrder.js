@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useLocation, Link } from 'react-router-dom'
 import axios from 'axios'
-import Select from 'react-select'
+
 import useAuth from '../../hooks/useAuth'
 
 const options = [
@@ -21,6 +21,7 @@ export default function ViewOrder() {
   const [statusIndex, setStatusIndex] = useState({})
   const [statusVal, setStatusVal] = useState()
   const { auth } = useAuth()
+  const [cart, setCart] = useState([])
 
   useEffect(() => {
     function getOrder() {
@@ -35,15 +36,41 @@ export default function ViewOrder() {
         })
     }
 
+    // function getCart() {
+    //   axios
+    //     .get(
+    //       `http://localhost:3003/api/v1/cart/cartcomplete/${order?.cartID?._id}`
+    //     )
+    //     .then((res) => {
+    //       console.log(res.data.items)
+    //       setCart(res.data.items.products)
+    //     })
+    //     .catch((err) => {
+    //       alert(err.message)
+    //     })
+    // }
+
     getOrder()
+
+    if (order != null) {
+      axios
+        .get(
+          `http://localhost:3003/api/v1/cart/cartcomplete/${order?.cartID?._id}`
+        )
+        .then((res) => {
+          console.log(res.data.items)
+          setCart(res.data.items.products)
+        })
+        .catch((err) => {})
+    }
   }, [order])
 
-  useEffect(() => {
-    setStatusIndex({
-      value: options[getStatusIndex(order.status)],
-      label: options[getStatusIndex(order.status)],
-    })
-  }, [statusIndex])
+  // useEffect(() => {
+  //   setStatusIndex({
+  //     value: options[getStatusIndex(order.status)],
+  //     label: options[getStatusIndex(order.status)],
+  //   })
+  // }, [statusIndex])
 
   function sendData(e) {
     e.preventDefault() // to execute only the function "sendData" without submitting data.
@@ -51,13 +78,11 @@ export default function ViewOrder() {
     const updateOrder = {
       status: statusVal,
     }
-    // console.log(updateEvent)
-    //input any authentications are needed
-    //(path,function needed to execute)
+
     axios
       .patch(`http://localhost:3006/api/v1/orders/${id}`, updateOrder)
       .then(() => {
-        alert('order updated')
+        alert('Order updated successfully')
       })
       .catch((err) => {
         alert(err)
@@ -69,12 +94,6 @@ export default function ViewOrder() {
   }
 
   return (
-    // <div className="flex flex-col">
-    //   <div style={{ backgroundColor: getRandom() }}>Order</div>
-    //   <h1>{state.customer_name}</h1>
-    //   <h3>{state.order_total}</h3>
-    // </div>
-
     <div>
       <div className="px-4 sm:px-0 ">
         <h3 className="text-base font-semibold leading-7 text-gray-900">
@@ -132,18 +151,26 @@ export default function ViewOrder() {
                 <div className="border-8 border-transparent ml-2 border-l-gray-600 group-open:rotate-90 transition-transform origin-left"></div>
               </summary>
               <div className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-3 sm:mt-0 w-full">
-                <ul>
-                  <li>1</li>
-                  <li>1</li>
-                  <li>1</li>
-                  <li>1</li>
-                  <li>1</li>
-                  <li>1</li>
-                  <li>1</li>
-                  <li>1</li>
-                  <li>1</li>
-                  <li>1</li>
-                </ul>
+                <table className="w-full text-gray-700">
+                  <thead>
+                    <tr>
+                      <th>Product</th>
+                      <th>quantity</th>
+                      <th>price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {cart.map((item) => (
+                      <tr key={item._id}>
+                        <td>{item.product}</td>
+                        <td>{item.quantity}</td>
+                        <td>
+                          <span>value</span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </details>
           </div>
