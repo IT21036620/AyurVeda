@@ -21,7 +21,9 @@ const createProduct = asyncWrapper(async (req, res) => {
   req.body.createdBy = req.user.userId
 
   if (req.file) {
-    req.body.image = req.file.path
+    req.body.profile_image = req.file.path
+  } else {
+    req.body.profile_image = 'uploads\\default-product.jpg'
   }
 
   const product = await Product.create(req.body)
@@ -56,7 +58,9 @@ const deleteProduct = asyncWrapper(async (req, res, next) => {
 const updateProduct = asyncWrapper(async (req, res, next) => {
   const { id: productID } = req.params
   if (req.file) {
-    req.body.image = req.file.path
+    req.body.profile_image = req.file.path
+  } else {
+    req.body.profile_image = 'uploads\\default-product.jpg'
   }
   const product = await Product.findOneAndUpdate({ _id: productID }, req.body, {
     new: true,

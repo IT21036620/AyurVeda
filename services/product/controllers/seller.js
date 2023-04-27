@@ -93,7 +93,9 @@ const deleteSeller = asyncWrapper(async (req, res, next) => {
 const updateSeller = asyncWrapper(async (req, res, next) => {
   const { id: sellerID } = req.params
   if (req.file) {
-    req.body.image = req.file.path
+    req.body.profile_image = req.file.path
+  } else {
+    req.body.profile_image = 'uploads\\default.jpg'
   }
   const seller = await Seller.findOneAndUpdate(
     { _id: sellerID },
