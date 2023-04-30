@@ -1,50 +1,48 @@
 import React from 'react'
-import OrderSummary from './orderSummary'
+import OrderSummary from './OrderSummary'
 import ShoppingCart from './shoppingCart'
 import CartContext from './CartContext'
 import ShippingDetails from './ShippingDetails'
+import PaymentHome from '../Payments/PaymentHome'
 
 export default function CartPage() {
   const [cartTotal, setCartTotal] = React.useState(0)
+  const [TotalFinal, setTotalFinal] = React.useState(0)
+  const [paymentsucces, setpaymentsucces] = React.useState(0)
 
   return (
-    //         <div className="cart-container" class="pt-10 px-20">
-    //         <h1 class="text-center pb-5">Shopping Cart</h1>
-
-    // <table class="table-auto">
-    //   <thead>
-    //     <tr>
-    //       <th class="pr-40 ">PRODUCT</th>
-    //       <th class="pr-60">PRODUCT NAME</th>
-    //       <th class="pr-40">UNIT PRICE</th>
-    //       <th class="pr-20">QUANTITY</th>
-    //       <th class="pr-20">TOTAL</th>
-    //       <th>ACTION</th>
-    //     </tr>
-
-    // <tr>
-    //     <td></td>
-    //     <td class="pt-5 ">Siddhalepa Balm 50g</td>
-    //     <td class="pt-5"> Rs 150.00</td>
-    //     <td class="pt-5">1</td>
-    //     <td class="pt-5">Rs 150.00</td>
-    // </tr>
-    //     </thead>
-    // </table>
-    //         </div>
-    <CartContext.Provider value={{ cartTotal, setCartTotal }}>
+    <CartContext.Provider
+      value={{
+        cartTotal,
+        setCartTotal,
+        TotalFinal,
+        setTotalFinal,
+        paymentsucces,
+        setpaymentsucces,
+      }}
+    >
       <div class="bg-gray-100 px-6 py-5">
         <div class="flex">
           <div class=" w-3/4 max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
             <ShoppingCart />
 
-            <details className="bg-slate-100 shadow rounded group p-1">
-              <summary className="text-sm font-medium leading-6 text-gray-900  list-none flex flex-wrap items-center cursor-pointer">
+            <details className="bg-gray-100 shadow rounded group p-1 mt-5 ">
+              <summary className="text-sm font-medium leading-6 text-gray-900 list-none flex flex-wrap items-center cursor-pointer">
                 <span className="flex-1">Shipping Details</span>
                 <div className="border-8 border-transparent ml-2 border-l-gray-600 group-open:rotate-90 transition-transform origin-left"></div>
               </summary>
               <div className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-3 sm:mt-0 w-full">
                 <ShippingDetails />
+              </div>
+            </details>
+
+            <details className="bg-slate-100 shadow rounded group p-1 mt-5">
+              <summary className="text-sm font-medium leading-6 text-gray-900  list-none flex flex-wrap items-center cursor-pointer">
+                <span className="flex-1">Payment Details</span>
+                <div className="border-8 border-transparent ml-2 border-l-gray-600 group-open:rotate-90 transition-transform origin-left"></div>
+              </summary>
+              <div className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-3 sm:mt-0 w-full">
+                <PaymentHome />
               </div>
             </details>
           </div>
@@ -66,7 +64,7 @@ export default function CartPage() {
             </div>
 
             <div class="pt-5">
-              <div class="max-w-ml mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+              <div class="max-w-ml mx-auto bg-white shadow-lg rounded-lg overflow-hidden p-4">
                 <OrderSummary />
               </div>
             </div>

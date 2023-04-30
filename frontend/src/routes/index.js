@@ -21,7 +21,6 @@ const IndexRoutes = () => {
       <ProductRoutes />
       <SellerRoutes />
       <PaymentRoutes />
-      <PaymentRoutes />
       {/* <ErrorRoute /> */}
     </div>
   )

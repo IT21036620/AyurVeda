@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
 import axios from 'axios'
+import CartContext from '../order/CartContext'
 
 const CARD_ELEMENT_OPTIONS = {
   style: {
@@ -22,6 +23,7 @@ const PaymentForm = () => {
   const [success, setSuccess] = useState(null)
   const stripe = useStripe()
   const elements = useElements()
+  const { TotalFinal, setpaymentsucces } = useContext(CartContext)
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -31,20 +33,23 @@ const PaymentForm = () => {
     const cardElement = elements.getElement(CardElement)
 
     const { error, token } = await stripe.createToken(cardElement)
+    console.log(typeof TotalFinal)
 
     if (error) {
       setError(error.message)
     } else {
-      const response = await axios.post('http://localhost:3006/api/payment', {
-        amount: 1000, // Set the amount you want to charge in cents
+      const response = await axios.post('http://localhost:3007/api/payment', {
+        amount: TotalFinal * 100, // Set the amount you want to charge in cents
         token: token,
       })
 
       if (response.data.success) {
         setSuccess('Payment successful!')
+        setpaymentsucces(1)
         setError(null)
       } else {
         setError('Payment failed. Please try again.')
+        setpaymentsucces(0)
         setSuccess(null)
       }
     }

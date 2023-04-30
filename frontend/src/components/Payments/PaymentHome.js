@@ -9,9 +9,9 @@ const stripePromise = loadStripe(
 
 function PaymentHome() {
   return (
-    <div className="App min-h-screen bg-gray-100 flex items-center justify-center">
+    <div className="App  bg-gray-100 flex items-center justify-center">
       <div className="w-full max-w-md">
-        <h1 className="text-4xl font-bold mb-6 text-center">
+        <h1 className="text-base font-bold mb-6 text-center">
           Stripe Payment Gateway
         </h1>
         <Elements stripe={stripePromise}>
