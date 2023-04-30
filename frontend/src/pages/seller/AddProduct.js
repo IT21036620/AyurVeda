@@ -19,22 +19,35 @@ const AddProduct = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    console.log(image)
 
+    const formData = new FormData()
+    formData.append('product_name', product_name)
+    formData.append('manufacturer', manufacturer)
+    formData.append('price', price)
+    formData.append('package_quantity', package_quantity)
+    formData.append('shipping_weight', shipping_weight)
+    formData.append('category', category)
+    formData.append('mfd', mfd)
+    formData.append('exp', exp)
+    formData.append('description', description)
+    formData.append('image', image)
     try {
       const resp = await axios.post(
         productUrl,
-        {
-          product_name: product_name,
-          manufacturer: manufacturer,
-          price: price,
-          package_quantity: package_quantity,
-          shipping_weight: shipping_weight,
-          category: category,
-          mfd: mfd,
-          exp: exp,
-          image: image,
-          description: description,
-        },
+        formData,
+        // {
+        //   product_name: product_name,
+        //   manufacturer: manufacturer,
+        //   price: price,
+        //   package_quantity: package_quantity,
+        //   shipping_weight: shipping_weight,
+        //   category: category,
+        //   mfd: mfd,
+        //   exp: exp,
+        //   image: image,
+        //   description: description,
+        // },
         {
           headers: {
             Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDM5OWRmNDBmMDhjYjYyNjg5MmQ3ZGQiLCJuYW1lIjoiIiwiaWF0IjoxNjgyODY3Mzg4LCJleHAiOjE2ODU0NTkzODh9.oAAzQNJhV9Oh32BV_hiU1zFoxYlBpa_4W2qJSSotTdw`,
@@ -45,14 +58,20 @@ const AddProduct = () => {
       alert('Product Added Successfully')
       console.log(resp.data)
     } catch (error) {
-      alert('Sorry! Product Deletion Failed...')
+      alert('Sorry! Product Creation Failed...')
       console.log(error.response)
     }
   }
 
+  function generateFileName(originalName) {
+    const timestamp = new Date().getTime()
+    const extension = originalName.split('.').pop()
+    return `${timestamp}.${extension}`
+  }
+
   return (
     <div>
-      <Navbar name="Iverson" />
+      {/* <Navbar name="Iverson" /> */}
       <div className="main-form">
         <div className="form-title">
           <h2

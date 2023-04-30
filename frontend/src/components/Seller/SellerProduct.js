@@ -34,12 +34,7 @@ const SellerProduct = ({
   return (
     <div className="card">
       <div className="card_img">
-        <img
-          className="img"
-          crossOrigin="anonymous"
-          // src={`${http}\/\/${domain}:3008\/${image}`}
-          src={`http:\/\/localhost:3008\/${image}`}
-        />
+        <img className="img" crossOrigin="anonymous" src={image} />
       </div>
       <div className="card_header">
         <h2

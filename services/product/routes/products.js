@@ -13,7 +13,8 @@ const {
 
 // middleware for routes
 const authenticateSeller = require('../middleware/authentication')
-const upload = require('../middleware/upload')
+// const upload = require('../middleware/upload')
+const upload = require('../middleware/cloudinary')
 
 router
   .route('/')

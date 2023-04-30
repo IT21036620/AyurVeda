@@ -173,7 +173,7 @@ const SingleProduct = () => {
 
   return (
     <div>
-      <Navbar name="Sunil Perera" />
+      {/* <Navbar name="Sunil Perera" /> */}
       <Container className="product-view">
         <Grid container spacing={4}>
           <div onLoad={fetchSeller()}></div>
@@ -183,8 +183,7 @@ const SingleProduct = () => {
                 setLoading(false)
               }}
               crossOrigin="anonymous"
-              // src={`${http}\/\/${domain}:3006\/${image}`}
-              src={`http:\/\/localhost:3008\/${image}`}
+              src={image}
               alt={product_name}
             />
           </Grid>

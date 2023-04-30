@@ -47,7 +47,7 @@ const UpdateAccount = () => {
 
   return (
     <div>
-      <Navbar name="Iverson" />
+      {/* <Navbar name="Iverson" /> */}
       <div className="main-form">
         <div className="form-title">
           <h2
