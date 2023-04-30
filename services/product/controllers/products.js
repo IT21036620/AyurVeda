@@ -64,7 +64,6 @@ const updateProduct = asyncWrapper(async (req, res, next) => {
   }
   const product = await Product.findOneAndUpdate({ _id: productID }, req.body, {
     new: true,
-    runValidators: true,
   })
   if (!product) {
     return next(createCustomError(`No product with id: ${productID}`, 404))

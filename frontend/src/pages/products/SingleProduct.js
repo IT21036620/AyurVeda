@@ -6,6 +6,7 @@ import { FaShoppingCart } from 'react-icons/fa'
 import './sinProduct.css'
 import { useGlobalContext } from './context'
 import axios from 'axios'
+import Navbar from '../../components/navbar'
 
 const url = 'http://localhost:3008/api/v1/products/singleProduct/'
 const productRating = 'http://localhost:3008/api/v1/products/productRating/'
@@ -171,184 +172,193 @@ const SingleProduct = () => {
   // console.log(productRating)
 
   return (
-    <Container className="product-view">
-      <Grid container spacing={4}>
-        <div onLoad={fetchSeller()}></div>
-        <Grid item xs={12} md={8} className="image-wrapper">
-          <img
-            onLoad={() => {
-              setLoading(false)
-            }}
-            crossOrigin="anonymous"
-            // src={`${http}\/\/${domain}:3006\/${image}`}
-            src={`http:\/\/localhost:3008\/${image}`}
-            alt={product_name}
-          />
+    <div>
+      <Navbar name="Sunil Perera" />
+      <Container className="product-view">
+        <Grid container spacing={4}>
+          <div onLoad={fetchSeller()}></div>
+          <Grid item xs={12} md={8} className="image-wrapper">
+            <img
+              onLoad={() => {
+                setLoading(false)
+              }}
+              crossOrigin="anonymous"
+              // src={`${http}\/\/${domain}:3006\/${image}`}
+              src={`http:\/\/localhost:3008\/${image}`}
+              alt={product_name}
+            />
+          </Grid>
+          <Grid item xs={12} md={4} className="text">
+            <Typography variant="h2">{product_name}</Typography>
+            <Grid container spacing={4}>
+              <Grid item xs={12}>
+                <Typography class="font-bold" variant="h4">
+                  {description}
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid container spacing={4}>
+              <Grid item xs={12}>
+                <Typography variant="h4">Category: {category}</Typography>
+              </Grid>
+            </Grid>
+            <Grid container spacing={4}>
+              <Grid item xs={12}>
+                <Typography variant="h4">
+                  Package Quantity: {package_quantity}
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid container spacing={4}>
+              <Grid item xs={12}>
+                <Typography variant="h4">
+                  Shipping Weight: {shipping_weight}
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid container spacing={4}>
+              <Grid item xs={12}>
+                <Typography variant="h4">
+                  Mfd: {mfd.substring(0, 10)}
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid container spacing={4}>
+              <Grid item xs={12}>
+                <Typography variant="h4">
+                  Exp: {exp.substring(0, 10)}
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid container spacing={4}>
+              <Grid item xs={12}>
+                <Typography variant="h4">
+                  Manufacturer: {manufacturer}
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid container spacing={4}>
+              <Grid item xs={12}>
+                <Typography variant="h4">
+                  Product rating: {rating}/5 ({rate_count})
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid container spacing={4}>
+              <Grid item xs={12}>
+                <Typography variant="h4">
+                  Seller rating: {newSellerRating}/5 ({sRateCount})
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid container spacing={4}>
+              <Grid item xs={12}>
+                <Button
+                  size="small"
+                  color="primary"
+                  variant="contained"
+                  className="rate-product"
+                  type="submit"
+                  onClick={() => {
+                    rateProduct()
+                    setLoading(true)
+                    window.location.reload(true)
+                    setLoading(false)
+                  }}
+                >
+                  Rate Product
+                </Button>
+              </Grid>
+            </Grid>
+            <Input
+              type="number"
+              placeholder="Rate Product"
+              id="newRating"
+              name="newRating"
+              defaultValue={5}
+              disableUnderline={false}
+              inputProps={inputProps}
+              value={newRating}
+              onChange={(e) => setNewRating(e.target.value)}
+              className="w-[127px]"
+            ></Input>
+            <Grid container spacing={4}>
+              <Grid item xs={12}>
+                <Button
+                  size="small"
+                  color="primary"
+                  variant="contained"
+                  className="rate-seller"
+                  onClick={() => {
+                    rateSeller()
+                    setLoading(true)
+                    window.location.reload(true)
+                    setLoading(false)
+                  }}
+                >
+                  Rate Seller
+                </Button>
+              </Grid>
+            </Grid>
+            <Input
+              type="number"
+              placeholder="Rate Seller"
+              id="rate_seller"
+              name="rate_seller"
+              defaultValue={5}
+              disableUnderline={false}
+              inputProps={inputProps}
+              value={rate_seller}
+              onChange={(e) => setRate_seller(e.target.value)}
+              className="w-[127px]"
+            ></Input>
+            <Typography variant="h3">Price: LKR.{price}.00</Typography>
+            <Grid container spacing={4}>
+              <Grid item xs={12}>
+                <Button
+                  size="small"
+                  variant="contained"
+                  className="increase-product-quantity"
+                  onClick={() => {
+                    handleQuantity('increase')
+                  }}
+                >
+                  +
+                </Button>
+              </Grid>
+              <Grid item xs={12}>
+                <Typography className="quantity" variant="h3">
+                  Quantity: {quantity}
+                </Typography>
+              </Grid>
+              <Grid item xs={12}>
+                <Button
+                  size="small"
+                  color="secondary"
+                  variant="contained"
+                  onClick={() => {
+                    handleQuantity('decrease')
+                  }}
+                >
+                  -
+                </Button>
+              </Grid>
+              <Grid item xs={12}>
+                <Button
+                  size="large"
+                  className="custom-button"
+                  // onClick={()=>{
+                  //   addProduct(id,product_name,price,quantity);
+                  // }}
+                >
+                  <FaShoppingCart /> Add to cart
+                </Button>
+              </Grid>
+            </Grid>
+          </Grid>
         </Grid>
-        <Grid item xs={12} md={4} className="text">
-          <Typography variant="h2">{product_name}</Typography>
-          <Grid container spacing={4}>
-            <Grid item xs={12}>
-              <Typography class="font-bold" variant="h4">
-                {description}
-              </Typography>
-            </Grid>
-          </Grid>
-          <Grid container spacing={4}>
-            <Grid item xs={12}>
-              <Typography variant="h4">Category: {category}</Typography>
-            </Grid>
-          </Grid>
-          <Grid container spacing={4}>
-            <Grid item xs={12}>
-              <Typography variant="h4">
-                Package Quantity: {package_quantity}
-              </Typography>
-            </Grid>
-          </Grid>
-          <Grid container spacing={4}>
-            <Grid item xs={12}>
-              <Typography variant="h4">
-                Shipping Weight: {shipping_weight}
-              </Typography>
-            </Grid>
-          </Grid>
-          <Grid container spacing={4}>
-            <Grid item xs={12}>
-              <Typography variant="h4">Mfd: {mfd.substring(0, 10)}</Typography>
-            </Grid>
-          </Grid>
-          <Grid container spacing={4}>
-            <Grid item xs={12}>
-              <Typography variant="h4">Exp: {exp.substring(0, 10)}</Typography>
-            </Grid>
-          </Grid>
-          <Grid container spacing={4}>
-            <Grid item xs={12}>
-              <Typography variant="h4">Manufacturer: {manufacturer}</Typography>
-            </Grid>
-          </Grid>
-          <Grid container spacing={4}>
-            <Grid item xs={12}>
-              <Typography variant="h4">
-                Product rating: {rating}/5 ({rate_count})
-              </Typography>
-            </Grid>
-          </Grid>
-          <Grid container spacing={4}>
-            <Grid item xs={12}>
-              <Typography variant="h4">
-                Seller rating: {newSellerRating}/5 ({sRateCount})
-              </Typography>
-            </Grid>
-          </Grid>
-          <Grid container spacing={4}>
-            <Grid item xs={12}>
-              <Button
-                size="small"
-                color="primary"
-                variant="contained"
-                className="rate-product"
-                type="submit"
-                onClick={() => {
-                  rateProduct()
-                  setLoading(true)
-                  window.location.reload(true)
-                  setLoading(false)
-                }}
-              >
-                Rate Product
-              </Button>
-            </Grid>
-          </Grid>
-          <Input
-            type="number"
-            placeholder="Rate Product"
-            id="newRating"
-            name="newRating"
-            defaultValue={5}
-            disableUnderline={false}
-            inputProps={inputProps}
-            value={newRating}
-            onChange={(e) => setNewRating(e.target.value)}
-            className="w-[127px]"
-          ></Input>
-          <Grid container spacing={4}>
-            <Grid item xs={12}>
-              <Button
-                size="small"
-                color="primary"
-                variant="contained"
-                className="rate-seller"
-                onClick={() => {
-                  rateSeller()
-                  setLoading(true)
-                  window.location.reload(true)
-                  setLoading(false)
-                }}
-              >
-                Rate Seller
-              </Button>
-            </Grid>
-          </Grid>
-          <Input
-            type="number"
-            placeholder="Rate Seller"
-            id="rate_seller"
-            name="rate_seller"
-            defaultValue={5}
-            disableUnderline={false}
-            inputProps={inputProps}
-            value={rate_seller}
-            onChange={(e) => setRate_seller(e.target.value)}
-            className="w-[127px]"
-          ></Input>
-          <Typography variant="h3">Price: LKR.{price}.00</Typography>
-          <Grid container spacing={4}>
-            <Grid item xs={12}>
-              <Button
-                size="small"
-                variant="contained"
-                className="increase-product-quantity"
-                onClick={() => {
-                  handleQuantity('increase')
-                }}
-              >
-                +
-              </Button>
-            </Grid>
-            <Grid item xs={12}>
-              <Typography className="quantity" variant="h3">
-                Quantity: {quantity}
-              </Typography>
-            </Grid>
-            <Grid item xs={12}>
-              <Button
-                size="small"
-                color="secondary"
-                variant="contained"
-                onClick={() => {
-                  handleQuantity('decrease')
-                }}
-              >
-                -
-              </Button>
-            </Grid>
-            <Grid item xs={12}>
-              <Button
-                size="large"
-                className="custom-button"
-                // onClick={()=>{
-                //   addProduct(id,product_name,price,quantity);
-                // }}
-              >
-                <FaShoppingCart /> Add to cart
-              </Button>
-            </Grid>
-          </Grid>
-        </Grid>
-      </Grid>
-    </Container>
+      </Container>
+    </div>
   )
 }
 export default SingleProduct

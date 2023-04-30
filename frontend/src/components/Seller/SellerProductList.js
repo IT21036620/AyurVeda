@@ -4,11 +4,15 @@ import Loading from './Loading'
 import { useGlobalContext } from '../../pages/seller/context'
 import { Link } from 'react-router-dom'
 import './component.css'
+import axios from 'axios'
 
 const id = '64399df40f08cb626892d7dd'
+const sellerUrl = 'http://localhost:3008/api/v1/seller/'
 
 const SellerProductList = () => {
   const { products, loading } = useGlobalContext()
+  const [newSellerRating, setNewSellerRating] = React.useState('')
+  const [sRateCount, setSRateCount] = React.useState('')
 
   if (loading) {
     return <Loading />
@@ -21,8 +25,19 @@ const SellerProductList = () => {
     <SellerProduct key={item.id} {...item} />
   ))
 
+  const fetchSeller = async () => {
+    try {
+      const response = await axios(`${sellerUrl}${id}`)
+      console.log(response)
+      setNewSellerRating(response.data.seller.rating)
+      setSRateCount(response.data.seller.rate_count)
+    } catch (error) {
+      console.log(error.response)
+    }
+  }
+
   return (
-    <div>
+    <div onLoad={fetchSeller}>
       <div class="flex justify-center">
         <Link to={`/seller/add-product`}>
           <div class="font-sans bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full mt-[10px] text-center w-40 mx-3">
@@ -35,7 +50,9 @@ const SellerProductList = () => {
           </div>
         </Link>
       </div>
-      {/* <div class="mt-[15px] text-center">My Rating: </div> */}
+      <div class="mt-[15px] text-center font-bold mt-[25px]">
+        My Rating: {newSellerRating}/5 ({sRateCount})
+      </div>
       <div className="main_content">{listItems}</div>
     </div>
   )

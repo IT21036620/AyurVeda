@@ -102,17 +102,16 @@ const updateSeller = asyncWrapper(async (req, res, next) => {
     { ...req.body },
     {
       new: true,
-      runValidators: true,
     }
   )
 
   // update password with bcrypt
-  var upPassword = async function () {
-    const salt = await bcrypt.genSalt(10)
-    seller.password = await bcrypt.hash(req.body.password, salt)
-  }
-  upPassword()
-  seller.save()
+  // var upPassword = async function () {
+  //   const salt = await bcrypt.genSalt(10)
+  //   seller.password = await bcrypt.hash(req.body.password, salt)
+  // }
+  // upPassword()
+  // seller.save()
 
   const token = seller.createJWT()
   res.status(StatusCodes.OK).json({
