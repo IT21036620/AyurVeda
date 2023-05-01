@@ -1,6 +1,8 @@
 const Seller = require('../models/Seller')
 const Product = require('../models/products')
 const bcrypt = require('bcryptjs')
+const multer = require('multer')
+const cloudinary = require('../config/cloudinary')
 const asyncWrapper = require('../middleware/async')
 const { createCustomError } = require('../errors/custom-error')
 const { StatusCodes } = require('http-status-codes')
@@ -10,7 +12,10 @@ const { BadRequestError, UnauthenticatedError } = require('../errors')
 const register = async (req, res) => {
   // checking for the seller profile image
   if (req.file) {
-    req.body.profile_image = req.file.path
+    const result = await cloudinary.uploader.upload(req.file.path, {
+      folder: 'dsSeller',
+    })
+    req.body.profile_image = result.secure_url
   } else {
     req.body.profile_image = 'uploads\\default.jpg'
   }
@@ -93,26 +98,28 @@ const deleteSeller = asyncWrapper(async (req, res, next) => {
 const updateSeller = asyncWrapper(async (req, res, next) => {
   const { id: sellerID } = req.params
   if (req.file) {
-    req.body.profile_image = req.file.path
+    const result = await cloudinary.uploader.upload(req.file.path, {
+      folder: 'dsSeller',
+    })
+    req.body.profile_image = result.secure_url
   } else {
     req.body.profile_image = 'uploads\\default.jpg'
   }
-  const seller = await Seller.findOneAndUpdate(
+  const seller = await Seller.findByIdAndUpdate(
     { _id: sellerID },
     { ...req.body },
     {
       new: true,
-      runValidators: true,
     }
   )
 
   // update password with bcrypt
-  var upPassword = async function () {
-    const salt = await bcrypt.genSalt(10)
-    seller.password = await bcrypt.hash(req.body.password, salt)
-  }
-  upPassword()
-  seller.save()
+  // var upPassword = async function () {
+  //   const salt = await bcrypt.genSalt(10)
+  //   seller.password = await bcrypt.hash(req.body.password, salt)
+  // }
+  // upPassword()
+  // seller.save()
 
   const token = seller.createJWT()
   res.status(StatusCodes.OK).json({
