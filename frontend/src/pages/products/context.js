@@ -21,7 +21,7 @@ const AppProvider = ({ children }) => {
   // }, [])
 
   const [loading, setLoading] = useState(true)
-  const [searchTerm, setSearchTerm] = useState('a')
+  const [searchTerm, setSearchTerm] = useState('')
   const [products, setProducts] = useState([])
 
   const fetchProducts = useCallback(async () => {
