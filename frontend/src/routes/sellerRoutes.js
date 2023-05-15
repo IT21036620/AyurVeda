@@ -13,18 +13,18 @@ import RegisterSeller from '../pages/seller/RegisterSeller'
 function SellerRoutes() {
   return (
     <Routes>
-      <Route path="/seller" element={<SellerProducts />} />
       {/* seller product list */}
-      <Route path="/seller/:id" element={<SingleProduct />} />
+      <Route path="/seller" element={<SellerProducts />} />
       {/* seller get single product */}
-      <Route path="/seller/add-product" element={<AddProduct />} />
+      <Route path="/seller/:id" element={<SingleProduct />} />
       {/* seller add product */}
-      <Route path="/seller/update-product/:id" element={<UpdateProduct />} />
+      <Route path="/seller/add-product" element={<AddProduct />} />
       {/* seller update product (product id)*/}
+      <Route path="/seller/update-product/:id" element={<UpdateProduct />} />
+      {/* seller delete product (seller id)*/}
       <Route path="/update/seller/:id" element={<UpdateAccount />} />
       {/* seller delete product (seller id)*/}
       <Route path="/seller/register" element={<RegisterSeller />} />
-      {/* seller delete product (seller id)*/}
     </Routes>
   )
 }

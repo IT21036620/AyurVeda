@@ -21,12 +21,15 @@ const getProductsByCategory = asyncWrapper(async (req, res, next) => {
 const createProduct = asyncWrapper(async (req, res) => {
   req.body.createdBy = req.user.userId
 
-  const result = await cloudinary.uploader.upload(req.file.path, {
-    folder: 'dsProducts',
-  })
+  if (req.file) {
+    const result = await cloudinary.uploader.upload(req.file.path, {
+      folder: 'dsProducts',
+    })
 
-  req.body.image = result.secure_url
-
+    req.body.image = result.secure_url
+  } else {
+    req.body.image = 'uploads\\default-product.png'
+  }
   const product = await Product.create(req.body)
   res.status(201).json({ product })
 })
@@ -59,10 +62,12 @@ const deleteProduct = asyncWrapper(async (req, res, next) => {
 const updateProduct = asyncWrapper(async (req, res, next) => {
   const { id: productID } = req.params
 
-  const result = await cloudinary.uploader.upload(req.file.path, {
-    folder: 'dsProducts',
-  })
-  req.body.image = result.secure_url
+  if (req.file) {
+    const result = await cloudinary.uploader.upload(req.file.path, {
+      folder: 'dsProducts',
+    })
+    req.body.image = result.secure_url
+  }
   const product = await Product.findByIdAndUpdate(
     { _id: productID },
     req.body,

@@ -63,11 +63,11 @@ const AddProduct = () => {
     }
   }
 
-  function generateFileName(originalName) {
-    const timestamp = new Date().getTime()
-    const extension = originalName.split('.').pop()
-    return `${timestamp}.${extension}`
-  }
+  // function generateFileName(originalName) {
+  //   const timestamp = new Date().getTime()
+  //   const extension = originalName.split('.').pop()
+  //   return `${timestamp}.${extension}`
+  // }
 
   return (
     <div class="bg-[#ffffff]">
@@ -159,6 +159,15 @@ const AddProduct = () => {
                         onChange={(e) => setCategory(e.target.value)}
                         required
                       >
+                        <option
+                          class="text-gray-400"
+                          value=""
+                          disabled
+                          selected
+                          hidden
+                        >
+                          Choose a Category
+                        </option>
                         <option value="Supplements & Herbs">
                           Supplements & Herbs
                         </option>
