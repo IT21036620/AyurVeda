@@ -70,19 +70,13 @@ const AddProduct = () => {
   }
 
   return (
-    <div>
+    <div class="bg-[#ffffff]">
       {/* <Navbar name="Iverson" /> */}
+      <div className="title">
+        <h2>Add New Product</h2>
+        <div className="underline"></div>
+      </div>
       <div className="main-form">
-        <div className="form-title">
-          <h2
-            className="form-h2"
-            class="ml-2 font-mono text-3xl font-semibold text-gray-500 dark:text-gray-400"
-          >
-            Add New Product
-          </h2>
-          <div className="form-underline"></div>
-        </div>
-
         <div className="form-body">
           <div className="form-container">
             <form onSubmit={handleSubmit}>
@@ -213,6 +207,7 @@ const AddProduct = () => {
                       <input
                         type="file"
                         accept="image/png, image/jpg, image/jpeg"
+                        crossOrigin="anonymous"
                         name="image"
                         id="image"
                         value={image}

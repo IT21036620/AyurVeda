@@ -12,6 +12,12 @@ const SellerProduct = ({
   price,
   rating,
   rate_count,
+  manufacturer,
+  package_quantity,
+  shipping_weight,
+  availability,
+  category,
+  description,
 }) => {
   const http = window.location.protocol
   const domain = window.location.hostname
@@ -53,7 +59,20 @@ const SellerProduct = ({
             View Details
           </div>
         </Link>
-        <Link to={`/seller/update-product/${id}`}>
+        <Link
+          to={`/seller/update-product/${id}`}
+          state={{
+            image,
+            product_name,
+            manufacturer,
+            price,
+            package_quantity,
+            shipping_weight,
+            availability,
+            category,
+            description,
+          }}
+        >
           <div class="font-sans bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-[10px]">
             Edit Details
           </div>

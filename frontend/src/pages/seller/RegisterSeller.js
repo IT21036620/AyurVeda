@@ -47,18 +47,12 @@ const RegisterSeller = () => {
 
   return (
     <div>
-      <Navbar name="Iverson" />
+      {/* <Navbar name="Iverson" /> */}
+      <div className="title">
+        <h2>Register As A Seller</h2>
+        <div className="underline"></div>
+      </div>
       <div className="main-form">
-        <div className="form-title">
-          <h2
-            className="form-h2"
-            class="ml-2 font-mono text-3xl font-semibold text-gray-500 dark:text-gray-400"
-          >
-            Register as a Seller
-          </h2>
-          <div className="form-underline"></div>
-        </div>
-
         <div className="form-body">
           <div className="form-container">
             <form onSubmit={handleSubmit}>
@@ -132,6 +126,7 @@ const RegisterSeller = () => {
                       <input
                         type="file"
                         accept="image/png, image/jpg, image/jpeg"
+                        crossOrigin="anonymous"
                         name="profile_image"
                         id="profile_image"
                         value={profile_image}
