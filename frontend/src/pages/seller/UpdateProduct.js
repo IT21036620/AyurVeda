@@ -1,22 +1,29 @@
 import React, { useState } from 'react'
 import './form.css'
 import axios from 'axios'
-import { useParams } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import Navbar from '../../components/navbar'
 
 const updateProductUrl = 'http://localhost:3008/api/v1/products'
 
 const UpdateProduct = () => {
   const { id } = useParams()
-  const [product_name, setProduct_name] = useState('')
-  const [manufacturer, setManufacturer] = useState('')
-  const [price, setPrice] = useState('')
-  const [package_quantity, setPackage_quantity] = useState('')
-  const [shipping_weight, setShipping_weight] = useState('')
-  const [availability, setAvailability] = useState('')
-  const [category, setCategory] = useState('')
+  const location = useLocation()
+  const [product_name, setProduct_name] = useState(location.state.product_name)
+  const [manufacturer, setManufacturer] = useState(location.state.manufacturer)
+  const [price, setPrice] = useState(location.state.price)
+  const [package_quantity, setPackage_quantity] = useState(
+    location.state.package_quantity
+  )
+  const [shipping_weight, setShipping_weight] = useState(
+    location.state.shipping_weight
+  )
+  const [availability, setAvailability] = useState(location.state.availability)
+  const [category, setCategory] = useState(location.state.category)
   const [image, setImage] = useState('')
-  const [description, setDescription] = useState('')
+  const [description, setDescription] = useState(location.state.description)
+
+  console.log(location.state)
 
   const handleUpdateSubmit = async (e) => {
     e.preventDefault()
@@ -53,17 +60,11 @@ const UpdateProduct = () => {
   return (
     <div>
       {/* <Navbar name="Iverson" /> */}
+      <div className="title">
+        <h2>Update Product</h2>
+        <div className="underline"></div>
+      </div>
       <div className="main-form">
-        <div className="form-title">
-          <h2
-            className="form-h2"
-            class="ml-2 font-mono text-3xl font-semibold text-gray-500 dark:text-gray-400"
-          >
-            Update Product
-          </h2>
-          <div className="form-underline"></div>
-        </div>
-
         <div className="form-body">
           <div className="form-container">
             <form onSubmit={handleUpdateSubmit}>
@@ -175,10 +176,12 @@ const UpdateProduct = () => {
                       <input
                         type="file"
                         accept="image/png, image/jpg, image/jpeg"
+                        crossOrigin="anonymous"
                         name="image"
                         id="image"
                         value={image}
                         onChange={(e) => setImage(e.target.value)}
+                        // onChange={fileChangedHandler}
                         placeholder="Upload New Product Image"
                       ></input>
                     </div>
@@ -197,7 +200,7 @@ const UpdateProduct = () => {
                     </div>
 
                     <button
-                      class="m-auto bg-green-500 mt-[20px] hover:bg-green-700 text-white font-bold py-2 px-4 border border-green-700 rounded"
+                      class="m-auto bg-green-500 mt-[20px] mb-[20px] hover:bg-green-700 text-white font-bold py-2 px-4 border border-green-700 rounded"
                       type="submit"
                       name="submit"
                     >

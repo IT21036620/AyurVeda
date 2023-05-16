@@ -17,7 +17,7 @@ const register = async (req, res) => {
     })
     req.body.profile_image = result.secure_url
   } else {
-    req.body.profile_image = 'uploads\\default.jpg'
+    req.body.profile_image = 'http://localhost:3008/uploads/default.jpg'
   }
   const seller = await Seller.create({ ...req.body })
 
@@ -102,8 +102,6 @@ const updateSeller = asyncWrapper(async (req, res, next) => {
       folder: 'dsSeller',
     })
     req.body.profile_image = result.secure_url
-  } else {
-    req.body.profile_image = 'uploads\\default.jpg'
   }
   const seller = await Seller.findByIdAndUpdate(
     { _id: sellerID },
