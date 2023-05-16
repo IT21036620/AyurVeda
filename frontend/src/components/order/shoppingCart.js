@@ -2,6 +2,8 @@ import React from 'react'
 import { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
 import CartContext from './CartContext'
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 export default function ShoppingCart() {
   const [carts, SetCarts] = useState([])
@@ -42,15 +44,20 @@ export default function ShoppingCart() {
   }
 
   const handleDeleteAll = () => {
-    axios
-      .delete('http://localhost:3003/api/v1/cart')
-      .then((res) => {
-        console.log(res.data.message)
-        setIsDataFetched(false)
-      })
-      .catch((err) => {
-        console.error(err)
-      })
+    const confirmDelete = window.confirm(
+      'Are you sure you want to remove all items?'
+    )
+    if (confirmDelete) {
+      axios
+        .delete('http://localhost:3003/api/v1/cart')
+        .then((res) => {
+          console.log(res.data.message)
+          setIsDataFetched(false)
+        })
+        .catch((err) => {
+          console.error(err)
+        })
+    }
   }
 
   useEffect(() => {
