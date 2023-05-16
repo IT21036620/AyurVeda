@@ -38,7 +38,7 @@ const SellerProduct = ({
   }
 
   return (
-    <div class="w-[310px] h-[560px] mb-[40px] block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-gray-800 hover:cursor-pointer hover:scale-110 hover:shadow-[0px_0px_10px_5px_#21BE21]">
+    <div class="w-[310px] h-[567px] mb-[40px] block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-gray-800 hover:cursor-pointer hover:scale-110 hover:shadow-[0px_0px_10px_5px_#21BE21]">
       <a href="#">
         <img
           class="p-8 rounded-t-lg"
@@ -48,8 +48,8 @@ const SellerProduct = ({
         />
       </a>
       <div class="px-5 pb-5">
-        <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-          {product_name}
+        <h5 class="h-[50px] text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
+          {manufacturer}, {product_name}
         </h5>
         <div class="flex items-center mt-2.5 mb-5">
           <svg
