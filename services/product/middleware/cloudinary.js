@@ -1,26 +1,20 @@
-const cloudinary = require('cloudinary').v2
+const multer = require('multer')
 
-cloudinary.config({
-  cloud_name: process.env.CLOUD_NAME,
-  api_key: process.env.CLOUD_KEY,
-  api_secret: process.env.CLOUD_KEY_SECRET,
+// Multer configuration
+const storage = multer.diskStorage({})
+
+const upload = multer({
+  storage,
+  limits: {
+    fileSize: 2 * 1024 * 1024, // Maximum file size is 10MB
+  },
+  fileFilter(req, file, cb) {
+    if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
+      return cb(new Error('Please upload an image'))
+    }
+
+    cb(undefined, true)
+  },
 })
 
-const opts = {
-  overwrite: true,
-  invalidate: true,
-  resource_type: 'auto',
-}
-
-module.exports = (image) => {
-  return new Promise((resolve, reject) => {
-    cloudinary.uploader.upload(image, opts, (error, result) => {
-      if (result && result.secure_url) {
-        console.log(result.secure_url)
-        return resolve(result.secure_url)
-      }
-      console.log(error.message)
-      return reject({ message: error.message })
-    })
-  })
-}
+module.exports = upload

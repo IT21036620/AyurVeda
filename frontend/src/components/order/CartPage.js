@@ -1,5 +1,5 @@
 import React from 'react'
-import OrderSummary from './OrderSummary'
+import OrderSummary from './orderSummary'
 import ShoppingCart from './shoppingCart'
 import CartContext from './CartContext'
 import ShippingDetails from './ShippingDetails'
