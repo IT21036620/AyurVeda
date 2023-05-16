@@ -22,14 +22,15 @@ const createProduct = asyncWrapper(async (req, res) => {
   req.body.createdBy = req.user.userId
 
   if (req.file) {
-    const result = await cloudinary.uploader.upload(req.file.path, {
+    const result = await cloudinary.uploader.upload(req.file.buffer, {
       folder: 'dsProducts',
     })
 
     req.body.image = result.secure_url
   } else {
-    req.body.image = 'uploads\\default-product.png'
+    req.body.image = 'http://localhost:3008/uploads/default-product.png'
   }
+
   const product = await Product.create(req.body)
   res.status(201).json({ product })
 })

@@ -163,7 +163,7 @@ const AddProduct = () => {
                           class="text-gray-400"
                           value=""
                           disabled
-                          selected
+                          defaultValue={'Choose a Category'}
                           hidden
                         >
                           Choose a Category
