@@ -62,7 +62,15 @@ function LatestProducts() {
   }, [fetchProducts])
 
   if (products.length < 1) {
-    return <h2 className="section-title">No Latest Product Available</h2>
+    return (
+      <div>
+        <div className="title">
+          <h2>Latest Products</h2>
+          <div className="underline"></div>
+        </div>
+        <h2 className="section-title">No Latest Products Available</h2>
+      </div>
+    )
   }
 
   const listItems = products
