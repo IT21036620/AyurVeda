@@ -8,18 +8,6 @@ const search = 'http://localhost:3008/api/v1/products?product_name='
 const AppContext = React.createContext()
 
 const AppProvider = ({ children }) => {
-  // const fetchData = async () => {
-  //   try {
-  //     const response = await axios(url)
-  //     console.log(response)
-  //   } catch (error) {
-  //     console.log(error.response)
-  //   }
-  // }
-  // useEffect(() => {
-  //   fetchData()
-  // }, [])
-
   const [loading, setLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState('')
   const [products, setProducts] = useState([])

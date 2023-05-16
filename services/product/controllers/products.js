@@ -22,7 +22,7 @@ const createProduct = asyncWrapper(async (req, res) => {
   req.body.createdBy = req.user.userId
 
   if (req.file) {
-    const result = await cloudinary.uploader.upload(req.file.buffer, {
+    const result = await cloudinary.uploader.upload(req.file.path, {
       folder: 'dsProducts',
     })
 
