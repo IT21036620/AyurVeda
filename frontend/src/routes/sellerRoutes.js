@@ -8,8 +8,6 @@ import UpdateProduct from '../pages/seller/UpdateProduct'
 import UpdateAccount from '../pages/seller/UpdateAccount'
 import RegisterSeller from '../pages/seller/RegisterSeller'
 
-// import components
-
 function SellerRoutes() {
   return (
     <Routes>
