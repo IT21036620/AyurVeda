@@ -111,7 +111,6 @@ const CartSchema = new mongoose.Schema(
       // ref: 'User',
       required: false,
     },
-
     product: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Product',
@@ -130,5 +129,4 @@ const CartSchema = new mongoose.Schema(
   { timestamps: true }
 )
 
-// Cart Model
 module.exports = mongoose.model('Cart', CartSchema)

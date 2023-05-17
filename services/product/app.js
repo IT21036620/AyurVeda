@@ -37,13 +37,13 @@ app.use(xss())
 app.use('/uploads', express.static('uploads'))
 
 //routes
-app.use('/api/v1/products', productRouter) // authenticateSeller, productRouter
+app.use('/api/v1/products', productRouter)
 app.use('/api/v1/seller', sellerRouter)
 
 app.use(notFoundMiddleware)
 app.use(errorHandlerMiddleware)
 
-const port = process.env.PORT || 4000
+const port = process.env.PORT || 3008
 
 const start = async () => {
   try {

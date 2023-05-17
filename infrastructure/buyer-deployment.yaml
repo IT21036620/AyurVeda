@@ -18,7 +18,7 @@ spec:
         - name: buyer
           image: dinukakariyawasam/ayurveda:buyer
           ports:
-            - containerPort: 4000
+            - containerPort: 3002
 ---
 apiVersion: v1
 kind: Service
@@ -29,8 +29,7 @@ spec:
     app: buyer
   ports:
     - name: http
-      port: 4000
-      targetPort: 4000
-      nodePort: 31000
+      port: 3002
+      targetPort: 3002
   type: NodePort
 

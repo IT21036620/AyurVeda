@@ -1,8 +1,4 @@
-/* 
-====== 
-Variables 
-======
-*/
+
 :root {
   --primaryLightColor: #d4e6a5;
   --primaryColor: #476a2e;
@@ -24,11 +20,6 @@ Variables
   --maxWidth: 40rem;
   --fullWidth: 1170px;
 }
-/* 
-====== 
-Global Styles 
-======
-*/
 * {
   margin: 0;
   padding: 0;
@@ -68,12 +59,6 @@ img {
   width: 100%;
   display: block;
 }
-
-/* 
-====== 
-Buttons 
-======
-*/
 .btn,
 .btn-white,
 .btn-primary {
@@ -126,11 +111,6 @@ Buttons
   background: var(--primaryLightColor);
   border-color: var(--primaryLightColor);
 }
-/* 
-====== 
-Navbar
-======
-*/
 .navbar {
   background: var(--mainWhite);
   height: 5rem;
@@ -168,11 +148,6 @@ Navbar
 .logo {
   width: 12rem;
 }
-/* 
-====== 
-About
-======
-*/
 .about-section {
   width: var(--smallWidth);
   max-width: var(--maxWidth);
@@ -183,11 +158,6 @@ About
   font-weight: 400;
   letter-spacing: 2px;
 }
-/* 
-====== 
-Error
-======
-*/
 .error-page {
   display: flex;
   justify-content: center;
@@ -196,11 +166,6 @@ Error
   text-align: center;
   text-transform: capitalize;
 }
-/* 
-====== 
-Cocktails List 
-======
-*/
 
 .section {
   padding: 5rem 0;
@@ -222,16 +187,6 @@ Cocktails List
   column-gap: 2rem;
   /* align-items: start; */
 }
-@media screen and (min-width: 576px) {
-  .cocktails-center {
-    grid-template-columns: repeat(auto-fill, minmax(338.8px, 1fr));
-  }
-}
-/* 
-====== 
-Cocktail 
-======
-*/
 
 .product {
   background: var(--mainWhite);
@@ -266,11 +221,6 @@ Cocktail
   color: var(--darkGrey);
   margin-bottom: 0.5rem;
 }
-/* 
-====== 
-Form
-======
-*/
 .search {
   margin-top: 1rem;
   padding-bottom: 0;
@@ -302,52 +252,6 @@ Form
   border-radius: var(--mainBorderRadius);
   padding: 0.5rem;
   font-size: 1.2rem;
-}
-/* 
-====== 
-Cocktail
-======
-*/
-
-.cocktail-section {
-  text-align: center;
-}
-.drink {
-  width: var(--smallWidth);
-  max-width: var(--fullWidth);
-  margin: 0 auto;
-  text-align: left;
-}
-.drink img {
-  border-radius: var(--mainBorderRadius);
-}
-.drink p {
-  font-weight: bold;
-  text-transform: capitalize;
-  line-height: 1.8;
-}
-.drink span {
-  margin-right: 0.5rem;
-}
-.drink-data {
-  background: var(--primaryLightColor);
-  padding: 0.25rem 0.5rem;
-  border-radius: var(--mainBorderRadius);
-  color: var(--primaryColor);
-}
-.drink-info {
-  padding-top: 2rem;
-}
-@media screen and (min-width: 992px) {
-  .drink {
-    display: grid;
-    grid-template-columns: 2fr 3fr;
-    gap: 3rem;
-    align-items: center;
-  }
-  .drink-info {
-    padding-top: 0;
-  }
 }
 .loader,
 .loader:before,
