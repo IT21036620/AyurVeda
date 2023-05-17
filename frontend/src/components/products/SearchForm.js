@@ -3,15 +3,25 @@ import { useGlobalContext } from '../../pages/products/context'
 import './component.css'
 
 const SearchForm = () => {
-  const { setSearchTerm } = useGlobalContext()
+  const { setSearchTerm, setSearchCat } = useGlobalContext()
   const searchValue = React.useRef('')
+  const searchCatVal = React.useRef('')
 
   React.useEffect(() => {
     searchValue.current.focus()
   }, [])
 
+  React.useEffect(() => {
+    searchCatVal.current.focus()
+  }, [])
+
   const searchProduct = () => {
     setSearchTerm(searchValue.current.value)
+  }
+
+  const searchCat = () => {
+    // setSearchTerm(searchValue.current.value)
+    setSearchCat(searchCatVal.current.value)
   }
 
   const handleSubmit = (e) => {
@@ -19,20 +29,6 @@ const SearchForm = () => {
   }
 
   return (
-    // <section className="section-search">
-    //   <form className="search-form" onSubmit={handleSubmit}>
-    //     <div className="form-control">
-    //       <label htmlFor="name">Search your product</label>
-    //       <input
-    //         type="text"
-    //         id="name"
-    //         ref={searchValue}
-    //         onChange={searchProduct}
-    //       ></input>
-    //     </div>
-    //   </form>
-    // </section>
-
     <section class="flex justify-center items-center">
       <form class="w-[500px]" onSubmit={handleSubmit}>
         <div class="flex">
@@ -46,17 +42,19 @@ const SearchForm = () => {
             id="dropdown-button"
             className="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-l-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
             type="button"
+            ref={searchCatVal}
+            onChange={searchCat}
             // onClick={toggleDropdown}
           >
             <option value="">All Categories</option>
-            <option value="Supplements & Herbs">Supplements & Herbs</option>
+            <option value="Supplements and Herbs">Supplements & Herbs</option>
             <option value="Sports Nutrition">Sports Nutrition</option>
             <option value="Beauty">Beauty</option>
-            <option value="Bath & Personal Care">Bath & Personal Care</option>
+            <option value="Bath and Personal Care">Bath & Personal Care</option>
             <option value="Grocery">Grocery</option>
             <option value="Home">Home</option>
             <option value="Pets">Pets</option>
-            <option value="Babies & Kids">Babies & Kids</option>
+            <option value="Babies and Kids">Babies & Kids</option>
           </select>
           <div class="relative w-full">
             <input

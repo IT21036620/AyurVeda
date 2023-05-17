@@ -155,19 +155,19 @@ const UpdateProduct = () => {
                         onChange={(e) => setCategory(e.target.value)}
                       >
                         <option value="Supplements & Herbs">
-                          Supplements & Herbs
+                          Supplements and Herbs
                         </option>
                         <option value="Sports Nutrition">
                           Sports Nutrition
                         </option>
                         <option value="Beauty">Beauty</option>
                         <option value="Bath & Personal Care">
-                          Bath & Personal Care
+                          Bath and Personal Care
                         </option>
                         <option value="Grocery">Grocery</option>
                         <option value="Home">Home</option>
                         <option value="Pets">Pets</option>
-                        <option value="Babies & Kids">Babies & Kids</option>
+                        <option value="Babies & Kids">Babies and Kids</option>
                       </select>
                     </div>
 
