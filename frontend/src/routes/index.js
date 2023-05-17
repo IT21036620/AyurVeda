@@ -14,12 +14,14 @@ const IndexRoutes = () => {
   return (
     <div>
       <AdminRoutes />
-      {/* <DeliveryRoutes /> */}
+      <DeliveryRoutes />
       <LoginRoutes />
       <CartRoutes />
       {/*<BuyerRoutes />
       <ProductRoutes />
       <PaymentRoutes />  */}
+      <SellerRoutes />
+      <PaymentRoutes />
       {/* <ErrorRoute /> */}
     </div>
   )
