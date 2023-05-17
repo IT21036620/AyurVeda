@@ -73,7 +73,7 @@ const SellerProduct = ({
           <span class="text-3xl font-bold text-gray-900 dark:text-white">
             LKR {price}.00
           </span>
-          <Link class="hover:no-underline" to={`/product/${id}`}>
+          <Link class="hover:no-underline" to={`/seller/${id}`}>
             <div class="w-[125px] font-sans bg-[rgb(33,190,33)] hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
               View Details
             </div>
