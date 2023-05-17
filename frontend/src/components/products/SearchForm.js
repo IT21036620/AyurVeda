@@ -4,7 +4,6 @@ import './component.css'
 
 const SearchForm = () => {
   const { setSearchTerm } = useGlobalContext()
-  const [isDropdownOpen, setDropdownOpen] = React.useState(false)
   const searchValue = React.useRef('')
 
   React.useEffect(() => {
@@ -17,10 +16,6 @@ const SearchForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-  }
-
-  const toggleDropdown = () => {
-    setDropdownOpen(!isDropdownOpen)
   }
 
   return (
