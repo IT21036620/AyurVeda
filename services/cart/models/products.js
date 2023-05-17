@@ -48,15 +48,15 @@ const ProductSchema = new mongoose.Schema(
       trim: true,
       enum: {
         values: [
-          'Supplements and Herbs',
+          'Supplements & Herbs',
           'Sports Nutrition',
           'Beauty',
-          'Bath and Personal Care',
+          'Bath & Personal Care',
           'Grocery',
           'Home',
           'Medicine',
           'Pets',
-          'Babies and Kids',
+          'Babies & Kids',
         ],
         message: '{VALUE} is not a valid category',
       },

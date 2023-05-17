@@ -1,6 +1,7 @@
 const Product = require('../models/products')
 const asyncWrapper = require('../middleware/async')
-const cloudinary = require('../middleware/cloudinary')
+const multer = require('multer')
+const cloudinary = require('../config/cloudinary')
 const { createCustomError } = require('../errors/custom-error')
 
 //using errors custom-error.js for createCustomError
@@ -21,9 +22,13 @@ const createProduct = asyncWrapper(async (req, res) => {
   req.body.createdBy = req.user.userId
 
   if (req.file) {
-    req.body.profile_image = req.file.path
+    const result = await cloudinary.uploader.upload(req.file.path, {
+      folder: 'dsProducts',
+    })
+
+    req.body.image = result.secure_url
   } else {
-    req.body.profile_image = 'uploads\\default-product.jpg'
+    req.body.image = 'http://localhost:3008/uploads/default-product.png'
   }
 
   const product = await Product.create(req.body)
@@ -57,15 +62,20 @@ const deleteProduct = asyncWrapper(async (req, res, next) => {
 //update a product by id
 const updateProduct = asyncWrapper(async (req, res, next) => {
   const { id: productID } = req.params
+
   if (req.file) {
-    req.body.profile_image = req.file.path
-  } else {
-    req.body.profile_image = 'uploads\\default-product.jpg'
+    const result = await cloudinary.uploader.upload(req.file.path, {
+      folder: 'dsProducts',
+    })
+    req.body.image = result.secure_url
   }
-  const product = await Product.findOneAndUpdate({ _id: productID }, req.body, {
-    new: true,
-    runValidators: true,
-  })
+  const product = await Product.findByIdAndUpdate(
+    { _id: productID },
+    req.body,
+    {
+      new: true,
+    }
+  )
   if (!product) {
     return next(createCustomError(`No product with id: ${productID}`, 404))
   }

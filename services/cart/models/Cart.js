@@ -109,12 +109,12 @@ const CartSchema = new mongoose.Schema(
     user: {
       type: String,
       // ref: 'User',
-      required: false,
+      required: true,
     },
     product: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Product',
-      required: false,
+      required: true,
     },
     quantity: {
       type: Number,
@@ -122,7 +122,7 @@ const CartSchema = new mongoose.Schema(
     },
     price: {
       type: Number,
-      required: false,
+      required: true,
     },
   },
 

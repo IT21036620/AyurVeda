@@ -63,12 +63,12 @@ const insertcartcompletedetails = asyncWrapper(async (req, res) => {
 
   // Save the new CartComplete item to the database
   await cartCompleteItem.save()
-
+  const cart_id = cartCompleteItem._id
   // Delete all items in the Cart that match the given userID
   await Cart.deleteMany({ user: userID })
 
   // Send the response
-  res.status(201).json({ totalPrice })
+  res.status(201).json({ cart_id })
 })
 // -------------------------------------------------------------------------------------------
 
