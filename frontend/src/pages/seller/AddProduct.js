@@ -168,20 +168,20 @@ const AddProduct = () => {
                         >
                           Choose a Category
                         </option>
-                        <option value="Supplements & Herbs">
+                        <option value="Supplements and Herbs">
                           Supplements & Herbs
                         </option>
                         <option value="Sports Nutrition">
                           Sports Nutrition
                         </option>
                         <option value="Beauty">Beauty</option>
-                        <option value="Bath & Personal Care">
+                        <option value="Bath and Personal Care">
                           Bath & Personal Care
                         </option>
                         <option value="Grocery">Grocery</option>
                         <option value="Home">Home</option>
                         <option value="Pets">Pets</option>
-                        <option value="Babies & Kids">Babies & Kids</option>
+                        <option value="Babies and Kids">Babies & Kids</option>
                       </select>
                     </div>
 

@@ -62,7 +62,15 @@ function InexpensiveProducts() {
   }, [fetchProducts])
 
   if (products.length < 1) {
-    return <h2 className="section-title">No Featured Product Available</h2>
+    return (
+      <div>
+        <div className="title">
+          <h2>Inexpensive Products</h2>
+          <div className="underline"></div>
+        </div>
+        <h2 className="section-title">No Inexpensive Products Available</h2>
+      </div>
+    )
   }
 
   const listItems = products

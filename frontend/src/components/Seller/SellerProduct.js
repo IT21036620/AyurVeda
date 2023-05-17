@@ -41,7 +41,7 @@ const SellerProduct = ({
     <div class="w-[310px] h-[567px] mb-[40px] block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-gray-800 hover:cursor-pointer hover:scale-110 hover:shadow-[0px_0px_10px_5px_#21BE21]">
       <a href="#">
         <img
-          class="p-8 rounded-t-lg"
+          class="w-full h-[310px] p-8 rounded-t-lg"
           crossOrigin="anonymous"
           src={image}
           alt={product_name}
@@ -73,7 +73,7 @@ const SellerProduct = ({
           <span class="text-3xl font-bold text-gray-900 dark:text-white">
             LKR {price}.00
           </span>
-          <Link class="hover:no-underline" to={`/product/${id}`}>
+          <Link class="hover:no-underline" to={`/seller/${id}`}>
             <div class="w-[125px] font-sans bg-[rgb(33,190,33)] hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
               View Details
             </div>

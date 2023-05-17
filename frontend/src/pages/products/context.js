@@ -4,18 +4,20 @@ import axios from 'axios'
 
 const url = 'http://localhost:3008/api/v1/products'
 const search = 'http://localhost:3008/api/v1/products?product_name='
+const cat = '&category='
 
 const AppContext = React.createContext()
 
 const AppProvider = ({ children }) => {
   const [loading, setLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState('')
+  const [searchCat, setSearchCat] = useState('')
   const [products, setProducts] = useState([])
 
   const fetchProducts = useCallback(async () => {
     setLoading(true)
     try {
-      const response = await fetch(`${search}${searchTerm}`)
+      const response = await fetch(`${search}${searchTerm}${cat}${searchCat}`)
       const data = await response.json()
       // const data = response
       const { products } = data
@@ -65,10 +67,10 @@ const AppProvider = ({ children }) => {
       console.log(error)
       setLoading(false)
     }
-  }, [searchTerm])
+  }, [searchTerm, searchCat])
   useEffect(() => {
     fetchProducts()
-  }, [searchTerm, fetchProducts])
+  }, [searchTerm, searchCat, fetchProducts])
 
   return (
     <AppContext.Provider
@@ -76,6 +78,7 @@ const AppProvider = ({ children }) => {
         loading,
         products,
         setSearchTerm,
+        setSearchCat,
       }}
     >
       {children}
