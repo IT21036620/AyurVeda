@@ -17,7 +17,8 @@ const register = async (req, res) => {
     })
     req.body.profile_image = result.secure_url
   } else {
-    req.body.profile_image = 'http://localhost:3008/uploads/default.jpg'
+    req.body.profile_image =
+      'https://res.cloudinary.com/dbcmklrpv/image/upload/v1684347067/default_uz60rr.jpg'
   }
   const seller = await Seller.create({ ...req.body })
 

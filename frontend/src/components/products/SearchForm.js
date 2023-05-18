@@ -20,7 +20,6 @@ const SearchForm = () => {
   }
 
   const searchCat = () => {
-    // setSearchTerm(searchValue.current.value)
     setSearchCat(searchCatVal.current.value)
   }
 
@@ -44,7 +43,6 @@ const SearchForm = () => {
             type="button"
             ref={searchCatVal}
             onChange={searchCat}
-            // onClick={toggleDropdown}
           >
             <option value="">All Categories</option>
             <option value="Supplements and Herbs">Supplements & Herbs</option>
