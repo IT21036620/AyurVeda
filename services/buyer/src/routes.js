@@ -7,6 +7,7 @@ import {
   buyersGet,
   updateBuyer,
   deleteBuyer,
+  buyerGetByCredId,
 } from './controllers/buyer.js'
 import { searchProduct } from './controllers/search.js'
 import {
@@ -29,6 +30,13 @@ router.get(
   '/getBuyer/:id',
   celebrate({ [Segments.PARAMS]: viewBuyerSchema }),
   buyerGet
+)
+
+//Get Data Of One Buyer By CredId
+router.get(
+  '/getBuyerByCredId/:id',
+  // celebrate({ [Segments.PARAMS]: viewBuyerSchema }),
+  buyerGetByCredId
 )
 
 router.get('/searchProduct/:key', searchProduct)

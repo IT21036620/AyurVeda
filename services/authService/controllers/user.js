@@ -105,7 +105,7 @@ const loginUser = asyncWrapper(async (req, res) => {
       secure: true,
       maxAge: 24 * 60 * 60 * 1000,
     })
-    res.json({ accessToken, role })
+    res.json({ accessToken, role }) // sendin refresh token
   } else {
     res.sendStatus(401)
   }

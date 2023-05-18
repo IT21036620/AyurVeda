@@ -4,6 +4,7 @@ import {
   deleteBuyerusingId,
   updateBuyerusingId,
   getBuyers,
+  getBuyerByCred,
 } from '../repository/buyer.js'
 
 //Insert A New Buyer
@@ -28,6 +29,11 @@ export const addBuyer = async ({
 //Get Data Of One Buyer
 export const getBuyerById = async (id) => {
   return await getBuyer(id)
+}
+
+//Get Data Of One Buyer By CredID
+export const getBuyerByCredId = async (id) => {
+  return await getBuyerByCred(id)
 }
 
 //Get Data Of All Buyers
