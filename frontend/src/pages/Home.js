@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import axios from 'axios'
-import Navbar from '../components/navbar'
+
 import { Carousel } from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import img from './img/01.jpg'
@@ -14,7 +14,6 @@ import InexpensiveProducts from '../components/HomeProducts/InexpensiveProducts'
 const Home = () => {
   return (
     <div>
-      <Navbar name={'Sunil Perera'} />
       <Carousel
         autoPlay
         interval={5000}
