@@ -7,6 +7,7 @@ import {
   getAllBuyers,
   deleteBuyerById,
   updateBuyerById,
+  getBuyerByCredId,
 } from '../services/buyer.js'
 
 //Insert A New buyer
@@ -17,6 +18,18 @@ export const buyerAdd = asyncHandler(async (req, res) => {
     status: 201,
     data: ans,
     massage: 'buyer successfully created',
+  })
+})
+
+//Get Data Of One buyer By CredId
+export const buyerGetByCredId = asyncHandler(async (req, res) => {
+  const ans = await getBuyerByCredId(req.params.id)
+  // console.log('check')
+  return makeResponse({
+    res,
+    status: 200,
+    data: ans,
+    massage: 'buyer detail successfully fetched',
   })
 })
 

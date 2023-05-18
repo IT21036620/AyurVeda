@@ -18,4 +18,4 @@ spec:
         - name: buyer
           image: dinukakariyawasam/ayurveda:buyer
           ports:
-            - containerPort: 4000
+            - containerPort: 3002

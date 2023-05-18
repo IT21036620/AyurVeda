@@ -1,35 +1,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: buyer
+  name: order
   labels:
-    app: buyer
+    app: order
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: buyer
+      app: order
   template:
     metadata:
       labels:
-        app: buyer
+        app: order
     spec:
       containers:
-        - name: buyer
-          image: dinukakariyawasam/ayurveda:buyer
+        - name: order
+          image: dinukakariyawasam/ayurveda:order
           ports:
-            - containerPort: 3002
+            - containerPort: 3006
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: buyer
+  name: order
 spec:
   selector:
-    app: buyer
+    app: order
   ports:
     - name: http
-      port: 3002
-      targetPort: 3002
+      port: 3006
+      targetPort: 3006
   type: NodePort
 

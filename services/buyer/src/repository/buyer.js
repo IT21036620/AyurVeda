@@ -3,15 +3,6 @@ import Buyer from '../models/buyer.js'
 
 //Insert A New buyer
 export const insertBuyer = async (details) => {
-  //Check if Buyer business_name Already exists
-  // const userWithsamename = await buyer.exists({
-  //   business_name: details.business_name,
-  // })
-
-  // if (userWithsamename) {
-  //   return { msg: 'Suppler Already exist with the same business_name' }
-  // }
-
   const buyer = new Buyer({
     buyerName: details.buyerName,
     credentialId: details.credentialId,
@@ -25,16 +16,25 @@ export const insertBuyer = async (details) => {
 
 //Get Data Of One Buyer
 export const getBuyer = async (id) => {
-  //check for valid objectId
-  // if (!mongoose.Types.ObjectId.isValid(id)) {
-  //   return { msg: 'No Buyer is available with this id' }
-  // }
   try {
     //Check if Buyer exists
     if ((await Buyer.findById(new mongoose.Types.ObjectId(id))) == null) {
       return { msg: 'No Buyer is available with this id' }
     }
     return await Buyer.findById(new mongoose.Types.ObjectId(id))
+  } catch (error) {
+    // console.log(error)
+    return { msg: 'Search Buyer by id failed' }
+  }
+}
+//Get Data Of One Buyer By CredId
+export const getBuyerByCred = async (credentialId) => {
+  try {
+    //Check if Buyer exists
+    if ((await Buyer.findOne({ credentialId })) == null) {
+      return { msg: 'No Buyer is available with this id' }
+    }
+    return await Buyer.findOne({ credentialId })
   } catch (error) {
     // console.log(error)
     return { msg: 'Search Buyer by id failed' }
