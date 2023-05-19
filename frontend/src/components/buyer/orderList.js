@@ -63,7 +63,7 @@ const OrderList = ({ buyerId }) => {
 
   return (
     <div className="bg-gray-50 p-4 rounded-lg ml-36">
-      <h2 className="text-xl font-bold mb-4">Orders</h2>
+      <h2 className="text-3xl text-blue-400 font-bold mb-4">Orders</h2>
       {orders.length > 0 ? (
         <table className="w-full text-left border-collapse">
           <thead>

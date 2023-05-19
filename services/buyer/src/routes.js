@@ -1,6 +1,13 @@
 import express from 'express'
 import { celebrate, Segments } from 'celebrate'
 
+//middleware for authorization
+import verifyJWT from './middleware/verifyJWT.js'
+import rolesVerify from './middleware/rolesVerify.js'
+
+//role specification for role authorization
+const role = 'admin'
+
 import {
   buyerAdd,
   buyerGet,
@@ -28,6 +35,8 @@ router.post(
 //Get Data Of One Buyer
 router.get(
   '/getBuyer/:id',
+  // verifyJWT,
+  // rolesVerify(role),
   celebrate({ [Segments.PARAMS]: viewBuyerSchema }),
   buyerGet
 )
