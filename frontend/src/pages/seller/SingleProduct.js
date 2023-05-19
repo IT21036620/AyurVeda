@@ -107,81 +107,186 @@ const SingleProduct = () => {
   console.log(urlll)
 
   return (
+    // <div>
+    //   {/* <Navbar name="Iverson" /> */}
+    //   <Container className="product-view">
+    //     <Grid container spacing={4}>
+    //       <Grid item xs={12} md={8} className="image-wrapper">
+    //         <img
+    //           onLoad={() => {
+    //             setLoading(false)
+    //           }}
+    //           crossOrigin="anonymous"
+    //           src={image}
+    //           alt={product_name}
+    //         />
+    //       </Grid>
+    //       <Grid item xs={12} md={4} className="text">
+    //         <Typography variant="h2">{product_name}</Typography>
+    //         <Grid container spacing={4}>
+    //           <Grid item xs={12}>
+    //             <Typography class="font-bold" variant="h4">
+    //               {description}
+    //             </Typography>
+    //           </Grid>
+    //         </Grid>
+    //         <Grid container spacing={4}>
+    //           <Grid item xs={12}>
+    //             <Typography variant="h4">Category: {category}</Typography>
+    //           </Grid>
+    //         </Grid>
+    //         <Grid container spacing={4}>
+    //           <Grid item xs={12}>
+    //             <Typography variant="h4">
+    //               Package Quantity: {package_quantity}
+    //             </Typography>
+    //           </Grid>
+    //         </Grid>
+    //         <Grid container spacing={4}>
+    //           <Grid item xs={12}>
+    //             <Typography variant="h4">
+    //               Shipping Weight: {shipping_weight}
+    //             </Typography>
+    //           </Grid>
+    //         </Grid>
+    //         <Grid container spacing={4}>
+    //           <Grid item xs={12}>
+    //             <Typography variant="h4">
+    //               Mfd: {mfd.substring(0, 10)}
+    //             </Typography>
+    //           </Grid>
+    //         </Grid>
+    //         <Grid container spacing={4}>
+    //           <Grid item xs={12}>
+    //             <Typography variant="h4">
+    //               Exp: {exp.substring(0, 10)}
+    //             </Typography>
+    //           </Grid>
+    //         </Grid>
+    //         <Grid container spacing={4}>
+    //           <Grid item xs={12}>
+    //             <Typography variant="h4">
+    //               Manufacturer: {manufacturer}
+    //             </Typography>
+    //           </Grid>
+    //         </Grid>
+    //         <Grid container spacing={4}>
+    //           <Grid item xs={12}>
+    //             <Typography variant="h4">
+    //               Product rating: {rating}/5 ({rate_count})
+    //             </Typography>
+    //           </Grid>
+    //         </Grid>
+    //         <Typography variant="h3">Price: LKR.{price}.00</Typography>
+    //         <Grid container spacing={4}></Grid>
+    //       </Grid>
+    //     </Grid>
+    //   </Container>
+    // </div>
     <div>
-      {/* <Navbar name="Iverson" /> */}
-      <Container className="product-view">
-        <Grid container spacing={4}>
-          <Grid item xs={12} md={8} className="image-wrapper">
-            <img
-              onLoad={() => {
-                setLoading(false)
-              }}
-              crossOrigin="anonymous"
-              src={image}
-              alt={product_name}
-            />
-          </Grid>
-          <Grid item xs={12} md={4} className="text">
-            <Typography variant="h2">{product_name}</Typography>
-            <Grid container spacing={4}>
-              <Grid item xs={12}>
-                <Typography class="font-bold" variant="h4">
-                  {description}
-                </Typography>
-              </Grid>
-            </Grid>
-            <Grid container spacing={4}>
-              <Grid item xs={12}>
-                <Typography variant="h4">Category: {category}</Typography>
-              </Grid>
-            </Grid>
-            <Grid container spacing={4}>
-              <Grid item xs={12}>
-                <Typography variant="h4">
-                  Package Quantity: {package_quantity}
-                </Typography>
-              </Grid>
-            </Grid>
-            <Grid container spacing={4}>
-              <Grid item xs={12}>
-                <Typography variant="h4">
-                  Shipping Weight: {shipping_weight}
-                </Typography>
-              </Grid>
-            </Grid>
-            <Grid container spacing={4}>
-              <Grid item xs={12}>
-                <Typography variant="h4">
-                  Mfd: {mfd.substring(0, 10)}
-                </Typography>
-              </Grid>
-            </Grid>
-            <Grid container spacing={4}>
-              <Grid item xs={12}>
-                <Typography variant="h4">
-                  Exp: {exp.substring(0, 10)}
-                </Typography>
-              </Grid>
-            </Grid>
-            <Grid container spacing={4}>
-              <Grid item xs={12}>
-                <Typography variant="h4">
-                  Manufacturer: {manufacturer}
-                </Typography>
-              </Grid>
-            </Grid>
-            <Grid container spacing={4}>
-              <Grid item xs={12}>
-                <Typography variant="h4">
-                  Product rating: {rating}/5 ({rate_count})
-                </Typography>
-              </Grid>
-            </Grid>
-            <Typography variant="h3">Price: LKR.{price}.00</Typography>
-            <Grid container spacing={4}></Grid>
-          </Grid>
-        </Grid>
-      </Container>
+      <div class="md:flex items-start justify-center py-12 2xl:px-20 md:px-6 px-4">
+        {/* <div class="xl:w-2/6 lg:w-2/5 w-80 md:block hidden">
+        <img
+          class="mt-[80px] w-[400px] h-[250px]"
+          alt={product_name}
+          src={image}
+        />
+        <img class="mt-6 w-[400px] h-[250px]" alt={product_name} src={image} />
+      </div> */}
+        <div class="md:flex items-center justify-center py-12 2xl:px-20 md:px-6 px-4">
+          <img class="w-[600px]" alt={product_name} src={image} />
+        </div>
+        <div class="xl:w-2/5 md:w-1/2 lg:ml-8 md:ml-6 md:mt-0 mt-6">
+          <div class="border-b border-green-400 pb-6">
+            <h1 class="mt-[20px] lg:text-3xl text-3xl font-semibold lg:leading-6 leading-7 text-gray-800 dark:text-white mt-2">
+              {product_name}
+            </h1>
+            <div class="mt-[20px] text-black dark:text-white">
+              <i>"{description}"</i>
+            </div>
+          </div>
+          <div class="py-4 border-b border-green-400 flex items-center justify-between">
+            <p class="text-base leading-4 text-gray-800 dark:text-gray-300">
+              Manufacturer
+            </p>
+            <div class="flex items-center justify-center">
+              <p class="text-base leading-none text-gray-600 dark:text-gray-300">
+                {manufacturer}
+              </p>
+            </div>
+          </div>
+          <div class="py-4 border-b border-green-400 flex items-center justify-between">
+            <p class="text-base leading-4 text-gray-800 dark:text-gray-300">
+              Category
+            </p>
+            <div class="flex items-center justify-center">
+              <p class="text-base leading-none text-gray-600 dark:text-gray-300">
+                {category}
+              </p>
+            </div>
+          </div>
+          <div class="py-4 border-b border-green-400 flex items-center justify-between">
+            <p class="text-base leading-4 text-gray-800 dark:text-gray-300">
+              Package Quantity
+            </p>
+            <div class="flex items-center justify-center">
+              <p class="text-base leading-none text-gray-600 dark:text-gray-300">
+                {package_quantity}
+              </p>
+            </div>
+          </div>
+          <div class="py-4 border-b border-green-400 flex items-center justify-between">
+            <p class="text-base leading-4 text-gray-800 dark:text-gray-300">
+              Shipping Weight
+            </p>
+            <div class="flex items-center justify-center">
+              <p class="text-base leading-none text-gray-600 dark:text-gray-300">
+                {shipping_weight}
+              </p>
+            </div>
+          </div>
+          <div class="py-4 border-b border-green-400 flex items-center justify-between">
+            <p class="text-base leading-4 text-gray-800 dark:text-gray-300">
+              Date First Available
+            </p>
+            <div class="flex items-center justify-center">
+              <p class="text-base leading-none text-gray-600 dark:text-gray-300">
+                {mfd.substring(0, 10)}
+              </p>
+            </div>
+          </div>
+          <div class="py-4 border-b border-green-400 flex items-center justify-between">
+            <p class="text-base leading-4 text-gray-800 dark:text-gray-300">
+              Best By
+            </p>
+            <div class="flex items-center justify-center">
+              <p class="text-base leading-none text-gray-600 dark:text-gray-300">
+                {exp.substring(0, 10)}
+              </p>
+            </div>
+          </div>
+          <div class="py-4 border-b border-green-400 flex items-center justify-between">
+            <p class="text-base leading-4 text-gray-800 dark:text-gray-300">
+              Product Rating
+            </p>
+            <div class="flex items-center justify-center">
+              <p class="text-base leading-none text-gray-600 dark:text-gray-300">
+                {rating}/5 ({rate_count})
+              </p>
+            </div>
+          </div>
+          <div class="py-4 border-b border-green-400 flex items-center justify-between">
+            <p class="text-3xl leading-4 text-gray-800 dark:text-gray-300">
+              <b>Price</b>
+            </p>
+            <div class="flex items-center justify-center">
+              <p class="text-3xl leading-none text-gray-800 dark:text-gray-300">
+                <b>LKR {price}.00</b>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
