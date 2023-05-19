@@ -6,6 +6,7 @@ import AccountInfo from '../../components/buyer/accountInfo.js'
 import Reviews from '../../components/buyer/reviewList'
 import OrderList from '../../components/buyer/orderList'
 import Navbar from '../../components/navbar'
+import BuyerReviewList from '../../components/buyer/buyerReviewList'
 
 // const Dashboard = () => <div>Dashboard Content</div>
 const Orders = () => <div>Orders Content</div>
@@ -25,7 +26,7 @@ const AccountPage = () => {
       case 'orders':
         return <OrderList buyerId={'6442335c26c1890f7a771907'} />
       case 'reviews':
-        return <Reviews buyerId={'6442335c26c1890f7a771907'} />
+        return <BuyerReviewList buyerId={'6442335c26c1890f7a771907'} />
       case 'account-info':
         return <AccountInfo />
       default:

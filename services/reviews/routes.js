@@ -7,6 +7,13 @@ import {
   deleteReview,
 } from './reviewController.js'
 
+//middleware for authorization
+import verifyJWT from './middleware/verifyJWT.js'
+import rolesVerify from './middleware/rolesVerify.js'
+
+//role specification for role authorization
+const role = 'admin'
+
 const router = express.Router()
 
 router.route('/buyer/:buyerId').get(getAllReviewsByBuyer)
