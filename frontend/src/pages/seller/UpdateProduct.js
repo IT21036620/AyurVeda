@@ -20,7 +20,7 @@ const UpdateProduct = () => {
   )
   const [availability, setAvailability] = useState(location.state.availability)
   const [category, setCategory] = useState(location.state.category)
-  const [image, setImage] = useState('')
+  const [image, setImage] = useState(location.state.image)
   const [description, setDescription] = useState(location.state.description)
 
   console.log(location.state)
@@ -28,20 +28,31 @@ const UpdateProduct = () => {
   const handleUpdateSubmit = async (e) => {
     e.preventDefault()
 
+    const formData = new FormData()
+    formData.append('product_name', product_name)
+    formData.append('manufacturer', manufacturer)
+    formData.append('price', price)
+    formData.append('package_quantity', package_quantity)
+    formData.append('shipping_weight', shipping_weight)
+    formData.append('category', category)
+    formData.append('description', description)
+    formData.append('image', image)
+
     try {
       const resp = await axios.patch(
         `${updateProductUrl}/${id}`,
-        {
-          product_name: product_name,
-          manufacturer: manufacturer,
-          price: price,
-          package_quantity: package_quantity,
-          shipping_weight: shipping_weight,
-          availability: availability,
-          category: category,
-          image: image,
-          description: description,
-        },
+        formData,
+        // {
+        //   product_name: product_name,
+        //   manufacturer: manufacturer,
+        //   price: price,
+        //   package_quantity: package_quantity,
+        //   shipping_weight: shipping_weight,
+        //   availability: availability,
+        //   category: category,
+        //   image: image,
+        //   description: description,
+        // },
         {
           headers: {
             'Content-Type': 'multipart/form-data',
@@ -55,6 +66,10 @@ const UpdateProduct = () => {
       alert('Sorry! Product Updation Failed...')
       console.log(error.response)
     }
+  }
+
+  const handleImageChange = (e) => {
+    setImage(e.target.files[0])
   }
 
   return (
@@ -179,8 +194,7 @@ const UpdateProduct = () => {
                         crossOrigin="anonymous"
                         name="image"
                         id="image"
-                        value={image}
-                        onChange={(e) => setImage(e.target.value)}
+                        onChange={handleImageChange}
                         // onChange={fileChangedHandler}
                         placeholder="Upload New Product Image"
                       ></input>

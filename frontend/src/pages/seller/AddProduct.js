@@ -14,7 +14,7 @@ const AddProduct = () => {
   const [category, setCategory] = useState('')
   const [mfd, setMfd] = useState('')
   const [exp, setExp] = useState('')
-  const [image, setImage] = useState('')
+  const [image, setImage] = useState(null)
   const [description, setDescription] = useState('')
 
   const handleSubmit = async (e) => {
@@ -61,6 +61,10 @@ const AddProduct = () => {
       alert('Sorry! Product Creation Failed...')
       console.log(error.response)
     }
+  }
+
+  const handleImageChange = (e) => {
+    setImage(e.target.files[0])
   }
 
   // function generateFileName(originalName) {
@@ -219,8 +223,9 @@ const AddProduct = () => {
                         crossOrigin="anonymous"
                         name="image"
                         id="image"
-                        value={image}
-                        onChange={(e) => setImage(e.target.value)}
+                        // value={image}
+                        // onChange={(e) => setImage(e.target.value)}
+                        onChange={handleImageChange}
                         placeholder="Upload Product Image"
                         required
                       ></input>
