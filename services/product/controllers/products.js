@@ -28,7 +28,8 @@ const createProduct = asyncWrapper(async (req, res) => {
 
     req.body.image = result.secure_url
   } else {
-    req.body.image = 'http://localhost:3008/uploads/default-product.png'
+    req.body.image =
+      'https://res.cloudinary.com/dbcmklrpv/image/upload/v1684347134/default-product_x6jgjo.png'
   }
 
   const product = await Product.create(req.body)

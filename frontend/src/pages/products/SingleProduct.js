@@ -171,6 +171,7 @@ const SingleProduct = () => {
 
   const addToCart = async (e) => {
     e.preventDefault()
+    const totPrice = price * quantity
     try {
       const resp = await axios.post(
         cartUrl,
@@ -178,7 +179,7 @@ const SingleProduct = () => {
           user: '5',
           product: id,
           quantity: quantity,
-          price: price,
+          price: totPrice,
         },
         {
           headers: {
