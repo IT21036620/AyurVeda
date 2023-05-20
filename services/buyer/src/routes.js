@@ -1,12 +1,20 @@
 import express from 'express'
 import { celebrate, Segments } from 'celebrate'
 
+//middleware for authorization
+import verifyJWT from './middleware/verifyJWT.js'
+import rolesVerify from './middleware/rolesVerify.js'
+
+//role specification for role authorization
+const role = 'admin'
+
 import {
   buyerAdd,
   buyerGet,
   buyersGet,
   updateBuyer,
   deleteBuyer,
+  buyerGetByCredId,
 } from './controllers/buyer.js'
 import { searchProduct } from './controllers/search.js'
 import {
@@ -27,8 +35,17 @@ router.post(
 //Get Data Of One Buyer
 router.get(
   '/getBuyer/:id',
+  // verifyJWT,
+  // rolesVerify(role),
   celebrate({ [Segments.PARAMS]: viewBuyerSchema }),
   buyerGet
+)
+
+//Get Data Of One Buyer By CredId
+router.get(
+  '/getBuyerByCredId/:id',
+  // celebrate({ [Segments.PARAMS]: viewBuyerSchema }),
+  buyerGetByCredId
 )
 
 router.get('/searchProduct/:key', searchProduct)

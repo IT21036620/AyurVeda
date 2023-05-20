@@ -62,7 +62,7 @@ const Navbar = ({ name }) => {
         </a>
         <a
           // href="/signin"
-          href="/buyer/account"
+          href="/login"
           className="text-white flex items-center border-2 border-white rounded-lg px-2 py-1 ml-10 text-xl"
         >
           <span>{name}</span>

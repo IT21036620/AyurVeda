@@ -6,6 +6,7 @@ import { Grid, Container, Typography } from '@mui/material'
 import './sinProduct.css'
 import { useGlobalContext } from './context'
 import axios from 'axios'
+import Navbar from '../../components/navbar'
 
 const url = 'http://localhost:3008/api/v1/products/singleProduct/'
 
@@ -106,74 +107,82 @@ const SingleProduct = () => {
   console.log(urlll)
 
   return (
-    <Container className="product-view">
-      <Grid container spacing={4}>
-        <Grid item xs={12} md={8} className="image-wrapper">
-          <img
-            onLoad={() => {
-              setLoading(false)
-            }}
-            crossOrigin="anonymous"
-            // src={`${http}\/\/${domain}:3008\/${image}`}
-            src={`http:\/\/localhost:3008\/${image}`}
-            alt={product_name}
-          />
+    <div>
+      {/* <Navbar name="Iverson" /> */}
+      <Container className="product-view">
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={8} className="image-wrapper">
+            <img
+              onLoad={() => {
+                setLoading(false)
+              }}
+              crossOrigin="anonymous"
+              src={image}
+              alt={product_name}
+            />
+          </Grid>
+          <Grid item xs={12} md={4} className="text">
+            <Typography variant="h2">{product_name}</Typography>
+            <Grid container spacing={4}>
+              <Grid item xs={12}>
+                <Typography class="font-bold" variant="h4">
+                  {description}
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid container spacing={4}>
+              <Grid item xs={12}>
+                <Typography variant="h4">Category: {category}</Typography>
+              </Grid>
+            </Grid>
+            <Grid container spacing={4}>
+              <Grid item xs={12}>
+                <Typography variant="h4">
+                  Package Quantity: {package_quantity}
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid container spacing={4}>
+              <Grid item xs={12}>
+                <Typography variant="h4">
+                  Shipping Weight: {shipping_weight}
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid container spacing={4}>
+              <Grid item xs={12}>
+                <Typography variant="h4">
+                  Mfd: {mfd.substring(0, 10)}
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid container spacing={4}>
+              <Grid item xs={12}>
+                <Typography variant="h4">
+                  Exp: {exp.substring(0, 10)}
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid container spacing={4}>
+              <Grid item xs={12}>
+                <Typography variant="h4">
+                  Manufacturer: {manufacturer}
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid container spacing={4}>
+              <Grid item xs={12}>
+                <Typography variant="h4">
+                  Product rating: {rating}/5 ({rate_count})
+                </Typography>
+              </Grid>
+            </Grid>
+            <Typography variant="h3">Price: LKR.{price}.00</Typography>
+            <Grid container spacing={4}></Grid>
+          </Grid>
         </Grid>
-        <Grid item xs={12} md={4} className="text">
-          <Typography variant="h2">{product_name}</Typography>
-          <Grid container spacing={4}>
-            <Grid item xs={12}>
-              <Typography class="font-bold" variant="h4">
-                {description}
-              </Typography>
-            </Grid>
-          </Grid>
-          <Grid container spacing={4}>
-            <Grid item xs={12}>
-              <Typography variant="h4">Category: {category}</Typography>
-            </Grid>
-          </Grid>
-          <Grid container spacing={4}>
-            <Grid item xs={12}>
-              <Typography variant="h4">
-                Package Quantity: {package_quantity}
-              </Typography>
-            </Grid>
-          </Grid>
-          <Grid container spacing={4}>
-            <Grid item xs={12}>
-              <Typography variant="h4">
-                Shipping Weight: {shipping_weight}
-              </Typography>
-            </Grid>
-          </Grid>
-          <Grid container spacing={4}>
-            <Grid item xs={12}>
-              <Typography variant="h4">Mfd: {mfd.substring(0, 10)}</Typography>
-            </Grid>
-          </Grid>
-          <Grid container spacing={4}>
-            <Grid item xs={12}>
-              <Typography variant="h4">Exp: {exp.substring(0, 10)}</Typography>
-            </Grid>
-          </Grid>
-          <Grid container spacing={4}>
-            <Grid item xs={12}>
-              <Typography variant="h4">Manufacturer: {manufacturer}</Typography>
-            </Grid>
-          </Grid>
-          <Grid container spacing={4}>
-            <Grid item xs={12}>
-              <Typography variant="h4">
-                Product rating: {rating}/5 ({rate_count})
-              </Typography>
-            </Grid>
-          </Grid>
-          <Typography variant="h3">Price: LKR.{price}.00</Typography>
-          <Grid container spacing={4}></Grid>
-        </Grid>
-      </Grid>
-    </Container>
+      </Container>
+    </div>
   )
 }
 export default SingleProduct
