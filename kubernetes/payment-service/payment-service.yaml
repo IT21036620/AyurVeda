@@ -9,5 +9,4 @@ spec:
     - name: http
       port: 3007
       targetPort: 3007
-      nodePort: 31000
   type: NodePort

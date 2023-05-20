@@ -111,7 +111,7 @@ module.exports = mongoose.model('CartComplete', CartCompleteSchema)
 const OrderSchema = new mongoose.Schema({
   order_id: {
     type: String,
-    required: [true, 'must provide a order id'],
+    required: [false, 'must provide a order id'],
     trim: true,
     maxlength: [25, 'id must be maximum 20 characters'],
   },

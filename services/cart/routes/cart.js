@@ -1,5 +1,9 @@
 const express = require('express')
 const router = express.Router()
+// const verifyJWT = require('../middleware/verifyJWT')
+// const rolesVerify = require('../middleware/rolesVerify')
+
+// const role = 'buyer'
 
 const {
   getAllCartItems,
@@ -16,7 +20,6 @@ const {
 router
   .route('/')
   .get(getAllCartItems) // GET all cart items
-  .get(getCartItemsbycusid) // GET all cart items by Customer id
   .post(createCartItem) // Add new iteam to cart
   .delete(deleteAllCartItems) // Delete all cart items
 

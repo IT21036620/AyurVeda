@@ -34,7 +34,9 @@ export const getBuyerByCred = async (credentialId) => {
     if ((await Buyer.findOne({ credentialId })) == null) {
       return { msg: 'No Buyer is available with this id' }
     }
-    return await Buyer.findOne({ credentialId })
+
+    const buyer = await Buyer.findOne({ credentialId })
+    return { _id: buyer._id }
   } catch (error) {
     // console.log(error)
     return { msg: 'Search Buyer by id failed' }

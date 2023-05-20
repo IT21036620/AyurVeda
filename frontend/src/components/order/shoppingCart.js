@@ -28,29 +28,41 @@ export default function ShoppingCart() {
   }
 
   const handleRemoveItem = (itemId) => {
-    axios
-      .delete(`http://localhost:3003/api/v1/cart/${itemId}`)
-      .then((res) => {
-        console.log(res.data.message)
-        SetCarts((prevCarts) => prevCarts.filter((cart) => cart._id !== itemId))
-        setItemRemoved((prev) => !prev)
-        setIsDataFetched(false)
-      })
-      .catch((err) => {
-        alert(err.message)
-      })
+    const confirmDelete = window.confirm(
+      'Are you sure you want to remove this item?'
+    )
+    if (confirmDelete) {
+      axios
+        .delete(`http://localhost:3003/api/v1/cart/${itemId}`)
+        .then((res) => {
+          console.log(res.data.message)
+          SetCarts((prevCarts) =>
+            prevCarts.filter((cart) => cart._id !== itemId)
+          )
+          setItemRemoved((prev) => !prev)
+          setIsDataFetched(false)
+        })
+        .catch((err) => {
+          alert(err.message)
+        })
+    }
   }
 
   const handleDeleteAll = () => {
-    axios
-      .delete('http://localhost:3003/api/v1/cart')
-      .then((res) => {
-        console.log(res.data.message)
-        setIsDataFetched(false)
-      })
-      .catch((err) => {
-        console.error(err)
-      })
+    const confirmDelete = window.confirm(
+      'Are you sure you want to remove all items?'
+    )
+    if (confirmDelete) {
+      axios
+        .delete('http://localhost:3003/api/v1/cart')
+        .then((res) => {
+          console.log(res.data.message)
+          setIsDataFetched(false)
+        })
+        .catch((err) => {
+          console.error(err)
+        })
+    }
   }
 
   useEffect(() => {
@@ -62,7 +74,6 @@ export default function ShoppingCart() {
           SetCarts(
             res.data.items.map((item) => ({
               ...item,
-              quantity: 1,
               totalPrice: item.product.price,
             }))
           )
@@ -88,7 +99,10 @@ export default function ShoppingCart() {
         <tr>
           <div class="px-4 py-2">
             <h2 class="text-gray-800 text-2xl font-bold">Shopping Cart</h2>
-            <button class=" bg-red text-[14px]" onClick={handleDeleteAll}>
+            <button
+              class=" bg-red text-[14px] hover:text-red-500 bold"
+              onClick={handleDeleteAll}
+            >
               Remove all items
             </button>
           </div>
@@ -139,7 +153,7 @@ export default function ShoppingCart() {
                             <img
                               class="h-20 w-20 "
                               crossOrigin="anonymous"
-                              src={`http:\/\/localhost:3008\/${cart.product.image}`}
+                              src={cart.product.image}
                               alt=""
                             ></img>
                           </div>
@@ -154,7 +168,7 @@ export default function ShoppingCart() {
                             </div>
                             {/* Reomve btn for cart item remove */}
                             <button
-                              class="pt-5 bg-red text-[14px]"
+                              class="pt-5 bg-red text-[14px] hover:text-red-500 bold"
                               onClick={() => handleRemoveItem(cart._id)}
                             >
                               Remove
@@ -171,7 +185,7 @@ export default function ShoppingCart() {
                         <div class="inline-block relative">
                           <select
                             // onChange={handleQuantityChange}
-                            value={cart.quantity}
+                            defaultValue={cart.quantity}
                             onChange={(event) =>
                               handleQuantityChangeForCart(
                                 cart._id,
@@ -204,7 +218,7 @@ export default function ShoppingCart() {
                       </td>
                       <td class="px-6 py-4 whitespace-nowrap">
                         <span class="text-gray-900 font-medium">
-                          {cart.totalPrice.toFixed(2)}
+                          Rs.{cart.totalPrice.toFixed(2)}
                         </span>
                       </td>
                     </tr>
