@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FaLeaf } from 'react-icons/fa'
 import {
   DASHBOARD_SIDEBAR_BOTTOM_LINKS,
@@ -12,6 +12,14 @@ const linkClass =
   'flex items-center gap-2 font-light px-3 py-2 hover:bg-neutral-700 hover:no-underline active:bg-neutral-600 rounded-sm text-base'
 
 export default function Sidebar() {
+  const [showConfirmation, setShowConfirmation] = useState(false)
+
+  const handleLogout = () => {
+    // Perform logout action here (e.g., clearing user session)
+    // Redirect to the login page
+    window.location.href = '/login'
+  }
+
   return (
     <div className="bg-neutral-900 w-60 p-3 flex flex-col text-white">
       <div className="flex items-center gap-2 px-1 py-3">
@@ -27,11 +35,37 @@ export default function Sidebar() {
         {DASHBOARD_SIDEBAR_BOTTOM_LINKS.map((item) => (
           <SidebarLink key={item.key} item={item} />
         ))}
-        <div className={classNames('text-red-500 cursor-pointer', linkClass)}>
-          <span className="text-xl">
-            <HiOutlineLogout />
-          </span>
-          Log Out
+        <div>
+          <div
+            className={classNames('text-red-500 cursor-pointer', linkClass)}
+            onClick={() => setShowConfirmation(true)}
+          >
+            <span className="text-xl">
+              <HiOutlineLogout />
+            </span>
+            <button>Log Out</button>
+          </div>
+          {showConfirmation && (
+            <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75">
+              <div className="bg-white p-8 rounded-lg">
+                <p>Are you sure you want to log out?</p>
+                <div className="flex justify-end mt-4">
+                  <button
+                    className="text-red-500 px-4 py-2 rounded-md border border-red-500 mr-2"
+                    onClick={() => setShowConfirmation(false)}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    className="text-white bg-red-500 px-4 py-2 rounded-md"
+                    onClick={handleLogout}
+                  >
+                    Log Out
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

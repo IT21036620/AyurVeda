@@ -9,19 +9,22 @@ import ErrorRoute from './errorRoute'
 import ProductRoutes from './productRoutes'
 import SellerRoutes from './sellerRoutes'
 import PaymentRoutes from './paymentRoutes'
+import Navbar from '../components/navbar'
+import navLayout from '../pages/navLayout'
 
 const IndexRoutes = () => {
   return (
     <div>
       <AdminRoutes />
-      <DeliveryRoutes />
       <LoginRoutes />
+
+      <DeliveryRoutes />
       <CartRoutes />
-      {/*<BuyerRoutes />
+      <BuyerRoutes />
       <ProductRoutes />
-      <PaymentRoutes />  */}
-      <SellerRoutes />
       <PaymentRoutes />
+      <SellerRoutes />
+
       {/* <ErrorRoute /> */}
     </div>
   )

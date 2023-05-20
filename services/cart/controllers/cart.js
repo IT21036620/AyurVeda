@@ -83,7 +83,10 @@ const getCartItemsbycusid = asyncWrapper(async (req, res, next) => {
 // This is used to retriew Complete cart items that matches the cartid---------------------------
 const getCompelteCartItemsbycartid = asyncWrapper(async (req, res, next) => {
   const { id: cartID } = req.params
-  const items = await CartComplete.findOne({ _id: cartID })
+  const items = await CartComplete.findOne({ _id: cartID }).populate(
+    'products.product',
+    'image price product_name'
+  )
 
   if (!items) {
     return next(createCustomError(`No Cart with id: ${cartID}`, 404))

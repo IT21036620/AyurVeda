@@ -156,16 +156,19 @@ export default function ViewOrder() {
                     <tr>
                       <th>Product</th>
                       <th>quantity</th>
-                      <th>price</th>
+                      <th>Total</th>
                     </tr>
                   </thead>
                   <tbody>
                     {cart.map((item) => (
                       <tr key={item._id}>
-                        <td>{item.product}</td>
+                        {/* <td>{item.product}</td> */}
+                        <td>
+                          <img src={item.product.image} className="w-16 h-16" />
+                        </td>
                         <td>{item.quantity}</td>
                         <td>
-                          <span>value</span>
+                          <span>{item.quantity * item.product.price}</span>
                         </td>
                       </tr>
                     ))}

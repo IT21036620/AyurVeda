@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const UserSchema = new mongoose.Schema({
   username: {
     type: String,
-    required: [true, 'must provide a order id'],
+    required: [true, 'must provide a user name'],
     trim: true,
   },
   role: {
