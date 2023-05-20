@@ -73,9 +73,19 @@ const insertcartcompletedetails = asyncWrapper(async (req, res) => {
 // -------------------------------------------------------------------------------------------
 
 // THis is used to retriew cart items that matches the loged userid---------------------------
+// const getCartItemsbycusid = asyncWrapper(async (req, res, next) => {
+//   const userId = req.params.userId
+//   const items = await Cart.find({ user: userId }).populate('product')
+//   res.status(200).json({ items })
+// })
+
 const getCartItemsbycusid = asyncWrapper(async (req, res, next) => {
-  const userId = req.params.userId
-  const items = await Cart.find({ user: userId }).populate('product')
+  const { id: userId } = req.params
+  const items = await Cart.find({ user: userId })
+
+  if (!items) {
+    return next(createCustomError(`No Cart item with id: ${userId}`, 404))
+  }
   res.status(200).json({ items })
 })
 // -------------------------------------------------------------------------------------------

@@ -23,8 +23,8 @@ app.use(cors())
 //routes
 app.use('/api/v1/orders', orders)
 
-app.use(notFound)
-app.use(errorHandlerMiddleware)
+// app.use(notFound)
+// app.use(errorHandlerMiddleware)
 
 const port = process.env.PORT || 3006
 

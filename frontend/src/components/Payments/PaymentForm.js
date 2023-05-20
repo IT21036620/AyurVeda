@@ -3,6 +3,12 @@ import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
 import axios from 'axios'
 import CartContext from '../order/CartContext'
 
+import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
+
+//toastify alert messages
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
 const CARD_ELEMENT_OPTIONS = {
   style: {
     base: {
@@ -19,6 +25,9 @@ const CARD_ELEMENT_OPTIONS = {
 }
 
 const PaymentForm = () => {
+  const notify2 = () => toast('Payment Successful.')
+  const notify3 = () => toast('Payment Unsuccessful.')
+
   const [error, setError] = useState(null)
   const [success, setSuccess] = useState(null)
   const stripe = useStripe()
@@ -47,10 +56,14 @@ const PaymentForm = () => {
         setSuccess('Payment successful!')
         setpaymentsucces(1)
         setError(null)
+        notify2()
+        window.alert('Payment successful!')
       } else {
         setError('Payment failed. Please try again.')
         setpaymentsucces(0)
         setSuccess(null)
+        notify3()
+        window.alert('Payment failed. Please try again.')
       }
     }
   }

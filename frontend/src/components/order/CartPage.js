@@ -1,5 +1,5 @@
 import React from 'react'
-import OrderSummary from './orderSummary'
+import OrderSummary from './orderSummary.js'
 import ShoppingCart from './shoppingCart'
 import CartContext from './CartContext'
 import ShippingDetails from './ShippingDetails'
@@ -48,7 +48,7 @@ export default function CartPage() {
           </div>
 
           <div class=" w-1/4 ">
-            <div class="max-w-ml mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+            {/* <div class="max-w-ml mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
               <div class=" p-4">
                 <h2 class="font-bold text-xl mb-4 pb-2 pt-2">Promo code</h2>
                 <div class="flex justify-between mb-2 pb-2">
@@ -61,7 +61,7 @@ export default function CartPage() {
                   </button>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             <div class="pt-5">
               <div class="max-w-ml mx-auto bg-white shadow-lg rounded-lg overflow-hidden p-4">

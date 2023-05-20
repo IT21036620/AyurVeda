@@ -6,8 +6,17 @@ require('dotenv').config()
 const notFound = require('./middleware/not-found')
 const errorHandlerMiddleware = require('./middleware/error-handler')
 const cors = require('cors')
+// const credentials = require('./middleware/credentials')
 
-//middleware
+// var corsOptions = {
+//   origin: 'http://localhost:3000',
+//   optionsSuccessStatus: 200,
+// }
+
+// //middleware
+// app.use(credentials)
+// app.use(cors(corsOptions))
+
 app.use(express.json())
 
 app.use(cors())
