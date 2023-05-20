@@ -61,6 +61,8 @@
 
 .MuiContainer-root.product-view .rate-product {
     margin-top: 20px;
+    margin-bottom: 10px;
+    width: 127px;
 }
 
 .MuiContainer-root.product-view .rate-seller {
