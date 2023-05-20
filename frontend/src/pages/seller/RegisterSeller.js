@@ -4,6 +4,7 @@ import axios from 'axios'
 import Navbar from '../../components/navbar'
 
 const registerSellerUrl = 'http://localhost:3008/api/v1/seller/register'
+const register = 'http://localhost:3001/api/v1/auth'
 
 const RegisterSeller = () => {
   const [name, setName] = useState('')
@@ -45,6 +46,34 @@ const RegisterSeller = () => {
     }
   }
 
+  // const handleRegister = async (e) => {
+  //   e.preventDefault()
+
+  //   try {
+  //     const resp = await axios.post(
+  //       `${register}`,
+  //       {
+  //         username: email,
+  //         role: 'seller',
+  //         password: password,
+  //       },
+  //       {
+  //         headers: {
+  //           'Content-Type': 'multipart/form-data',
+  //         },
+  //       }
+  //     )
+  //     console.log(resp.data)
+  //   } catch (error) {
+  //     console.log(error.response)
+  //   }
+  // }
+
+  // function handleSubmit() {
+  //   handleSellerSubmit()
+  //   handleRegister()
+  // }
+
   return (
     <div>
       {/* <Navbar name="Iverson" /> */}
@@ -63,7 +92,7 @@ const RegisterSeller = () => {
                       <label>User Name</label>
                       <input
                         type="text"
-                        name="product_name"
+                        name="name"
                         id="name"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
@@ -75,7 +104,7 @@ const RegisterSeller = () => {
                       <label htmlFor="email">Email</label>
                       <input
                         type="email"
-                        name="product_name"
+                        name="email"
                         id="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
