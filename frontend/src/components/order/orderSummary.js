@@ -76,18 +76,18 @@ export default function OrderSummary() {
       <h2 class="font-bold text-lg mb-4 pb-2 pt-2">Order Summary</h2>
       <div class="flex justify-between mb-2">
         <span>Items Total</span>
-        <span>Rs.{cartTotal.toFixed(2)}</span>
+        <span>Rs.{cartTotal}.00</span>
       </div>
       <div class="flex justify-between mb-2 pb-2">
         <span class="font-medium">Site Commission</span>
-        <span class="text-green-500">Rs.{commission.toFixed(2)}</span>
+        <span class="text-green-500">Rs.{commission}.00</span>
       </div>
 
       <hr class="border border-b border-gray-200 "></hr>
 
       <div class="flex justify-between mb-2 pt-2">
         <span class="font-bold">Subtotal</span>
-        <span>Rs.{(cartTotal + cartTotal * 0.05).toFixed(2)}</span>
+        <span>Rs.{cartTotal + cartTotal * 0.05}.00</span>
       </div>
       <div class="flex justify-between mb-2 pb-2">
         <span>

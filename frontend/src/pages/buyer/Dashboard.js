@@ -7,7 +7,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchUserInfo = async () => {
       const response = await axios.get(
-        'http://localhost:3001/api/buyer/getBuyer/6442335c26c1890f7a771907'
+        'http://localhost:3002/api/buyer/getBuyer/6442335c26c1890f7a771907'
       )
       setUserInfo(response.data.data)
     }
@@ -31,9 +31,11 @@ const Dashboard = () => {
     // </div>
     <div className="container flex ml-20">
       <div className="container bg-gray-200 rounded-xl shadow border p-8 m-10 w-11/12">
-        <h2 className="text-4xl text-blue-500 text-center">Account Details</h2>
+        <h2 className="text-3xl font-semibold text-center text-gray-700 mb-6">
+          Account Details
+        </h2>
         <div className="container bg-white rounded-xl shadow border p-8 m-10 w-10/12">
-          <h4 className="text-3xl text-blue-500 capitalize p-3">
+          <h4 className="text-3xl font-semibold text-blue-500 capitalize p-3">
             {userInfo.buyerName}
           </h4>
           <p className="p-2">

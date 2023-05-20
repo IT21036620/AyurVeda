@@ -160,30 +160,23 @@ export default function OrdersAdmin() {
           <thead>
             <tr>
               <th>ID</th>
-              <th>Product ID</th>
               <th>Customer Name</th>
               <th>Order Date</th>
               <th>Order Total</th>
-              <th>Shipping Address</th>
+              <th>Destination Address</th>
               <th>Order Status</th>
-              <th></th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
             {orders.map((order) => (
               <tr key={order._id}>
-                <td>
-                  <Link to={`/order/${order.id}`}>{order.order_id}</Link>
-                </td>
-                <td>
-                  <Link to={`/product/${order.product_id}`}>#</Link>
-                </td>
-                <td>
-                  <Link to={`/customer/${order.customer_id}`}>#</Link>
-                </td>
+                <td>{order.order_id}</td>
+                <td>{order?.customerid?.buyerName}</td>
+
                 <td>{format(new Date(order.createdAt), 'dd MMM yyyy')}</td>
                 <td>{order.totalPrice}</td>
-                <td>#</td>
+                <td>{order?.deliveryid?.destination_address}</td>
                 <td>{getOrderStatus(order.status)}</td>
                 <td>
                   <Link to="order" state={order._id}>

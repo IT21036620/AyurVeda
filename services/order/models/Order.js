@@ -74,6 +74,40 @@ const buyerSchema = mongoose.Schema(
 
 const buyer = mongoose.model('buyer', buyerSchema)
 
+const CartCompleteSchema = new mongoose.Schema(
+  {
+    userID: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
+    },
+
+    products: [
+      {
+        product: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'Product',
+          required: true,
+        },
+        quantity: {
+          type: Number,
+          required: true,
+          default: 1,
+        },
+      },
+    ],
+
+    totalprice: {
+      type: Number,
+      required: true,
+    },
+  },
+
+  { timestamps: true }
+)
+
+module.exports = mongoose.model('CartComplete', CartCompleteSchema)
+
 const OrderSchema = new mongoose.Schema({
   order_id: {
     type: String,
@@ -93,7 +127,7 @@ const OrderSchema = new mongoose.Schema({
   },
   cartID: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Cart', // Reference to the Product model
+    ref: 'CartComplete', // Reference to the Product model
     // required: true,
   },
   status: {

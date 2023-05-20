@@ -4,10 +4,18 @@ import cors from 'cors'
 
 import connectDB from './config/dbconnet.js'
 import reviewRoutes from './routes.js'
+import credentials from './middleware/credentials.js'
 
 dotenv.config()
 
+var corsOptions = {
+  origin: 'http://localhost:3000',
+  optionsSuccessStatus: 200,
+}
+
 const app = express()
+app.use(credentials)
+// app.use(cors(corsOptions))
 app.use(express.json({ limit: '1mb' }))
 
 app.use(cors())

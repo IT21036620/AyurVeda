@@ -14,7 +14,7 @@ const AddProduct = () => {
   const [category, setCategory] = useState('')
   const [mfd, setMfd] = useState('')
   const [exp, setExp] = useState('')
-  const [image, setImage] = useState('')
+  const [image, setImage] = useState(null)
   const [description, setDescription] = useState('')
 
   const handleSubmit = async (e) => {
@@ -63,26 +63,24 @@ const AddProduct = () => {
     }
   }
 
-  function generateFileName(originalName) {
-    const timestamp = new Date().getTime()
-    const extension = originalName.split('.').pop()
-    return `${timestamp}.${extension}`
+  const handleImageChange = (e) => {
+    setImage(e.target.files[0])
   }
 
-  return (
-    <div>
-      {/* <Navbar name="Iverson" /> */}
-      <div className="main-form">
-        <div className="form-title">
-          <h2
-            className="form-h2"
-            class="ml-2 font-mono text-3xl font-semibold text-gray-500 dark:text-gray-400"
-          >
-            Add New Product
-          </h2>
-          <div className="form-underline"></div>
-        </div>
+  // function generateFileName(originalName) {
+  //   const timestamp = new Date().getTime()
+  //   const extension = originalName.split('.').pop()
+  //   return `${timestamp}.${extension}`
+  // }
 
+  return (
+    <div class="bg-[#ffffff]">
+      {/* <Navbar name="Iverson" /> */}
+      <div className="title">
+        <h2>Add New Product</h2>
+        <div className="underline"></div>
+      </div>
+      <div className="main-form">
         <div className="form-body">
           <div className="form-container">
             <form onSubmit={handleSubmit}>
@@ -165,20 +163,29 @@ const AddProduct = () => {
                         onChange={(e) => setCategory(e.target.value)}
                         required
                       >
-                        <option value="Supplements & Herbs">
+                        <option
+                          class="text-gray-400"
+                          value=""
+                          disabled
+                          defaultValue={'Choose a Category'}
+                          hidden
+                        >
+                          Choose a Category
+                        </option>
+                        <option value="Supplements and Herbs">
                           Supplements & Herbs
                         </option>
                         <option value="Sports Nutrition">
                           Sports Nutrition
                         </option>
                         <option value="Beauty">Beauty</option>
-                        <option value="Bath & Personal Care">
+                        <option value="Bath and Personal Care">
                           Bath & Personal Care
                         </option>
                         <option value="Grocery">Grocery</option>
                         <option value="Home">Home</option>
                         <option value="Pets">Pets</option>
-                        <option value="Babies & Kids">Babies & Kids</option>
+                        <option value="Babies and Kids">Babies & Kids</option>
                       </select>
                     </div>
 
@@ -213,10 +220,12 @@ const AddProduct = () => {
                       <input
                         type="file"
                         accept="image/png, image/jpg, image/jpeg"
+                        crossOrigin="anonymous"
                         name="image"
                         id="image"
-                        value={image}
-                        onChange={(e) => setImage(e.target.value)}
+                        // value={image}
+                        // onChange={(e) => setImage(e.target.value)}
+                        onChange={handleImageChange}
                         placeholder="Upload Product Image"
                         required
                       ></input>

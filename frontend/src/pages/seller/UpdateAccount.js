@@ -48,17 +48,11 @@ const UpdateAccount = () => {
   return (
     <div>
       {/* <Navbar name="Iverson" /> */}
+      <div className="title">
+        <h2>Update Account Details</h2>
+        <div className="underline"></div>
+      </div>
       <div className="main-form">
-        <div className="form-title">
-          <h2
-            className="form-h2"
-            class="ml-2 font-mono text-3xl font-semibold text-gray-500 dark:text-gray-400"
-          >
-            Update Account Details
-          </h2>
-          <div className="form-underline"></div>
-        </div>
-
         <div className="form-body">
           <div className="form-container">
             <form onSubmit={handleSubmit}>
@@ -132,6 +126,7 @@ const UpdateAccount = () => {
                       <input
                         type="file"
                         accept="image/png, image/jpg, image/jpeg"
+                        crossOrigin="anonymous"
                         name="profile_image"
                         id="profile_image"
                         value={profile_image}
@@ -154,7 +149,7 @@ const UpdateAccount = () => {
                     </div>
 
                     <button
-                      class="m-auto bg-green-500 mt-[20px] hover:bg-green-700 text-white font-bold py-2 px-4 border border-green-700 rounded"
+                      class="m-auto bg-green-500 mt-[20px] mb-[20px] hover:bg-green-700 text-white font-bold py-2 px-4 border border-green-700 rounded"
                       type="submit"
                       name="submit"
                     >

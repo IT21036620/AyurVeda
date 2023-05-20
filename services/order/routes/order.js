@@ -1,8 +1,11 @@
 const express = require('express')
 const router = express.Router()
+
+//middleware for authorization
 const verifyJWT = require('../middleware/verifyJWT')
 const rolesVerify = require('../middleware/rolesVerify')
 
+//role specification for role authorization
 const role = 'admin'
 
 const {
@@ -14,6 +17,7 @@ const {
   getOrdersforCustomer,
 } = require('../controllers/order')
 
+//routes protected with jwt authorization
 router
   .route('/')
   .get(verifyJWT, rolesVerify(role), getAllOrder)

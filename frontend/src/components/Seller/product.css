@@ -28,7 +28,7 @@
     @apply flex flex-col w-full h-full box-border bg-[color:var(--bg)] pt-[30px] pb-5 px-[50px];
   } */
   .main_content {
-    @apply relative w-[70%] h-full box-border justify-between flex-wrap mx-auto my-[50px] pt-[50px] pb-0 px-0;
+    @apply relative w-[70%] h-full box-border justify-between flex-wrap mx-auto my-[20px] pt-[50px] pb-0 px-0;
   }
   .main_content .h3 {
     @apply absolute text-[color:var(--text)] text-[10.5vw] left-0 top-0;
