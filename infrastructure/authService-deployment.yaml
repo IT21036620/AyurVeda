@@ -1,35 +1,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: buyer
+  name: authService
   labels:
-    app: buyer
+    app: authService
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: buyer
+      app: authService
   template:
     metadata:
       labels:
-        app: buyer
+        app: authService
     spec:
       containers:
-        - name: buyer
-          image: dinukakariyawasam/ayurveda:buyer
+        - name: authService
+          image: dinukakariyawasam/ayurveda:authService
           ports:
-            - containerPort: 3002
+            - containerPort: 3001
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: buyer
+  name: authService
 spec:
   selector:
-    app: buyer
+    app: authService
   ports:
     - name: http
-      port: 3002
-      targetPort: 3002
+      port: 3001
+      targetPort: 3001
   type: NodePort
 

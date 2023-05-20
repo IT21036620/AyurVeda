@@ -15,7 +15,7 @@ const AccountInfo = () => {
     const fetchUserInfo = async () => {
       try {
         const response = await axios.get(
-          'http://localhost:3001/api/buyer/getBuyer/6442335c26c1890f7a771907'
+          'http://localhost:3002/api/buyer/getBuyer/6442335c26c1890f7a771907'
         )
         setUserInfo(response.data.data)
         setBuyerInfo({
@@ -41,7 +41,7 @@ const AccountInfo = () => {
     console.log(buyerInfo)
     try {
       const response = await axios.patch(
-        `http://localhost:3001/api/buyer/updateBuyer/6442335c26c1890f7a771907`,
+        `http://localhost:3002/api/buyer/updateBuyer/6442335c26c1890f7a771907`,
         buyerInfo
       )
       setUserInfo(response.data.data)
@@ -53,7 +53,7 @@ const AccountInfo = () => {
 
   return (
     <div className="bg-gray-100 p-4 rounded-lg ml-36">
-      <h2 className="text-2xl font-bold mb-4 inline-flex items-center">
+      <h2 className="text-3xl font-bold mb-4 inline-flex items-center text-blue-400">
         <FaUser className="mr-2" />
         Account Information
       </h2>

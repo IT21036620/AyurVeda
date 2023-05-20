@@ -19,20 +19,63 @@ const getProductsByCategory = asyncWrapper(async (req, res, next) => {
 
 // create a new product with checking image file
 const createProduct = asyncWrapper(async (req, res) => {
-  req.body.createdBy = req.user.userId
+  // req.body.createdBy = req.user.userId
 
-  if (req.file) {
-    const result = await cloudinary.uploader.upload(req.file.path, {
+  // if (req.file) {
+  //   const result = await cloudinary.uploader.upload(req.file.path, {
+  //     folder: 'dsProducts',
+  //   })
+
+  //   req.body.image = result.secure_url
+  // } else {
+  //   req.body.image =
+  //     'https://res.cloudinary.com/dbcmklrpv/image/upload/v1684347134/default-product_x6jgjo.png'
+  // }
+
+  // const product = await Product.create(req.body)
+  // res.status(201).json({ product })
+
+  req.body.createdBy = req.user.userId
+  const {
+    product_name,
+    manufacturer,
+    package_quantity,
+    price,
+    mfd,
+    exp,
+    shipping_weight,
+    category,
+    description,
+    createdBy,
+  } = req.body
+  const file = req.file
+
+  try {
+    const result = await cloudinary.uploader.upload(file.path, {
       folder: 'dsProducts',
     })
+    const image = result.secure_url
 
-    req.body.image = result.secure_url
-  } else {
-    req.body.image = 'http://localhost:3008/uploads/default-product.png'
+    const newProduct = new Product({
+      product_name,
+      manufacturer,
+      package_quantity,
+      price,
+      mfd,
+      exp,
+      shipping_weight,
+      category,
+      description,
+      createdBy,
+      image: image, // Assign the single image URL directly
+    })
+
+    await newProduct.save()
+    res.json(newProduct)
+  } catch (error) {
+    console.error(error)
+    res.status(500).send('Server error')
   }
-
-  const product = await Product.create(req.body)
-  res.status(201).json({ product })
 })
 
 //using errors custom-error.js for createCustomError
