@@ -2,7 +2,15 @@ import React, { useContext, useState, useEffect } from 'react'
 import CartContext from './CartContext'
 import axios from 'axios'
 
+import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
+
+//toastify alert messages
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
 export default function OrderSummary() {
+  const notify = () => toast('Checkout Completed.')
+
   const { cartTotal } = useContext(CartContext)
   const [commission, setCommission] = useState(0)
   const { TotalFinal, setTotalFinal, paymentsucces } = useContext(CartContext)
@@ -22,20 +30,20 @@ export default function OrderSummary() {
   }
 
   // useEffect(() => {
-  //   fetchCommission(cartTotal) // pass your desired total price value here
+  //   fetchCommission(cartTotal)
   // }, [cartTotal])
 
   useEffect(() => {
-    fetchCommission(cartTotal) // pass your desired total price value here
+    fetchCommission(cartTotal)
     setTotalFinal(cartTotal + 540 + commission)
   }, [cartTotal])
 
   const handleCheckout = () => {
-    paymentsucces ? alertok() : alert('Please Pay')
+    paymentsucces ? alertok() : alert('Please Pay the Amout to continue....')
   }
 
   const alertok = async () => {
-    const data = { userID: '1' }
+    const data = { userID: '5' }
 
     const response = await axios.post(
       'http://localhost:3003/api/v1/cart/cartcomplete',
@@ -56,6 +64,11 @@ export default function OrderSummary() {
       'http://localhost:3006/api/v1/orders',
       data2
     )
+
+    if (response2.data) {
+      window.alert('Checkout successful!')
+      window.location.href = '/buyer/account'
+    }
   }
 
   return (
@@ -90,7 +103,7 @@ export default function OrderSummary() {
 
       <div class="flex justify-between font-bold pt-2">
         <span>Total:</span>
-        <span>Rs.{TotalFinal}</span>
+        <span>Rs.{TotalFinal}.00</span>
       </div>
       <button
         onClick={handleCheckout}
