@@ -20,7 +20,6 @@ const {
 router
   .route('/')
   .get(getAllCartItems) // GET all cart items
-  .get(getCartItemsbycusid) // GET all cart items by Customer id
   .post(createCartItem) // Add new iteam to cart
   .delete(deleteAllCartItems) // Delete all cart items
 

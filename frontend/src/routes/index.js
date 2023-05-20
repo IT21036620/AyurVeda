@@ -16,12 +16,13 @@ const IndexRoutes = () => {
       <AdminRoutes />
       <DeliveryRoutes />
       <LoginRoutes />
-      <CartRoutes />
+
       <BuyerRoutes />
       <ProductRoutes />
+      <CartRoutes />
       <PaymentRoutes />
       <SellerRoutes />
-      <PaymentRoutes />
+
       {/* <ErrorRoute /> */}
     </div>
   )

@@ -52,12 +52,12 @@ export default function OrderSummary() {
 
     const custid = response
     const data2 = {
-      order_id: 'testing with cust id 2',
+      order_id: '643ab55dc99c5c2c4c78f55e',
       deliveryid: '643ab55dc99c5c2c4c78f55e',
-      cartID: 'custid',
+      cartID: '643ab55dc99c5c2c4c78f55e',
       customerid: '6442335c26c1890f7a771907',
       status: 'pending',
-      totalPrice: 100,
+      totalPrice: 1000,
     }
 
     const response2 = await axios.post(

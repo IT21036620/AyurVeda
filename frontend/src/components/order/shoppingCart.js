@@ -185,7 +185,7 @@ export default function ShoppingCart() {
                         <div class="inline-block relative">
                           <select
                             // onChange={handleQuantityChange}
-                            value={cart.quantity}
+                            defaultValue={cart.quantity}
                             onChange={(event) =>
                               handleQuantityChangeForCart(
                                 cart._id,
