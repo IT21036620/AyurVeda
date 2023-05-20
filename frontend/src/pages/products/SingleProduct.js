@@ -176,7 +176,7 @@ const SingleProduct = () => {
       const resp = await axios.post(
         cartUrl,
         {
-          user: '5',
+          user: '6442335c26c1890f7a771907',
           product: id,
           quantity: quantity,
           price: totPrice,
