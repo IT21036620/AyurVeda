@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: dinukakariyawasam/ayurveda:frontend
+          image: dinukakariyawasam/ayurveda:frontend.v2
           ports:
             - containerPort: 3000
 ---

@@ -19,6 +19,7 @@ const IndexRoutes = () => {
       <CartRoutes />
       <BuyerRoutes />
       <ProductRoutes />
+      {/* <SellerRoutes />
       <PaymentRoutes />
       <SellerRoutes />
       <PaymentRoutes />
