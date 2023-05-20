@@ -12,7 +12,7 @@ const Navbar = ({ name }) => {
           AyurVeda
         </a>
 
-        <form className="w-1/2 mr-2">
+        <form className="w-1/3 mr-2">
           <input
             type="text"
             placeholder="Search"
@@ -61,8 +61,8 @@ const Navbar = ({ name }) => {
           {/* <FontAwesomeIcon icon="shopping-cart" /> */}
         </a>
         <a
-          // href="/signin"
-          href="/login"
+          href="/buyer/account"
+          // href="/login"
           className="text-white flex items-center border-2 border-white rounded-lg px-2 py-1 ml-10 text-xl"
         >
           <span>{name}</span>

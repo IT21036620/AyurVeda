@@ -85,7 +85,7 @@ const OrderList = ({ buyerId }) => {
               <tr key={order._id} className="hover:bg-gray-100">
                 <td className="p-2 border-t border-gray-300">{order._id}</td>
                 <td className="p-2 border-t border-gray-300">
-                  ${order.totalPrice}
+                  Rs.{order.totalPrice}
                 </td>
                 <td className="p-2 border-t border-gray-300">
                   {new Date(order.createdAt).toLocaleDateString()}

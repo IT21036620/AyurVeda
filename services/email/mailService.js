@@ -1,36 +1,30 @@
 import nodemailer from 'nodemailer'
 
 export const mailSupplier = async ({
-  business_name,
+  name,
   address,
   email,
   phone,
-  registered_products,
-  username,
-  password,
-  description,
+  products,
 }) => {
   const details = {
-    business_name,
+    name,
     address,
     email,
     phone,
-    registered_products,
-    username,
-    password,
-    description,
+    products,
   }
+
   //Layout of the displayed massage to the supplier
   const output = `
     <p>Your AyurVeda Order Is Approved</p>
-    <p>${details.description}</p>
     <h3>Order Details</h3>
     <ul>  
-      <li>Business name: ${details.business_name}</li>
+      <li>Customer name: ${details.name}</li>
       <li>Address: ${details.address}</li>
       <li>Email: ${details.email}</li>
       <li>Phone: ${details.phone}</li>
-      <li>Registered products: ${details.registered_products}</li>
+      <li>products: ${details.products}</li>
     </ul>
 
   `
